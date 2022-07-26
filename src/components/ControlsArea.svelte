@@ -1,7 +1,9 @@
 <script lang="ts">
   import { Link } from "svelte-routing";
   import CustomOptionInput from "../components/CustomOptionInput.svelte";
+  import ControlIgnored from "./ControlIgnored.svelte";
   import ControlSubjects from "./ControlSubjects.svelte";
+
   let clazz: string;
   export { clazz as class };
 </script>
@@ -21,10 +23,6 @@
       <CustomOptionInput label="Subjects" placeholder="5" value={2} />
     </div>
     <ControlSubjects />
-    <div
-      class="bg-blue-600 w-full h-1/2 flex justify-center items-center rounded-lg"
-    >
-      Ignored
-    </div>
+    <ControlIgnored />
   </div>
 </div>

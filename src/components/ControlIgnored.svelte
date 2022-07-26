@@ -6,22 +6,24 @@
   import subjects from "../store/SubjectStore";
 
   const flipDurationMs = 300;
+
   function handleOrderAndMove(e: any): void {
     subjects.update((currentSubjects) => {
       let copiedSubs = currentSubjects;
-      copiedSubs.mandatory = e.detail.items;
+      copiedSubs.optional = e.detail.items;
       return copiedSubs;
     });
+    //items = e.detail.items;
   }
 </script>
 
 <section
-  use:dndzone={{ items: $subjects.mandatory, flipDurationMs }}
+  use:dndzone={{ items: $subjects.optional, flipDurationMs }}
   on:consider={handleOrderAndMove}
   on:finalize={handleOrderAndMove}
-  class="bg-blue-600 w-full h-full flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2"
+  class="bg-blue-600 w-full h-1/2 flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2"
 >
-  {#each $subjects.mandatory as { id, title } (id)}
+  {#each $subjects.optional as { id, title } (id)}
     <div animate:flip={{ duration: flipDurationMs }} class="w-full">
       <ControlSubjectItem {title} />
     </div>
