@@ -4,7 +4,7 @@ import wasmPack from "vite-plugin-wasm-pack";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  Object.assign(process.env, loadEnv(mode, process.cwd()))
+  Object.assign(process.env, loadEnv(mode, process.cwd()));
 
   const API_KEY = process.env.VITE_API_KEY;
 
@@ -16,11 +16,7 @@ export default defineConfig(({ mode }) => {
           target: `https://itbagw.itba.edu.ar/api/v1/courseCommissions/${API_KEY}`,
           changeOrigin: true,
           //rewrite: (path) => path.replace(/^\/api/, '')
-          rewrite: (path) => {
-            path = path.replace(/^\/api\?/, "?level=GRADUATE&");
-            console.log(path);
-            return path;
-          },
+          rewrite: (path) => path.replace(/^\/api\?/, "?level=GRADUATE&"),
         },
       },
     },

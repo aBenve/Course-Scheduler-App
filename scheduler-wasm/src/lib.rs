@@ -1,12 +1,15 @@
 mod utils;
 
-use std::sync::{Arc, Mutex};
+use std::{
+    cell::RefCell,
+    sync::{Arc, Mutex},
+};
 
-use scheduler::models::Subject;
+use js_sys::{Array};
+use scheduler::models::{Code, Subject, SubjectCommision};
 use wasm_bindgen::{prelude::*, JsCast};
 
-// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
-// allocator.
+// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global allocator.
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
@@ -16,7 +19,6 @@ extern "C" {
     fn alert(s: &str);
 }
 
-//use scheduler::option_generator::generate;
 use scheduler::loaders::json_loader;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{window, Request, RequestInit, RequestMode, Response};
@@ -24,7 +26,13 @@ use web_sys::{window, Request, RequestInit, RequestMode, Response};
 use url::Url;
 
 #[wasm_bindgen]
-pub async fn load_from_api() {
+pub enum Semester {
+    First,
+    Second,
+}
+
+#[wasm_bindgen]
+pub async fn load_from_api(year: u32, semester: Semester) {
     let mut opts = RequestInit::new();
     opts.method("GET").mode(RequestMode::Cors);
     let window = window().unwrap();
@@ -40,7 +48,14 @@ pub async fn load_from_api() {
     .unwrap()
     .join("/api")
     .unwrap();
-    url.set_query(Some("year=2022&period=SecondSemester"));
+    url.set_query(Some(&format!(
+        "year={}&period={}",
+        year,
+        match semester {
+            Semester::First => "FirstSemester",
+            Semester::Second => "SecondSemester",
+        }
+    )));
 
     //location.set_pathname("/api?").unwrap();
     let request = Request::new_with_str_and_init(url.as_str(), &opts).unwrap();
@@ -68,8 +83,102 @@ pub fn set_panic_hook() {
 }
 
 #[wasm_bindgen]
-pub fn test() {
-    //generate(mandatory, vectors)
-    //Ok(subjects[0].name.clone())
-    alert(&SUBJECTS.lock().unwrap()[0].name);
+pub struct SubjectInfo {
+    code: Code,
+    name: String,
+    pub credits: u8,
+}
+
+#[wasm_bindgen]
+impl SubjectInfo {
+    #[wasm_bindgen(getter)]
+    pub fn code(&self) -> String {
+        self.code.to_string()
+    }
+
+    #[wasm_bindgen(getter)]
+    pub fn name(&self) -> String {
+        self.name.clone()
+    }
+}
+
+#[wasm_bindgen]
+pub fn get_subject_info(code: String) -> Option<SubjectInfo> {
+    let code: Code = code.parse().unwrap();
+    let subjects = SUBJECTS.lock().unwrap();
+    subjects
+        .iter()
+        .find(|s| s.code == code)
+        .map(|s| SubjectInfo {
+            code: s.code,
+            name: s.name.clone(),
+            credits: s.credits,
+        })
+}
+
+use scheduler::option_generator::generate;
+thread_local! {
+    pub static OPTION_ITERATOR: RefCell<Option<Box<dyn Iterator<Item = Vec<Option<SubjectCommision>>>>>> =
+        RefCell::new(None);
+}
+
+fn get_next_option() -> Option<Vec<Option<SubjectCommision>>> {
+    OPTION_ITERATOR.with(|option_iterator| {
+        let iterator = &mut option_iterator.borrow_mut();
+        iterator.as_mut().unwrap().next()
+    })
+}
+
+#[wasm_bindgen]
+pub fn start_generator(mandatory_codes: Array, optional_codes: Array) {
+    let subjects = SUBJECTS.lock().unwrap();
+    let find_subject = |code: Code| {
+        subjects
+            .iter()
+            .find(|s| s.code == code)
+            .ok_or(format!("Could not find subject with code {}", code))
+    };
+    let find_subjects = |codes: Vec<String>| {
+        codes
+            .into_iter()
+            .map(|c| c.parse().unwrap())
+            .map(find_subject)
+            .collect::<Result<Vec<_>, _>>()
+            .expect("Some subject was not found.".into())
+    };
+    let find_commissions = |codes: Array| {
+        find_subjects(codes.iter().map(|v| v.as_string().unwrap()).collect())
+            .into_iter()
+            .map(|sub| sub.commissions.clone())
+            .collect::<Vec<_>>()
+    };
+    let mandatory = find_commissions(mandatory_codes);
+    let optional = find_commissions(optional_codes);
+
+    OPTION_ITERATOR.with(|option_iterator| {
+        *option_iterator.borrow_mut() = Some(generate(mandatory, optional));
+    });
+}
+
+//struct OptionInfo {
+//subjects: Vec<SubjectInfo>,
+//days:
+//}
+
+//#[wasm_bindgen]
+//struct SubjectCommissionInfo {
+//name: String,
+//pub subject: SubjectInfo,
+//pub
+//}
+
+#[wasm_bindgen]
+pub fn next_option() {
+    let commissions: Vec<_> = get_next_option()
+        .unwrap()
+        .iter()
+        .filter_map(|a| a.as_ref())
+        .map(|s| format!("{:?}", s))
+        .collect();
+    alert(&commissions.join(", "));
 }
