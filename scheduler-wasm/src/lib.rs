@@ -5,7 +5,7 @@ use std::{
     sync::{Arc, Mutex},
 };
 
-use js_sys::{Array};
+use js_sys::Array;
 use scheduler::models::{Code, Subject, SubjectCommision};
 use wasm_bindgen::{prelude::*, JsCast};
 
@@ -172,13 +172,55 @@ pub fn start_generator(mandatory_codes: Array, optional_codes: Array) {
 //pub
 //}
 
+mod serializer;
+
+#[wasm_bindgen(typescript_custom_section)]
+const IOPTION: &'static str = r#"
+enum DaysOfTheWeek {
+    Monday = "monday",
+    Tuesday = "tuesday",
+    Wednesday = "wednesday",
+    Thursday = "thursday",
+    Friday = "friday",
+    Saturday = "saturday",
+    Sunday = "sunday",
+}
+
+interface Time {
+    hour: number,
+    minutes: number,
+}
+
+interface Choice {
+    subjects: {
+        [key: string]: {
+            name: string,
+            credits: number,
+            commission: string,
+        },
+    },
+    week: {
+        [key in DaysOfTheWeek]: {
+            subject: string,
+            location: string,
+            span: {
+                start: Time,
+                end: Time,
+            },
+        },
+    },
+}
+"#;
+
 #[wasm_bindgen]
-pub fn next_option() {
-    let commissions: Vec<_> = get_next_option()
-        .unwrap()
-        .iter()
-        .filter_map(|a| a.as_ref())
-        .map(|s| format!("{:?}", s))
-        .collect();
-    alert(&commissions.join(", "));
+extern "C" {
+    #[wasm_bindgen(typescript_type = "Choice")]
+    pub type Choice;
+}
+
+#[wasm_bindgen]
+pub fn next_choice() -> JsValue {
+    let commissions: Vec<_> = get_next_option().unwrap().into_iter().flatten().collect();
+
+    JsValue::from_serde::<serializer::OptionInfo>(&commissions.into()).unwrap()
 }

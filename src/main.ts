@@ -7,7 +7,7 @@ import init, {
   Semester,
   get_subject_info,
   load_from_api,
-  next_option,
+  next_choice,
 } from "scheduler-wasm";
 
 init().then(async () => {
@@ -40,8 +40,7 @@ init().then(async () => {
       "94.62",
     ]
   );
-  next_option();
-
+  console.log(next_choice());
 });
 
 const app = new App({
