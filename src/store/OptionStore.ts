@@ -1,13 +1,18 @@
 import { derived, writable, type Writable } from "svelte/store";
 import type { Choice } from "scheduler-wasm";
 import generateChoices from "../generator";
-//import subjects from "./SubjectStore";
+import subjects from "./SubjectStore";
 
 function createOptions() {
     const { subscribe, set, update }: Writable<{generator: Iterator<Choice>, options: Choice[]}> = writable({generator: null, options: []});
 
     function* take<T>(iterator: Iterator<T>, length: number) {
-        while (length-- > 0) yield iterator.next().value;
+        while (length-- > 0) {
+            let next = iterator.next();
+            if (next.done)
+                break;
+            yield next.value;
+        }
     }
 
     return {
@@ -18,10 +23,11 @@ function createOptions() {
         }),
         addPage: () => update(v => ({
             generator: v.generator, 
-            options: v.options.concat(...take(v.generator, 4))
+            options: v.options.concat(...take(v.generator, 10))
         }))
     }
 }
 
 const options = createOptions();
+
 export default options;

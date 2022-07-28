@@ -4,6 +4,8 @@ export default function generate_choices(
   mandatory: string[],
   optional: string[]
 ): Iterator<Choice> {
+  console.log(mandatory, optional);
+  
   start_generator(mandatory, optional);
   return {
     next() {
