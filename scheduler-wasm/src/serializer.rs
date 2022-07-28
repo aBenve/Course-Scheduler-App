@@ -66,7 +66,8 @@ impl From<scheduler::models::Span> for Span {
 #[derive(Clone, Serialize)]
 struct Task {
     subject: Code,
-    location: String,
+    building: Option<String>,
+    //classroom: String,
     span: Span,
 }
 
@@ -104,7 +105,7 @@ impl From<Vec<SubjectCommision>> for OptionInfo {
                     .map(|task| Task {
                         subject: task.info.subject.upgrade().unwrap().code.into(),
                         span: task.span.into(),
-                        location: task.info.building.name.as_ref().unwrap().clone(),
+                        building: task.info.building.name.clone(),
                     })
                     .collect()
             });

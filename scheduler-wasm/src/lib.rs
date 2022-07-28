@@ -144,7 +144,7 @@ pub fn start_generator(mandatory_codes: Array, optional_codes: Array) {
             .map(|c| c.parse().unwrap())
             .map(find_subject)
             .collect::<Result<Vec<_>, _>>()
-            .expect("Some subject was not found.".into())
+            .expect("A subject was not found.")
     };
     let find_commissions = |codes: Array| {
         find_subjects(codes.iter().map(|v| v.as_string().unwrap()).collect())
@@ -202,12 +202,12 @@ interface Choice {
     week: {
         [key in DaysOfTheWeek]: {
             subject: string,
-            location: string,
+            building?: string,
             span: {
                 start: Time,
                 end: Time,
             },
-        },
+        }[],
     },
 }
 "#;
@@ -220,7 +220,10 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn next_choice() -> JsValue {
-    let commissions: Vec<_> = get_next_option().unwrap().into_iter().flatten().collect();
-
-    JsValue::from_serde::<serializer::OptionInfo>(&commissions.into()).unwrap()
+    if let Some(choice) = get_next_option() {
+        let commissions: Vec<_> = choice.into_iter().flatten().collect();
+        JsValue::from_serde::<serializer::OptionInfo>(&commissions.into()).unwrap()
+    } else {
+        JsValue::null()
+    }
 }
