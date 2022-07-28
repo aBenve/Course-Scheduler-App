@@ -1,9 +1,10 @@
 import { writable, type Writable } from "svelte/store";
+//import { SubjectInfo } from "scheduler-wasm";
 
 // llamado a la api
-const subjects: any = writable(
+const subjects: Writable<{mandatory: Subject[], optional: Subject[]}> = writable(
     {
-        'mandatory': [
+        mandatory: [
             {
                 id:"01.13",
                 title:"Metodos numericos avanzados"
@@ -13,7 +14,7 @@ const subjects: any = writable(
                 title:"Metodos numericos retrasados"
             }
         ],
-        'optional': [
+        optional: [
             {
                 id:"21.43",
                 title:"Analisis I"

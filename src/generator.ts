@@ -1,5 +1,4 @@
-import { start_generator, next_choice } from "scheduler-wasm";
-import type { Choice } from "scheduler-wasm";
+import { type Choice, start_generator, next_choice } from "scheduler-wasm";
 
 export default function generate_choices(
   mandatory: string[],
