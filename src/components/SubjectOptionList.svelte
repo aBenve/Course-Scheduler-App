@@ -1,17 +1,9 @@
 <script lang="ts">
   import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
   import type { Choice } from "scheduler-wasm";
-  let option: Choice = {
-    subjects: {
-      "01.01": {
-        name: "Analisis II",
-        credits: 0,
-        commission: "A",
-      },
-    },
-  };
+  export let options: Choice[];
 </script>
 
-{#each Array(10) as _}
+{#each options as option}
   <SubjectOptionItemList optionData={option} />
 {/each}

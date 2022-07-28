@@ -1,15 +1,13 @@
 import "./app.css";
 import App from "./App.svelte";
-import generateChoices from "./generator";
 
 import init, {
   set_panic_hook,
-  start_generator,
   Semester,
   get_subject_info,
   load_from_api,
-  next_choice,
 } from "scheduler-wasm";
+import options from "./store/OptionStore";
 
 init().then(async () => {
   set_panic_hook();
@@ -36,9 +34,9 @@ init().then(async () => {
     "94.42",
     "94.62",
   ];
-  for (let choice of generateChoices(mandatory, optional)) {
-    console.log(choice.week.tuesday[0]?.building);
-  }
+
+  options.setQuery(mandatory, optional);
+  options.addPage();
 });
 
 const app = new App({
