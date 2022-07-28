@@ -176,22 +176,14 @@ mod serializer;
 
 #[wasm_bindgen(typescript_custom_section)]
 const IOPTION: &'static str = r#"
-enum DaysOfTheWeek {
-    Monday = "monday",
-    Tuesday = "tuesday",
-    Wednesday = "wednesday",
-    Thursday = "thursday",
-    Friday = "friday",
-    Saturday = "saturday",
-    Sunday = "sunday",
-}
+export type DaysOfTheWeek = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
-interface Time {
+export interface Time {
     hour: number,
     minutes: number,
 }
 
-interface Choice {
+export interface Choice {
     subjects: {
         [key: string]: {
             name: string,
@@ -207,7 +199,7 @@ interface Choice {
                 start: Time,
                 end: Time,
             },
-        }[],
+        }[];
     },
 }
 "#;

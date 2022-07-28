@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { type Time, DaysOfTheWeek } from "scheduler-wasm";
+  import type { Time, DaysOfTheWeek } from "scheduler-wasm";
 
   export let start: Time;
   export let end: Time;
   export let day: DaysOfTheWeek;
 
   let dayIndex = [
-    DaysOfTheWeek.Monday,
-    DaysOfTheWeek.Tuesday,
-    DaysOfTheWeek.Wednesday,
-    DaysOfTheWeek.Thursday,
-    DaysOfTheWeek.Friday,
-    DaysOfTheWeek.Saturday,
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
   ].indexOf(day);
 </script>
 

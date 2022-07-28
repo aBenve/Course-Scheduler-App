@@ -1,6 +1,5 @@
 <script lang="ts">
   import CalendarEvent from "./CalendarEvent.svelte";
-  import { DaysOfTheWeek } from "scheduler-wasm";
 
   let clazz: string;
   export { clazz as class };
@@ -29,9 +28,9 @@
       {/each}
 
       <CalendarEvent
-        day={DaysOfTheWeek.Monday}
-        start={{ hour: 3, minutes: 0 }}
-        end={{ hour: 5, minutes: 0 }}
+        day="monday"
+        start={{ hour: 11, minutes: 0 }}
+        end={{ hour: 15, minutes: 0 }}
       />
     </div>
   </div>
