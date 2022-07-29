@@ -15,10 +15,10 @@ export default function generate_choices({
     mandatory,
     optional,
     [
-      //[
-        //["72.37", "S"],
-        //["72.07", "S"],
-      //],
+      [
+        ["72.37", "S"],
+        ["72.07", "S"],
+      ],
     ],
     min_credit_count,
     max_credit_count,

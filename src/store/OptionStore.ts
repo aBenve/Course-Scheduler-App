@@ -51,7 +51,7 @@ function createOptions() {
       update((v) => ({
         generator: v.generator,
         parameters: v.parameters,
-        options: v.options.concat(...take(v.generator, 10)),
+        options: v.options.concat(...take(v.generator, 50)),
       })),
   };
 }

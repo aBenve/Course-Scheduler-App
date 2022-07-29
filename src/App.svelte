@@ -19,15 +19,28 @@
     set_panic_hook();
     await load_from_api(2022, Semester.Second);
 
-    let mandatory = ["72.07", "72.38", "12.83"];
-    let optional = [
+    let mandatory = [
       "72.37",
+      "72.38", 
+      "12.83",
       "61.23",
+    ];
+    let optional = [
+      "72.07", 
+      "93.75",
+    ];
+
+    let ignore = [
+      "72.25",
+      "61.32",
+      "72.40",
       "72.41",
       "72.42",
-      "93.75",
       "72.43",
+      "72.45",
       "94.23",
+      "10.09",
+      "16.04",
       "16.50",
       "23.15",
       "61.50",
@@ -38,7 +51,7 @@
       "72.89",
       "72.92",
       "94.42",
-      "94.62",
+      "94.62"
     ];
 
     // options.setQuery(mandatory, optional);
@@ -53,13 +66,14 @@
 
     let mandatory_subjects = mandatory.map(get_subject_info).map(to_subject);
     let optional_subjects = optional.map(get_subject_info).map(to_subject);
+    let ignore_subjects = ignore.map(get_subject_info).map(to_subject);
 
     console.log(mandatory_subjects, optional_subjects);
 
     subjects.set({
       mandatory: mandatory_subjects,
       optional: optional_subjects,
-      ignore: [],
+      ignore: ignore_subjects,
     });
   }
   let loading = load();

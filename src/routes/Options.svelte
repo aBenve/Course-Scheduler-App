@@ -16,8 +16,8 @@
       optional: $subjects.optional
         .filter((s) => !s.isDndShadowItem)
         .map((s) => s.id),
-      min_credit_count: $settings.credits,
-      min_subject_count: $settings.subjects,
+      max_credit_count: $settings.credits,
+      max_subject_count: $settings.subjects,
     });
     options.addPage();
   }

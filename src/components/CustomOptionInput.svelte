@@ -10,8 +10,6 @@
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-  $: value = $settings[label];
-
   /*
   function handleChange(e: any): void {
     let value = parseInt(e.target.value);
