@@ -2,6 +2,8 @@ mod utils;
 
 use std::{
     cell::RefCell,
+    collections::HashSet,
+    iter::FromIterator,
     sync::{Arc, Mutex},
 };
 
@@ -130,7 +132,20 @@ fn get_next_option() -> Option<Vec<Option<SubjectCommision>>> {
 }
 
 #[wasm_bindgen]
-pub fn start_generator(mandatory_codes: Array, optional_codes: Array) {
+extern "C" {
+    #[wasm_bindgen(typescript_type = "string[]")]
+    pub type StringArray;
+
+    #[wasm_bindgen(typescript_type = "[[string, string], [string, string]][]")]
+    pub type CollisionExceptions;
+}
+
+#[wasm_bindgen]
+pub fn start_generator(
+    mandatory_codes: StringArray,
+    optional_codes: StringArray,
+    collision_exceptions: CollisionExceptions,
+) {
     let subjects = SUBJECTS.lock().unwrap();
     let find_subject = |code: Code| {
         subjects
@@ -142,21 +157,56 @@ pub fn start_generator(mandatory_codes: Array, optional_codes: Array) {
         codes
             .into_iter()
             .map(|c| c.parse().unwrap())
-            .map(find_subject)
+            .map(|code| find_subject(code).map(|sub| (code, sub)))
             .collect::<Result<Vec<_>, _>>()
             .expect("A subject was not found.")
     };
-    let find_commissions = |codes: Array| {
-        find_subjects(codes.iter().map(|v| v.as_string().unwrap()).collect())
-            .into_iter()
-            .map(|sub| sub.commissions.clone())
-            .collect::<Vec<_>>()
+    let find_commissions = |codes: StringArray| {
+        find_subjects(
+            Array::from(&codes)
+                .iter()
+                .map(|v| v.as_string().expect("Must be a string array"))
+                .collect(),
+        )
+        .into_iter()
+        .map(|(code, sub)| (code, sub.commissions.clone()))
+        .collect::<Vec<_>>()
+    };
+    let find_commission = |sub_code: Code, com_name: String| {
+        let sub =
+            find_subject(sub_code).unwrap_or_else(|_| panic!("Coud not find subject {}", sub_code));
+        sub.commissions
+            .iter()
+            .find(|c| c.name == com_name)
+            .unwrap_or_else(|| {
+                panic!(
+                    "Could not find commission {} from subject {}.",
+                    com_name, sub_code
+                )
+            })
     };
     let mandatory = find_commissions(mandatory_codes);
     let optional = find_commissions(optional_codes);
 
+    let collision_exceptions =
+        HashSet::from_iter(Array::from(&collision_exceptions).iter().map(|e| {
+            let exception: Array = e.into();
+            assert_eq!(exception.length(), 2);
+            let mut exception = exception.iter().map(|pair| {
+                let commission: Array = pair.into();
+                assert_eq!(commission.length(), 2);
+                let (sub_code, com_name) = (
+                    commission.get(0).as_string().unwrap(),
+                    commission.get(1).as_string().unwrap(),
+                );
+                let sub_code = sub_code.parse().unwrap();
+                (sub_code, find_commission(sub_code, com_name).clone())
+            });
+            (exception.next().unwrap(), exception.next().unwrap())
+        }));
+
     OPTION_ITERATOR.with(|option_iterator| {
-        *option_iterator.borrow_mut() = Some(generate(mandatory, optional));
+        *option_iterator.borrow_mut() = Some(generate(mandatory, optional, collision_exceptions));
     });
 }
 

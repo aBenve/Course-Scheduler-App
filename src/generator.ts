@@ -6,7 +6,7 @@ export default function generate_choices(
 ): Iterator<Choice> {
   // console.log(mandatory, optional);
   
-  start_generator(mandatory, optional);
+  start_generator(mandatory, optional, []);
   return {
     next() {
       let v: Choice = next_choice();
