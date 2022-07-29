@@ -1,52 +1,83 @@
 <script lang="ts">
   import CalendarEvent from "./CalendarEvent.svelte";
+  import type { DaysOfTheWeek } from "scheduler-wasm";
+  import selectedOption from "../store/SelectedOptionStore";
+  import options from "../store/OptionStore";
+
+  let firstHour = 8;
+  let lastHour = 22;
 
   let clazz: string;
+
+  $: option = selectedOption == null ? null : $options.options[$selectedOption];
+
   export { clazz as class };
 </script>
 
 <div class={clazz}>
   <div
-    class="bg-blue-400 h-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-y-auto"
+    class="bg-blue-400 h-full w-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-y-auto"
   >
     <!-- <Calendar {plugins} {options} /> -->
-    <div class="w-full bg-green-400 h-full   CalendarGrid">
-      <div class="day col-start-2 col-span-1">Monday</div>
-      <div class="day col-start-3 col-span-1">Tuesday</div>
-      <div class="day col-start-4 col-span-1">Wednesday</div>
-      <div class="day col-start-5 col-span-1">Thursday</div>
-      <div class="day col-start-6 col-span-1">Friday</div>
+    {#if option == null}
+      <div>No option selected</div>
+    {:else}
+      <div class="bg-green-400 w-full h-full CalendarGrid">
+        <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
+        {#each Array(lastHour - firstHour + 1) as _, i}
+          <div
+            class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
+            2
+              ? 'bg-blue-400'
+              : 'bg-blue-500'}"
+          />
+        {/each}
 
-      {#each Array(15) as _, i}
-        <div
-          class="time row-start-{i + 2} row-span-1 bg-blue-{i % 2
-            ? '400'
-            : '500'}"
-        >
-          {String(((i + 8 - 1) % 12) + 1).padStart(2, "0")}:00
-        </div>
-      {/each}
+        {#each ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as day, i}
+          <div class="day col-start-{i + 2} row-start-1">{day}</div>
+        {/each}
 
-      <CalendarEvent
-        day="monday"
-        start={{ hour: 11, minutes: 0 }}
-        end={{ hour: 15, minutes: 0 }}
-      />
-    </div>
+        {#each Array(lastHour - firstHour + 1) as _, i}
+          <div class="time row-start-{i * 2 + 2} col-start-1 row-span-2">
+            {String(((i + firstHour - 1) % 12) + 1).padStart(2, "0")}:00
+          </div>
+        {/each}
+
+        {#each Object.entries(option.week) as [day, dayTasks]}
+          {#each dayTasks as task}
+            <CalendarEvent
+              title={option.subjects[task.subject].name}
+              {day}
+              start={task.span.start}
+              end={task.span.end}
+              calendarFirstHour={firstHour}
+            />
+          {/each}
+        {/each}
+      </div>
+    {/if}
   </div>
 </div>
 
 <style>
   .CalendarGrid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 2em repeat(15, 1fr);
+    grid-template-columns: 5em repeat(6, 1fr);
+    grid-template-rows: 2em repeat(30, 1fr);
   }
   .time,
   .day {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.8em;
+    font-size: 0.7em;
+  }
+  @media (min-width: 640px) {
+    .time {
+      font-size: 0.7em;
+    }
+    .day {
+      font-size: 0.8em;
+    }
   }
 </style>

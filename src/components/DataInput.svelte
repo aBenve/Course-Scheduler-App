@@ -11,8 +11,9 @@
   >
     {label}
   </label>
-  <input
-    class="appearance-none rounded text-sm w-full py-2 px-4 text-gray-700 leading-tight "
+  <textarea
+    rows="6"
+    class="resize-none  appearance-none rounded text-sm w-full py-2 px-4 text-gray-700 leading-tight focus:outline-blue-500 focus:outline focus:outline-2 "
     id={label}
     {type}
     {placeholder}

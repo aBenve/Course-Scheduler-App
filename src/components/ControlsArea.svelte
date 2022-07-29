@@ -2,10 +2,15 @@
   import { Link } from "svelte-routing";
   import CustomOptionInput from "../components/CustomOptionInput.svelte";
   import ControlIgnored from "./ControlIgnored.svelte";
+  import ControlOptional from "./ControlOptional.svelte";
   import ControlSubjects from "./ControlSubjects.svelte";
+  import selectedOption from "../store/SelectedOptionStore";
+  import subjects from "../store/SubjectStore";
 
   let clazz: string;
   export { clazz as class };
+
+  const flipDurationMs = 0;
 </script>
 
 <div class={clazz}>
@@ -22,7 +27,8 @@
       <CustomOptionInput label="Credits" placeholder="18" value={2} />
       <CustomOptionInput label="Subjects" placeholder="5" value={2} />
     </div>
-    <ControlSubjects />
-    <ControlIgnored />
+    <ControlSubjects {flipDurationMs} />
+    <ControlOptional {flipDurationMs} />
+    <ControlIgnored {flipDurationMs} />
   </div>
 </div>

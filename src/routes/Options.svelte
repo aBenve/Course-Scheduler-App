@@ -5,19 +5,26 @@
 </script>
 
 <main class="bg-blue-300 h-screen gridContainer">
-  <ControlsArea class="grid-rows-1 row-span-full lg:block hidden  m-2 mr-0" />
+  <ControlsArea
+    class="col-start-1 row-start-1 row-span-full md:block hidden  m-2 mr-0"
+  />
   <SubjectsOptionsArea
-    class="grid-col-2  col-span-full lg:col-span-4 m-2 mb-0 row-span-2"
+    class="col-start-2 col-span-full m-2 mb-0 row-span-2 overflow-x-auto"
   />
   <CalendarArea
-    class="grid-col-2  col-span-full lg:col-span-4 m-2 row-span-2"
+    class="col-start-2  col-span-full m-2 row-span-4 overflow-x-auto"
   />
 </main>
 
 <style>
   .gridContainer {
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    grid-template-columns: 0 repeat(4, minmax(0, 1fr));
+  }
+  @media (min-width: 768px) {
+    .gridContainer {
+      grid-template-columns: 20em repeat(4, minmax(0, 1fr));
+    }
   }
 </style>

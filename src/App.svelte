@@ -14,12 +14,12 @@
   } from "scheduler-wasm";
   import options from "./store/OptionStore";
   import subjects from "./store/SubjectStore";
+  import selectedOption from "./store/SelectedOptionStore";
 
   async function load() {
     await init();
     set_panic_hook();
     await load_from_api(2022, Semester.Second);
-    console.log(get_subject_info("61.20"));
 
     let mandatory = ["72.07", "72.38", "12.83"];
     let optional = [
@@ -42,8 +42,8 @@
       "94.62",
     ];
 
-    options.setQuery(mandatory, optional);
-    options.addPage();
+    // options.setQuery(mandatory, optional);
+    // options.addPage();
 
     function to_subject(subject: SubjectInfo): Subject {
       return {
@@ -60,16 +60,16 @@
     subjects.set({
       mandatory: mandatory_subjects,
       optional: optional_subjects,
+      ignore: [],
     });
 
-    function isCode(v: string) {
-      return v.length == 5 && v[2] == ".";
-    }
-
     subjects.subscribe((v) => {
+      console.log(v.mandatory);
+
+      selectedOption.set(null);
       options.setQuery(
-        v.mandatory.map((s) => s.id).filter(isCode),
-        v.optional.map((s) => s.id).filter(isCode)
+        v.mandatory.filter((s) => !s.isDndShadowItem).map((s) => s.id),
+        v.optional.filter((s) => !s.isDndShadowItem).map((s) => s.id)
       );
       options.addPage();
     });

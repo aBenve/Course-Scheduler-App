@@ -8,8 +8,8 @@
 
 <div class={clazz}>
   <div
-    class="bg-blue-400 h-full p-5 rounded-lg flex flex-col items-center gap-y-2 overflow-y-auto"
+    class="bg-blue-400 h-full w-full p-5 rounded-lg flex flex-col gap-y-2 overflow-scroll"
   >
-    <SubjectOptionList options={$options.options}/>
+    <SubjectOptionList />
   </div>
 </div>

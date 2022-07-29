@@ -1,36 +1,20 @@
+function generateNumberPairs(from, to) {
+  return Object.fromEntries(Array(to - from).fill().map((_, i) => i + from).map(n => [String(n), String(n)]))
+}
+
 const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
 
   theme: {
     extend: {
+      fontSize:{
+        'xxs': ['0.5rem', {lineHeight: '0.5rem'}],
+      },
       gridRowStart: {
-        '7': '7',
-        '8': '8',
-        '9': '9',
-        '10': '10',
-        '11': '11',
-        '12': '12',
-        '13': '13',
-        '14': '14',
-        '15': '15',
-        '16': '16',
-        '17': '17',
-        '18': '18',
+        ...generateNumberPairs(7, 40)
       },
       gridRowEnd: {
-        '7': '7',
-        '8': '8',
-        '9': '9',
-        '10': '10',
-        '11': '11',
-        '12': '12',
-        '13': '13',
-        '14': '14',
-        '15': '15',
-        '16': '16',
-        '17': '17',
-        '18': '18',
-
+        ...generateNumberPairs(7, 40)
       }
     },
   },

@@ -5,12 +5,12 @@
 
   import subjects from "../store/SubjectStore";
 
-  const flipDurationMs = 300;
+  export let flipDurationMs;
+
   function handleOrderAndMove(e: any): void {
     subjects.update((currentSubjects) => {
-      let copiedSubs = currentSubjects;
-      copiedSubs.mandatory = e.detail.items;
-      return copiedSubs;
+      currentSubjects.mandatory = e.detail.items;
+      return currentSubjects;
     });
   }
 </script>

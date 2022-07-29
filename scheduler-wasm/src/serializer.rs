@@ -19,7 +19,7 @@ struct Code {
 
 impl From<Code> for String {
     fn from(Code { high, low }: Code) -> Self {
-        format!("{}.{}", high, low)
+        format!("{:02}.{:02}", high, low)
     }
 }
 
