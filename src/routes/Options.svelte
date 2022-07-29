@@ -2,6 +2,25 @@
   import SubjectsOptionsArea from "../components/SubjectsOptionsArea.svelte";
   import ControlsArea from "../components/ControlsArea.svelte";
   import CalendarArea from "../components/CalendarArea.svelte";
+  import options from "../store/OptionStore";
+  import selectedOption from "../store/SelectedOptionStore";
+  import settings from "../store/UserSettingsStore";
+  import subjects from "../store/SubjectStore";
+
+  $: {
+    selectedOption.set(null);
+    options.setQuery({
+      mandatory: $subjects.mandatory
+        .filter((s) => !s.isDndShadowItem)
+        .map((s) => s.id),
+      optional: $subjects.optional
+        .filter((s) => !s.isDndShadowItem)
+        .map((s) => s.id),
+      min_credit_count: $settings.credits,
+      min_subject_count: $settings.subjects,
+    });
+    options.addPage();
+  }
 </script>
 
 <main class="bg-blue-300 h-screen gridContainer">

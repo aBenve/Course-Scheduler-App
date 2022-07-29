@@ -12,9 +12,7 @@
     load_from_api,
     SubjectInfo,
   } from "scheduler-wasm";
-  import options from "./store/OptionStore";
   import subjects from "./store/SubjectStore";
-  import selectedOption from "./store/SelectedOptionStore";
 
   async function load() {
     await init();
@@ -23,6 +21,7 @@
 
     let mandatory = ["72.07", "72.38", "12.83"];
     let optional = [
+      "72.37",
       "61.23",
       "72.41",
       "72.42",
@@ -62,19 +61,7 @@
       optional: optional_subjects,
       ignore: [],
     });
-
-    subjects.subscribe((v) => {
-      console.log(v.mandatory);
-
-      selectedOption.set(null);
-      options.setQuery(
-        v.mandatory.filter((s) => !s.isDndShadowItem).map((s) => s.id),
-        v.optional.filter((s) => !s.isDndShadowItem).map((s) => s.id)
-      );
-      options.addPage();
-    });
   }
-
   let loading = load();
 </script>
 

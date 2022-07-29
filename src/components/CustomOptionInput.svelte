@@ -4,21 +4,25 @@
   export let label: string;
   export let placeholder: string;
 
-  let value: number;
+  /*let value: number;*/
 
-  function toCapitalice(text) {
+  function toCapitalice(text: string) {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
   $: value = $settings[label];
 
+  /*
   function handleChange(e: any): void {
-    value = e.target.value > 0 ? e.target.value : 0;
+    let value = parseInt(e.target.value);
+    value = value > 0 ? value : 0;
     settings.update((currentSettings) => {
-      currentSettings[toCapitalice(label)] = value;
+      currentSettings[label] = value;
+      console.log(currentSettings);
       return currentSettings;
     });
   }
+  */
 </script>
 
 <div class="flex flex-col items-start">
@@ -30,7 +34,6 @@
     id={label}
     type="number"
     {placeholder}
-    bind:value
-    on:change={handleChange}
+    bind:value={$settings[label]}
   />
 </div>

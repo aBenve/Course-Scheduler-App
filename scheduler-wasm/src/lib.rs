@@ -4,11 +4,15 @@ use std::{
     cell::RefCell,
     collections::HashSet,
     iter::FromIterator,
+    ops::{Bound, RangeBounds},
     sync::{Arc, Mutex},
 };
 
 use js_sys::Array;
-use scheduler::models::{Code, Subject, SubjectCommision};
+use scheduler::{
+    models::{Code, Subject, SubjectCommision},
+    option_generator::filters::{ChoiceIterator, CreditCount, SubjectCount},
+};
 use wasm_bindgen::{prelude::*, JsCast};
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global allocator.
@@ -140,11 +144,47 @@ extern "C" {
     pub type CollisionExceptions;
 }
 
+struct OptionalBound<Idx: PartialOrd>(Option<Idx>);
+
+impl<Idx: PartialOrd> OptionalBound<Idx> {
+    fn to_bound(&self) -> Bound<&Idx> {
+        match self.0.as_ref() {
+            Some(bound) => std::ops::Bound::Included(&bound),
+            None => std::ops::Bound::Unbounded,
+        }
+    }
+}
+
+struct OptionallyBoundRange<Idx: PartialOrd> {
+    start_bound: OptionalBound<Idx>,
+    end_bound: OptionalBound<Idx>,
+}
+impl<Idx: PartialOrd> OptionallyBoundRange<Idx> {
+    fn new(start_bound: Option<Idx>, end_bound: Option<Idx>) -> Self {
+        Self {
+            start_bound: OptionalBound(start_bound),
+            end_bound: OptionalBound(end_bound),
+        }
+    }
+}
+impl<Idx: PartialOrd> RangeBounds<Idx> for OptionallyBoundRange<Idx> {
+    fn start_bound(&self) -> Bound<&Idx> {
+        (&self.start_bound).to_bound()
+    }
+    fn end_bound(&self) -> Bound<&Idx> {
+        self.end_bound.to_bound()
+    }
+}
+
 #[wasm_bindgen]
 pub fn start_generator(
     mandatory_codes: StringArray,
     optional_codes: StringArray,
     collision_exceptions: CollisionExceptions,
+    min_credit_count: Option<u32>,
+    max_credit_count: Option<u32>,
+    min_subject_count: Option<u32>,
+    max_subject_count: Option<u32>,
 ) {
     let subjects = SUBJECTS.lock().unwrap();
     let find_subject = |code: Code| {
@@ -206,7 +246,17 @@ pub fn start_generator(
         }));
 
     OPTION_ITERATOR.with(|option_iterator| {
-        *option_iterator.borrow_mut() = Some(generate(mandatory, optional, collision_exceptions));
+        *option_iterator.borrow_mut() = Some(Box::new(
+            generate(mandatory, optional, collision_exceptions)
+                .filter_choices(SubjectCount::new(OptionallyBoundRange::new(
+                    min_subject_count,
+                    max_subject_count,
+                )))
+                .filter_choices(CreditCount::new(OptionallyBoundRange::new(
+                    min_credit_count,
+                    max_credit_count,
+                ))),
+        ));
     });
 }
 

@@ -3,6 +3,15 @@ import type { Choice } from "scheduler-wasm";
 import generateChoices from "../generator";
 import subjects from "./SubjectStore";
 
+export type QueryParameters = {
+  mandatory: string[];
+  optional: string[];
+  min_credit_count?: number;
+  max_credit_count?: number;
+  min_subject_count?: number;
+  max_subject_count?: number;
+};
+
 function createOptions() {
   const {
     subscribe,
@@ -10,7 +19,7 @@ function createOptions() {
     update,
   }: Writable<{
     generator: Iterator<Choice>;
-    parameters: { mandatory: string[]; optional: string[] };
+    parameters: QueryParameters;
     options: Choice[];
   }> = writable({
     parameters: { mandatory: [], optional: [] },
@@ -28,10 +37,14 @@ function createOptions() {
 
   return {
     subscribe,
-    setQuery: (mandatory: string[], optional: string[]) =>
+    setQuery: (
+	  parameters: QueryParameters
+    ) =>
       set({
-        generator: generateChoices(mandatory, optional),
-        parameters: { mandatory, optional },
+        generator: generateChoices(
+		  parameters
+        ),
+        parameters: parameters,
         options: [],
       }),
     addPage: () =>

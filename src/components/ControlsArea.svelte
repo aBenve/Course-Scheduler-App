@@ -22,10 +22,10 @@
       Scheduler
     </div>
     <div class="flex gap-2 w-full">
-      <CustomOptionInput label="Gap" placeholder="2" value={2} />
+      <CustomOptionInput label="gap" placeholder="2" />
       <!--THis values must come from global context-->
-      <CustomOptionInput label="Credits" placeholder="18" value={2} />
-      <CustomOptionInput label="Subjects" placeholder="5" value={2} />
+      <CustomOptionInput label="credits" placeholder="18" />
+      <CustomOptionInput label="subjects" placeholder="5" />
     </div>
     <ControlSubjects {flipDurationMs} />
     <ControlOptional {flipDurationMs} />
