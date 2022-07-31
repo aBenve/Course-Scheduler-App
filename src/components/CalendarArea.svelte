@@ -3,6 +3,7 @@
   import type { DaysOfTheWeek } from "scheduler-wasm";
   import selectedOption from "../store/SelectedOptionStore";
   import options from "../store/OptionStore";
+  import colors from "../utils/colors";
 
   let firstHour = 8;
   let lastHour = 22;
@@ -16,20 +17,20 @@
 
 <div class={clazz}>
   <div
-    class="bg-blue-400 h-full w-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-y-auto"
+    class="bg-area h-full w-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-y-auto"
   >
     <!-- <Calendar {plugins} {options} /> -->
     {#if option == null}
       <div>No option selected</div>
     {:else}
-      <div class="bg-green-400 w-full h-full CalendarGrid">
+      <div class="bg-gray-400 w-full h-full CalendarGrid">
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(lastHour - firstHour + 1) as _, i}
           <div
             class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
             2
-              ? 'bg-blue-400'
-              : 'bg-blue-500'}"
+              ? 'bg-gray-200'
+              : 'bg-gray-300'}"
           />
         {/each}
 
@@ -44,9 +45,10 @@
         {/each}
 
         {#each Object.entries(option.week) as [day, dayTasks]}
-          {#each dayTasks as task}
+          {#each dayTasks as task, i}
             <CalendarEvent
               title={option.subjects[task.subject].name}
+              color={colors[i]}
               {day}
               start={task.span.start}
               end={task.span.end}

@@ -7,6 +7,9 @@ const config = {
 
   theme: {
     extend: {
+      fontFamily:{
+        "principal": ["Poppins", "sans-serif"],
+      },
       fontSize:{
         'xxs': ['0.5rem', {lineHeight: '0.5rem'}],
       },
@@ -15,8 +18,17 @@ const config = {
       },
       gridRowEnd: {
         ...generateNumberPairs(7, 40)
-      }
-    },
+      },
+      colors:{
+        'background': '#ffffff',
+        'area': '#f1f1f1',
+        'zone': '#e5e7eb',
+      },
+      maxHeight: {
+        "1/5": "20%"
+      },
+
+    }
   },
   safelist: [
     {

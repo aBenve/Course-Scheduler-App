@@ -69,7 +69,7 @@
   {#await loading}
     <div class="text-center">Loading...</div>
   {:then _}
-    <div>
+    <div class="font-principal">
       <Route path="Options" component={Options} />
       <Route path="/"><Input /></Route>
     </div>

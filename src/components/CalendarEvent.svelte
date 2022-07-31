@@ -6,6 +6,9 @@
   export let day: DaysOfTheWeek;
   export let title: string;
   export let calendarFirstHour: number;
+  export let color: string;
+
+  console.log(color);
 
   $: dayIndex = [
     "monday",
@@ -23,8 +26,8 @@
 <div
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
-  ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
-    2} rounded-lg bg-pink-400 border-2 border-solid border-black"
+  ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) + 2}  "
+  style="background-color: {color}c0"
 >
   <div class="h-full flex justify-center items-center text-center text-[12px]">
     {title}

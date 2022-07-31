@@ -1,15 +1,19 @@
 <script lang="ts">
+  import { toggle_class } from "svelte/internal";
+  import Tooltip from "./Tooltip.svelte";
+
   export let color: string;
   export let subject: string;
   export let commission: string;
+  export let toggle: boolean;
 
-  let Toggle = false;
+  let tooltip = false;
 </script>
 
 <div
-  class="bg-blue-800 rounded-lg flex items-center justify-between py-2 px-3 gap-2 hover:bg-lime-400"
-  on:mouseenter={() => (Toggle = true)}
-  on:mouseleave={() => (Toggle = false)}
+  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative "
+  on:mouseenter={() => (tooltip = true)}
+  on:mouseleave={() => (tooltip = false)}
 >
   <div>
     <svg height="10" width="10">
@@ -17,15 +21,16 @@
     </svg>
   </div>
   <div
-    class="flex flex-col overflow-hidden {Toggle
-      ? 'max-w-[fit]'
-      : 'max-w-[8em]'}"
+    class="flex flex-col overflow-hidden max-w-[8em] {toggle
+      ? 'text-white'
+      : 'text-gray-800'}"
   >
-    <span class="text-xs sm:text-sm font-medium truncate">
+    <span class="text-xs lg:text-sm font-medium truncate">
       {subject}
     </span>
     <span class="text-xxs sm:text-xs font-normal italic truncate">
       commission: {commission}
     </span>
   </div>
+  <Tooltip message={subject} toggle={tooltip} />
 </div>

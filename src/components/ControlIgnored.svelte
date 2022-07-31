@@ -7,7 +7,12 @@
 
   export let flipDurationMs;
 
+  let dragZoneStyle;
+
   function handleOrderAndMove(e: any): void {
+    dragZoneStyle = {
+      outline: "2px solid #00000050",
+    };
     subjects.update((currentSubjects) => {
       let copiedSubs = currentSubjects;
       copiedSubs.ignore = e.detail.items;
@@ -17,10 +22,14 @@
 </script>
 
 <section
-  use:dndzone={{ items: $subjects.ignore, flipDurationMs }}
+  use:dndzone={{
+    items: $subjects.ignore,
+    flipDurationMs,
+    dropTargetStyle: dragZoneStyle,
+  }}
   on:consider={handleOrderAndMove}
   on:finalize={handleOrderAndMove}
-  class="bg-blue-600 w-full h-1/2 flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2"
+  class="bg-zone  w-full h-1/2 flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2 border border-solid border-zone"
 >
   {#each $subjects.ignore as { id, title } (id)}
     <div animate:flip={{ duration: flipDurationMs }} class="w-full">

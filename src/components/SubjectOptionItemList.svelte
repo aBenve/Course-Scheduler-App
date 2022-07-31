@@ -3,7 +3,7 @@
   import type { Choice } from "scheduler-wasm";
   // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
-  import options from "../store/OptionStore";
+  import colors from "../utils/colors";
   export let optionData: Choice;
   export let optionIndex: number;
 
@@ -15,8 +15,8 @@
 
 <div
   class="{selected
-    ? 'bg-orange-900'
-    : 'bg-blue-600'} h-fit p-2 rounded-lg flex gap-x-2 overflow-x-scroll hover:bg-purple-500 cursor-pointer "
+    ? 'bg-gray-900'
+    : 'bg-gray-200'} h-fit p-2 rounded-lg flex gap-x-2  cursor-pointer overflow-x-scroll"
   on:click={() => selectedOption.set(optionIndex)}
 >
   {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {
@@ -24,9 +24,10 @@
       let indexB = subjectOrder.indexOf(codeB);
       if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
       return indexA - indexB;
-    } ) as [code, subject]}
+    } ) as [code, subject], i}
     <SubjectOptionItem
-      color="red"
+      toggle={selected}
+      color={colors[i]}
       subject={subject.name}
       commission={subject.commission}
     />
