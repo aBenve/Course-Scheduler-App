@@ -10,13 +10,10 @@
   export let subjectOrder: string[];
 
   $: selected = $selectedOption == optionIndex;
-  // $: console.log("complete: ", correctOrder);
 </script>
 
 <div
-  class="{selected
-    ? 'bg-gray-900'
-    : 'bg-gray-200'} h-fit p-2 rounded-lg flex gap-x-2  cursor-pointer overflow-x-scroll"
+  class="bg-zone dark:bg-zone-dark h-fit w-full p-2 rounded-lg flex gap-x-2  cursor-pointer overflow-x-auto items-center"
   on:click={() => selectedOption.set(optionIndex)}
 >
   {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {

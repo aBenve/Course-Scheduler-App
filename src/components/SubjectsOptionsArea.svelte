@@ -7,7 +7,9 @@
 </script>
 
 <div class={clazz}>
-  <div class="bg-area relative ">
+  <div
+    class="bg-area dark:bg-area-dark relative  rounded-lg h-full overflow-auto"
+  >
     <SubjectOptionList />
   </div>
 </div>

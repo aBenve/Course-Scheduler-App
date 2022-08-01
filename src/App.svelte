@@ -2,6 +2,7 @@
   import { Router, Link, Route } from "svelte-routing";
   import Input from "./routes/Input.svelte";
   import Options from "./routes/Options.svelte";
+  import NotFound from "./routes/NotFound.svelte";
 
   export let url = "";
 
@@ -69,9 +70,10 @@
   {#await loading}
     <div class="text-center">Loading...</div>
   {:then _}
-    <div class="font-principal">
+    <div class="font-principal ">
       <Route path="Options" component={Options} />
       <Route path="/"><Input /></Route>
+      <Route path="*"><NotFound /></Route>
     </div>
   {/await}
 </Router>

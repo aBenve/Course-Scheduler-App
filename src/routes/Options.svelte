@@ -23,20 +23,22 @@
   }
 </script>
 
-<main class="bg-background h-screen gridContainer lg:px-40 px-24 py-5 lg:py-10">
+<main
+  class="bg-background dark:bg-background-dark h-screen gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
+>
   <ControlsArea
-    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5"
+    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 shadow-md "
   />
   <SubjectsOptionsArea
-    class="col-start-2 col-span-full mb-5 row-span-2 overflow-x-auto  "
+    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto shadow-md "
   />
-  <CalendarArea class="col-start-2  col-span-full row-span-4 overflow-x-auto" />
+  <CalendarArea class="col-start-2  col-span-full row-span-4 shadow-md " />
 </main>
 
 <style>
   .gridContainer {
     display: grid;
-    grid-template-rows: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(7, minmax(0, 1fr));
     grid-template-columns: 0 repeat(4, minmax(0, 1fr));
   }
   @media (min-width: 1024px) {

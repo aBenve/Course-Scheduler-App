@@ -29,7 +29,7 @@
   }}
   on:consider={handleOrderAndMove}
   on:finalize={handleOrderAndMove}
-  class="bg-zone  w-full h-1/2 flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2 border border-solid border-zone"
+  class="bg-zone dark:bg-zone-dark dark:border-dark w-full h-1/2 flex flex-col  items-center rounded-lg overflow-y-auto p-2 gap-y-2 border border-solid border-zone"
 >
   {#each $subjects.ignore as { id, title } (id)}
     <div animate:flip={{ duration: flipDurationMs }} class="w-full">

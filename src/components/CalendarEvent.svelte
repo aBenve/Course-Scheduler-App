@@ -26,10 +26,17 @@
 <div
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
-  ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) + 2}  "
-  style="background-color: {color}c0"
+  ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
+    2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg"
+  style="
+    background-color: {color}40;
+    
+  "
 >
-  <div class="h-full flex justify-center items-center text-center text-[12px]">
+  <div
+    class="h-full flex justify-center items-center text-center sm:text-xs text-[0.6rem] font-bold"
+    style="color: {color}"
+  >
     {title}
   </div>
 </div>

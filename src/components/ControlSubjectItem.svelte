@@ -1,15 +1,18 @@
 <script lang="ts">
+  import fourDots from "../assets/icons/FourDots.svg";
   export let title: string;
 </script>
 
 <div
-  class="w-full flex items-center rounded-lg h-fit py-3 px-4 hover:bg-gray-300 text-xs "
+  class="w-full flex items-center rounded-lg h-fit py-3 px-4 hover:bg-blue-100 text-xs
+   hover:text-blue-600  hover:font-bold text-text dark:text-text-dark dark:hover:bg-blue-900 font-medium"
 >
-  <svg height="12" width="12" opacity="20%">
-    <circle cx="2" cy="2" r="1.5" fill="black" />
-    <circle cx="2" cy="8" r="1.5" fill="black" />
-    <circle cx="8" cy="2" r="1.5" fill="black" />
-    <circle cx="8" cy="8" r="1.5" fill="black" />
-  </svg>
+  <img
+    src={fourDots}
+    alt="draggable"
+    width="12"
+    height="12"
+    class="opacity-25"
+  />
   <span class="ml-4 "> {title} </span>
 </div>

@@ -4,7 +4,7 @@ function generateNumberPairs(from, to) {
 
 const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
-
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily:{
@@ -20,9 +20,16 @@ const config = {
         ...generateNumberPairs(7, 40)
       },
       colors:{
-        'background': '#ffffff',
-        'area': '#f1f1f1',
-        'zone': '#e5e7eb',
+        'background': '#e5e7eb',
+        'background-dark': '#161616',
+        'area': '#f3f4f6',
+        'area-dark': '#212121',
+        'zone': '#ffffff',
+        'zone-dark': '#272727',
+        'zone-secundary': '#f8f8f8',
+        'zone-secundary-dark': '#303030',
+        'text': '#161616',
+        'text-dark': '#e5e7eb',
       },
       maxHeight: {
         "1/5": "20%"
@@ -35,7 +42,7 @@ const config = {
       pattern: /(row|col)-(start|end|span)-.+/,
     },
     {
-      pattern: /bg-blue-(400|500)/
+      pattern: /bg-\[#[a-f0-9]+\]/
     }
   ],
   plugins: [],
