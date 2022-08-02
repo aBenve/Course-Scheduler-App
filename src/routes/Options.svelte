@@ -27,12 +27,12 @@
   class="bg-background dark:bg-background-dark h-screen gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
 >
   <ControlsArea
-    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 shadow-md "
+    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 shadow-md  hover:scale-[0.99] transition-all ease-out duration-200"
   />
   <SubjectsOptionsArea
-    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto shadow-md "
+    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto shadow-md  hover:scale-[0.99] transition-all ease-out duration-200"
   />
-  <CalendarArea class="col-start-2  col-span-full row-span-4 shadow-md " />
+  <CalendarArea class="col-start-2  col-span-full row-span-4 shadow-md  hover:scale-[0.99] transition-all ease-out duration-200" />
 </main>
 
 <style>

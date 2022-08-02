@@ -15,5 +15,7 @@
         optionIndex={i}
       />
     </div>
+  {:else}
+    <div class="text-center text-sm font-medium">No subjects available.</div>
   {/each}
 </div>

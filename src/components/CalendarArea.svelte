@@ -76,8 +76,8 @@
 <style>
   .CalendarGrid {
     display: grid;
-    grid-template-columns: 5em repeat(6, 1fr);
-    grid-template-rows: 2em repeat(30, 1fr);
+    grid-template-columns: 5em repeat(6, minmax(7em, 1fr));
+    grid-template-rows: 2em repeat(30, minmax(0.7em, 1fr));
   }
   .time,
   .day {
@@ -86,6 +86,11 @@
     align-items: center;
     font-size: 0.7em;
   }
+  /*@media (min-width: 1024px) {*/
+    /*.CalendarGrid {*/
+      /*grid-template-columns: 5em repeat(6, minmax(0, 1fr));*/
+    /*}*/
+  /*}*/
   @media (min-width: 640px) {
     .time {
       font-size: 0.7em;
