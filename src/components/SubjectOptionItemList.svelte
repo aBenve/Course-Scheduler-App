@@ -3,11 +3,10 @@
   import type { Choice } from "scheduler-wasm";
   // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
+  import { sortedSubjects } from "../store/OptionStore";
   import colors from "../utils/colors";
   export let optionData: Choice;
   export let optionIndex: number;
-
-  export let subjectOrder: string[];
 
   $: selected = $selectedOption == optionIndex;
 </script>
@@ -17,8 +16,8 @@
   on:click={() => selectedOption.set(optionIndex)}
 >
   {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {
-      let indexA = subjectOrder.indexOf(codeA);
-      let indexB = subjectOrder.indexOf(codeB);
+      let indexA = $sortedSubjects.indexOf(codeA);
+      let indexB = $sortedSubjects.indexOf(codeB);
       if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
       return indexA - indexB;
     } ) as [code, subject], i}

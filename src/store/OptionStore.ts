@@ -37,13 +37,9 @@ function createOptions() {
 
   return {
     subscribe,
-    setQuery: (
-	  parameters: QueryParameters
-    ) =>
+    setQuery: (parameters: QueryParameters) =>
       set({
-        generator: generateChoices(
-		  parameters
-        ),
+        generator: generateChoices(parameters),
         parameters: parameters,
         options: [],
       }),
@@ -57,5 +53,10 @@ function createOptions() {
 }
 
 const options = createOptions();
+
+export const sortedSubjects = derived(options, ($options) => [
+  ...$options.parameters.mandatory,
+  ...$options.parameters.optional,
+]);
 
 export default options;

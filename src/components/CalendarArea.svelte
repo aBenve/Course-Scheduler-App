@@ -2,7 +2,7 @@
   import CalendarEvent from "./CalendarEvent.svelte";
   import type { DaysOfTheWeek } from "scheduler-wasm";
   import selectedOption from "../store/SelectedOptionStore";
-  import options from "../store/OptionStore";
+  import options, { sortedSubjects } from "../store/OptionStore";
   import colors from "../utils/colors";
 
   let firstHour = 8;
@@ -11,6 +11,8 @@
   let clazz: string;
 
   $: option = selectedOption == null ? null : $options.options[$selectedOption];
+
+  $: localSortedSubjects = option == null ? null : $sortedSubjects.filter(v => v in option.subjects)
 
   export { clazz as class };
 </script>
@@ -58,7 +60,7 @@
           {#each dayTasks as task, i}
             <CalendarEvent
               title={option.subjects[task.subject].name}
-              color={colors[i]}
+              color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}
               end={task.span.end}
