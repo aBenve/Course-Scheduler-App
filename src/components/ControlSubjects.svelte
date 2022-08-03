@@ -3,23 +3,30 @@
   let flipDurationMs = 0;
 </script>
 
-<div class=" w-full flex flex-col  gap-y-5 overflow-y-auto">
+<div class=" w-full h-full ControlGrid  gap-y-5 overflow-y-auto">
   <ControlDragZone
     {flipDurationMs}
     dragZoneArea="mandatory"
     title="Obligatory"
-    class="max-h-1/5"
+    class="  "
   />
   <ControlDragZone
     {flipDurationMs}
     dragZoneArea="optional"
     title="Optional"
-    class="max-h-[40%] "
+    class=" "
   />
   <ControlDragZone
     {flipDurationMs}
     dragZoneArea="ignore"
     title="Ignore"
-    class="max-h-1/5"
+    class=""
   />
 </div>
+
+<style>
+  .ControlGrid {
+    display: grid;
+    grid-template-rows: minmax(6rem, 1fr) minmax(5rem, 2fr) minmax(5rem, 1fr);
+  }
+</style>

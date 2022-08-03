@@ -34,7 +34,7 @@
     }}
     on:consider={handleOrderAndMove}
     on:finalize={handleOrderAndMove}
-    class="bg-zone dark:bg-zone-dark w-full full flex flex-col min-h-[4em] items-center rounded-lg overflow-y-auto p-2 gap-y-2  "
+    class="bg-zone dark:bg-zone-dark w-full h-full flex flex-col min-h-[4em] items-center rounded-lg overflow-y-auto p-2 gap-y-2  "
   >
     {#each $subjects[dragZoneArea] as { id, title } (id)}
       <div animate:flip={{ duration: flipDurationMs }} class="w-full">
