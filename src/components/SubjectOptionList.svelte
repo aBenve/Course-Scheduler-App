@@ -4,18 +4,16 @@
   import options from "../store/OptionStore";
 </script>
 
-<div class="h-full w-full p-5 flex flex-col gap-y-4 ">
+<div class="w-full p-5 gap-y-4 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center">
   {#each $options.options as option, i}
-    <div class="w-full flex items-center gap-x-4">
-      <span class="font-medium text-gray-300 text-2xl">
-        {i}
-      </span>
-      <SubjectOptionItemList
-        optionData={option}
-        optionIndex={i}
-        sortedSubjects={$options.sortedSubjects}
-      />
-    </div>
+    <span class="font-medium text-center text-gray-300 text-2xl">
+      {i}
+    </span>
+    <SubjectOptionItemList
+      optionData={option}
+      optionIndex={i}
+      sortedSubjects={$options.sortedSubjects}
+    />
   {:else}
     <div class="text-center text-sm font-medium">No subjects available.</div>
   {/each}
