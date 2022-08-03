@@ -17,8 +17,6 @@
   on:click={() => $selectedOption = optionIndex}
 >
   {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {
-      /*let indexA = $options.sortedSubjects.indexOf(codeA);*/
-      /*let indexB = $options.sortedSubjects.indexOf(codeB);*/
       let indexA = sortedSubjects.indexOf(codeA);
       let indexB = sortedSubjects.indexOf(codeB);
       if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
