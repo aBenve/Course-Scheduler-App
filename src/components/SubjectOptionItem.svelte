@@ -24,11 +24,12 @@
       <circle cx="5" cy="5" r="5" fill={color} />
     </svg>
   </div>
-  <div class="flex flex-col overflow-hidden max-w-[7em]">
-    <div
-      class="text-xs lg:text-sm font-medium {tooltip ? 'active' : 'truncate'}"
-    >
-      {subject}
+  <div class="flex flex-col max-w-[7em]">
+    <div class="overflow-hidden">
+      <div
+        class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip ? 'active' : 'overflow-x-hidden'}" >
+        {subject}
+      </div>
     </div>
     <span class="text-xxs sm:text-xs font-normal italic truncate">
       commission: {commission}
@@ -38,17 +39,22 @@
 </div>
 
 <style>
+  /* Workaround for jumping text */
+  .fixed-line-height {
+    line-height: 25px;
+  }
+
   .active {
-    text-overflow: clip;
-    white-space: nowrap;
+    display: inline-flex;
     animation: moveText 5s ease-in-out infinite;
   }
+
   @keyframes moveText {
     0% {
       transform: translateX(0%);
     }
     50% {
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% + 7em));
     }
     100% {
       transform: translateX(0%);
