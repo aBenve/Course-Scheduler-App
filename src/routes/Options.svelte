@@ -8,7 +8,7 @@
   import subjects from "../store/SubjectStore";
 
   $: {
-    selectedOption.set(null);
+    $selectedOption = null;
     options.setQuery({
       mandatory: $subjects.mandatory
         .filter((s) => !s.isDndShadowItem)

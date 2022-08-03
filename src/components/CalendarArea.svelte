@@ -2,7 +2,7 @@
   import CalendarEvent from "./CalendarEvent.svelte";
   import type { DaysOfTheWeek } from "scheduler-wasm";
   import selectedOption from "../store/SelectedOptionStore";
-  import options, { sortedSubjects } from "../store/OptionStore";
+  import options from "../store/OptionStore";
   import colors from "../utils/colors";
 
   let firstHour = 8;
@@ -12,7 +12,7 @@
 
   $: option = selectedOption == null ? null : $options.options[$selectedOption];
 
-  $: localSortedSubjects = option == null ? null : $sortedSubjects.filter(v => v in option.subjects)
+  $: localSortedSubjects = option == null ? null : $options.sortedSubjects.filter(v => v in option.subjects)
 
   export { clazz as class };
 </script>

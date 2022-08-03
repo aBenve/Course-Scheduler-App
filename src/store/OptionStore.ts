@@ -21,10 +21,12 @@ function createOptions() {
     generator: Iterator<Choice>;
     parameters: QueryParameters;
     options: Choice[];
+    sortedSubjects: string[];
   }> = writable({
     parameters: { mandatory: [], optional: [] },
     generator: null,
     options: [],
+    sortedSubjects: [],
   });
 
   function* take<T>(iterator: Iterator<T>, length: number) {
@@ -41,6 +43,7 @@ function createOptions() {
       set({
         generator: generateChoices(parameters),
         parameters: parameters,
+        sortedSubjects: [...parameters.mandatory, ...parameters.optional],
         options: [],
       }),
     addPage: () =>
@@ -48,15 +51,11 @@ function createOptions() {
         generator: v.generator,
         parameters: v.parameters,
         options: v.options.concat(...take(v.generator, 10)),
+        sortedSubjects: v.sortedSubjects,
       })),
   };
 }
 
 const options = createOptions();
-
-export const sortedSubjects = derived(options, ($options) => [
-  ...$options.parameters.mandatory,
-  ...$options.parameters.optional,
-]);
 
 export default options;

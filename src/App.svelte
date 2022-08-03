@@ -57,11 +57,11 @@
 
     console.log(mandatory_subjects, optional_subjects);
 
-    subjects.set({
+    $subjects = {
       mandatory: mandatory_subjects,
       optional: optional_subjects,
       ignore: [],
-    });
+    };
   }
   let loading = load();
 </script>

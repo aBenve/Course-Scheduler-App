@@ -13,6 +13,7 @@
       <SubjectOptionItemList
         optionData={option}
         optionIndex={i}
+        sortedSubjects={$options.sortedSubjects}
       />
     </div>
   {:else}
