@@ -9,13 +9,13 @@
   }
 </script>
 
-<div class=" w-full flex gap-x-1  border-gray-400 border-solid rounded-lg">
+<div class=" w-full flex gap-x-1 rounded-lg">
   {#each $pages.pages as page, i}
     <div
-      class=" hover:bg-gray-200 text-gray-400 w-1/2 flex justify-center items-center  flex-col p-5 rounded-lg cursor-pointer
+      class=" w-1/2 flex justify-center items-center  flex-col p-5 rounded-lg cursor-pointer 
       {$pages.pages[$pages.currentPage] === page
-        ? 'bg-blue-200 text-blue-500  hover:bg-blue-300 font-blue'
-        : ''}
+        ? 'bg-blue-200 dark:bg-blue-800 text-blue-600 dark:text-blue-400  hover:bg-blue-300 dark:hover:bg-blue-600 '
+        : 'hover:bg-background dark:hover:bg-zone-dark text-text-dark dark:text-text-secondary text-opacity-20 '}
       "
       on:click={() => selectPage(i)}
     >

@@ -18,7 +18,7 @@
 
 <div class={clazz}>
   <div
-    class="bg-area dark:bg-area-dark h-full p-5 rounded-lg flex flex-col items-center gap-y-5"
+    class="bg-area dark:bg-area-dark h-full p-5 rounded-lg flex flex-col items-center gap-y-5 "
   >
     <div class="flex justify-between w-full">
       <Link to="/" class="text-gray-500">

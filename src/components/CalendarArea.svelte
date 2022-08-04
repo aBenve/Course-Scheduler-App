@@ -12,7 +12,10 @@
 
   $: option = selectedOption == null ? null : $options.options[$selectedOption];
 
-  $: localSortedSubjects = option == null ? null : $options.sortedSubjects.filter(v => v in option.subjects)
+  $: localSortedSubjects =
+    option == null
+      ? null
+      : $options.sortedSubjects.filter((v) => v in option.subjects);
 
   export { clazz as class };
 </script>
@@ -25,14 +28,14 @@
     {#if option == null}
       <div class="w-full h-full flex justify-center items-center  ">
         <span
-          class="px-3 py-2 hover:bg-gray-300 rounded-lg transition-all ease-in-out duration-150"
+          class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg transition-all ease-in-out duration-150"
         >
           No option selected
         </span>
       </div>
     {:else}
       <div
-        class="bg-gray-300 w-full h-full CalendarGrid rounded-lg overflow-auto "
+        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(lastHour - firstHour + 1) as _, i}
@@ -40,12 +43,12 @@
             class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
             2
               ? 'bg-zone dark:bg-zone-dark'
-              : 'bg-gray-100 dark:bg-zone-secundary-dark'}"
+              : 'bg-area dark:bg-area-dark'}"
           />
         {/each}
 
         {#each ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as day, i}
-          <div class="day font-medium col-start-{i + 2} row-start-1 px-2">
+          <div class="day font-medium col-start-{i + 2} row-start-1 px-2 ">
             {day}
           </div>
         {/each}
@@ -87,9 +90,9 @@
     font-size: 0.7em;
   }
   /*@media (min-width: 1024px) {*/
-    /*.CalendarGrid {*/
-      /*grid-template-columns: 5em repeat(6, minmax(0, 1fr));*/
-    /*}*/
+  /*.CalendarGrid {*/
+  /*grid-template-columns: 5em repeat(6, minmax(0, 1fr));*/
+  /*}*/
   /*}*/
   @media (min-width: 640px) {
     .time {

@@ -21,16 +21,30 @@
     });
     options.addPage();
   }
+
+  let colorMode = "light";
+  function handleColorModeToggle() {
+    let aux = document.getElementById("app");
+    aux.classList.remove(colorMode);
+    colorMode = colorMode === "light" ? "dark" : "light";
+    aux.classList.add(colorMode);
+  }
 </script>
 
+<div
+  class="absolute top-4 right-4 p-2 hidden xl:block bg-area rounded-lg dark:bg-area-dark text-text-dark dark:text-text cursor-pointer hover:opacity-50"
+  on:click={handleColorModeToggle}
+>
+  toggle
+</div>
 <main
   class="bg-background dark:bg-background-dark h-screen gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
 >
   <ControlsArea
-    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5"
+    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 "
   />
   <SubjectsOptionsArea
-    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto"
+    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto "
   />
   <CalendarArea class="col-start-2  col-span-full row-span-4" />
 </main>

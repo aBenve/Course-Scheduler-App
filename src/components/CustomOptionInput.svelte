@@ -26,11 +26,14 @@
 </script>
 
 <div class="flex flex-col items-start">
-  <label class="block text-xs text-gray-500 pb-2" for={label}>
+  <label
+    class="block text-xs dark:text-text text-text-dark-secondary pb-2"
+    for={label}
+  >
     {toCapitalice(label)}
   </label>
   <input
-    class="appearance-none rounded text-xs w-full max-w-[7em] py-2 px-4 text-gray-700 leading-tight focus:outline-blue-500 focus:outline focus:outline-2"
+    class="appearance-none rounded text-xs w-full max-w-[7em] py-2 px-4 text-text-dark-secondary bg-zone dark:text-text-secondary dark:bg-zone-dark leading-tight focus:outline-blue-500 focus:outline focus:outline-2"
     id={label}
     type="number"
     {placeholder}

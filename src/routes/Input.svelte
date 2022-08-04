@@ -8,7 +8,7 @@
   class="flex justify-center items-center h-screen bg-background dark:bg-background-dark "
 >
   <section
-    class="shadow-md p-5 sm:p-10 rounded-lg bg-area dark:bg-area-dark w-1/4 min-w-fit m-10 hover:scale-[0.99] transition-all ease-out duration-200"
+    class="p-5 sm:p-10 rounded-lg bg-area dark:bg-area-dark w-1/4 min-w-fit m-10"
   >
     <div class="flex flex-col items-center gap-y-5 ">
       <DataInput
@@ -21,7 +21,7 @@
         <CustomOptionInput label="credits" placeholder="18" />
         <CustomOptionInput label="subjects" placeholder="5" />
       </div>
-      <div class="text-xs text-center text-gray-400">
+      <div class="text-xs text-center dark:text-text text-text-dark opacity-50">
         Note that all the options set a maximum value
       </div>
       <LinkButton title="Start" link="Options" />

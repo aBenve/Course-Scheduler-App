@@ -25,7 +25,9 @@
 </script>
 
 <div class="{clazz} flex flex-col">
-  <span class="mb-2 text-xs text-gray-600">{title}</span>
+  <span class="mb-2 text-xs text-text-dark-secondary dark:text-text-secondary"
+    >{title}</span
+  >
   <section
     use:dndzone={{
       items: $subjects[dragZoneArea],

@@ -8,7 +8,7 @@
 
 <div class={clazz}>
   <div
-    class="bg-area dark:bg-area-dark relative  rounded-lg h-full overflow-auto"
+    class="bg-area dark:bg-area-dark relative  rounded-lg h-full overflow-auto border-8 border-solid border-area dark:border-area-dark"
   >
     <SubjectOptionList />
   </div>

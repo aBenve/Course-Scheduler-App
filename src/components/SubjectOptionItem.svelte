@@ -10,10 +10,10 @@
 </script>
 
 <div
-  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative "
+  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative text-text-dark dark:text-text"
   style="
-    background-color: {toggle ? color + '20' : color + '00'}; 
-    color: {toggle ? color + 'ff' : '#212121'};
+    background-color: {toggle ? color + '20' : ''}; 
+    color: {toggle ? color + 'ff' : ''};
 
   "
   on:mouseenter={() => (tooltip = true)}
@@ -27,11 +27,14 @@
   <div class="flex flex-col max-w-[7em]">
     <div class="overflow-hidden">
       <div
-        class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip ? 'active' : 'overflow-x-hidden'}" >
+        class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip
+          ? 'active'
+          : 'overflow-x-hidden'}"
+      >
         {subject}
       </div>
     </div>
-    <span class="text-xxs sm:text-xs font-normal italic truncate">
+    <span class="text-xxs sm:text-xs font-normal italic truncate opacity-70">
       commission: {commission}
     </span>
   </div>
