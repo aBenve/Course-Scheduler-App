@@ -19,11 +19,13 @@ function createOptions() {
     update,
   }: Writable<{
     generator: Iterator<Choice>;
+    free: () => void;
     parameters: QueryParameters;
     options: Choice[];
     sortedSubjects: string[];
   }> = writable({
     parameters: { mandatory: [], optional: [] },
+    free: null,
     generator: null,
     options: [],
     sortedSubjects: [],
@@ -39,16 +41,25 @@ function createOptions() {
 
   return {
     subscribe,
-    setQuery: (parameters: QueryParameters) =>
-      set({
-        generator: generateChoices(parameters),
-        parameters: parameters,
-        sortedSubjects: [...parameters.mandatory, ...parameters.optional],
-        options: [],
-      }),
+    setQuery: (parameters: QueryParameters) => {
+      update((v) => {
+        if (v.free) {
+          v.free();
+        }
+        let { iterator: generator, free } = generateChoices(parameters);
+        return {
+          generator,
+          free,
+          parameters: parameters,
+          sortedSubjects: [...parameters.mandatory, ...parameters.optional],
+          options: [],
+        };
+      });
+    },
     addPage: () =>
       update((v) => ({
         generator: v.generator,
+        free: v.free,
         parameters: v.parameters,
         options: v.options.concat(...take(v.generator, 10)),
         sortedSubjects: v.sortedSubjects,

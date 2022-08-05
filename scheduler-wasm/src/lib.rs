@@ -1,7 +1,6 @@
 mod utils;
 
 use std::{
-    cell::RefCell,
     collections::HashSet,
     iter::FromIterator,
     ops::{Bound, RangeBounds},
@@ -123,17 +122,6 @@ pub fn get_subject_info(code: String) -> Option<SubjectInfo> {
 }
 
 use scheduler::option_generator::generate;
-thread_local! {
-    pub static OPTION_ITERATOR: RefCell<Option<Box<dyn Iterator<Item = Vec<Option<SubjectCommision>>>>>> =
-        RefCell::new(None);
-}
-
-fn get_next_option() -> Option<Vec<Option<SubjectCommision>>> {
-    OPTION_ITERATOR.with(|option_iterator| {
-        let iterator = &mut option_iterator.borrow_mut();
-        iterator.as_mut().unwrap().next()
-    })
-}
 
 #[wasm_bindgen]
 extern "C" {
@@ -176,6 +164,63 @@ impl<Idx: PartialOrd> RangeBounds<Idx> for OptionallyBoundRange<Idx> {
     }
 }
 
+mod serializer;
+
+#[wasm_bindgen(typescript_custom_section)]
+const IOPTION: &'static str = r#"
+export type DaysOfTheWeek = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+
+export interface Time {
+    hour: number,
+    minutes: number,
+}
+
+export interface Choice {
+    subjects: {
+        [key: string]: {
+            name: string,
+            credits: number,
+            commission: string,
+        },
+    },
+    week: {
+        [key in DaysOfTheWeek]: {
+            subject: string,
+            building?: string,
+            span: {
+                start: Time,
+                end: Time,
+            },
+        }[];
+    },
+}
+"#;
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(typescript_type = "Choice")]
+    pub type Choice;
+}
+
+#[wasm_bindgen]
+pub struct ChoiceGenerator {
+    iter: Box<dyn Iterator<Item = Vec<Option<SubjectCommision>>>>,
+}
+
+#[wasm_bindgen]
+impl ChoiceGenerator {
+    pub fn next_choice(&mut self) -> Choice {
+        if let Some(choice) = self.iter.next() {
+            let commissions: Vec<_> = choice.into_iter().flatten().collect();
+            JsValue::from_serde::<serializer::OptionInfo>(&commissions.into())
+                .unwrap()
+                .into()
+        } else {
+            JsValue::null().into()
+        }
+    }
+}
+
 #[wasm_bindgen]
 pub fn start_generator(
     mandatory_codes: StringArray,
@@ -185,7 +230,7 @@ pub fn start_generator(
     max_credit_count: Option<u32>,
     min_subject_count: Option<u32>,
     max_subject_count: Option<u32>,
-) {
+) -> ChoiceGenerator {
     let subjects = SUBJECTS.lock().unwrap();
     let find_subject = |code: Code| {
         subjects
@@ -245,8 +290,8 @@ pub fn start_generator(
             (exception.next().unwrap(), exception.next().unwrap())
         }));
 
-    OPTION_ITERATOR.with(|option_iterator| {
-        *option_iterator.borrow_mut() = Some(Box::new(
+    ChoiceGenerator {
+        iter: Box::new(
             generate(mandatory, optional, collision_exceptions)
                 .filter_choices(SubjectCount::new(OptionallyBoundRange::new(
                     min_subject_count,
@@ -256,66 +301,6 @@ pub fn start_generator(
                     min_credit_count,
                     max_credit_count,
                 ))),
-        ));
-    });
-}
-
-//struct OptionInfo {
-//subjects: Vec<SubjectInfo>,
-//days:
-//}
-
-//#[wasm_bindgen]
-//struct SubjectCommissionInfo {
-//name: String,
-//pub subject: SubjectInfo,
-//pub
-//}
-
-mod serializer;
-
-#[wasm_bindgen(typescript_custom_section)]
-const IOPTION: &'static str = r#"
-export type DaysOfTheWeek = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
-
-export interface Time {
-    hour: number,
-    minutes: number,
-}
-
-export interface Choice {
-    subjects: {
-        [key: string]: {
-            name: string,
-            credits: number,
-            commission: string,
-        },
-    },
-    week: {
-        [key in DaysOfTheWeek]: {
-            subject: string,
-            building?: string,
-            span: {
-                start: Time,
-                end: Time,
-            },
-        }[];
-    },
-}
-"#;
-
-#[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(typescript_type = "Choice")]
-    pub type Choice;
-}
-
-#[wasm_bindgen]
-pub fn next_choice() -> JsValue {
-    if let Some(choice) = get_next_option() {
-        let commissions: Vec<_> = choice.into_iter().flatten().collect();
-        JsValue::from_serde::<serializer::OptionInfo>(&commissions.into()).unwrap()
-    } else {
-        JsValue::null()
+        ),
     }
 }
