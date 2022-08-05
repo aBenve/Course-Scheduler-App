@@ -2,6 +2,7 @@
   import CustomOptionInput from "../components/CustomOptionInput.svelte";
   import DataInput from "../components/DataInput.svelte";
   import LinkButton from "../components/LinkButton.svelte";
+  import { fade, fly } from "svelte/transition";
 </script>
 
 <main
@@ -9,6 +10,7 @@
 >
   <section
     class="p-5 sm:p-10 rounded-lg bg-area dark:bg-area-dark w-1/4 min-w-fit m-10"
+    in:fly={{ y: -20, duration: 500, delay: 200 }}
   >
     <div class="flex flex-col items-center gap-y-5 ">
       <DataInput

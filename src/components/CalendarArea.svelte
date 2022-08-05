@@ -1,9 +1,9 @@
 <script lang="ts">
   import CalendarEvent from "./CalendarEvent.svelte";
-  import type { DaysOfTheWeek } from "scheduler-wasm";
   import selectedOption from "../store/SelectedOptionStore";
   import options from "../store/OptionStore";
   import colors from "../utils/colors";
+  import { fly } from "svelte/transition";
 
   let firstHour = 8;
   let lastHour = 22;
@@ -22,6 +22,7 @@
 
 <div class={clazz}>
   <div
+    in:fly={{ y: 10, duration: 500, delay: 500 }}
     class="bg-area dark:bg-area-dark h-full w-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-auto "
   >
     <!-- <Calendar {plugins} {options} /> -->

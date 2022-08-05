@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Time, DaysOfTheWeek } from "scheduler-wasm";
+  import { fly, fade } from "svelte/transition";
 
   export let start: Time;
   export let end: Time;
@@ -24,13 +25,14 @@
 </script>
 
 <div
+  in:fly={{ y: -10, duration: 500 }}
+  out:fade={{ duration: 200 }}
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
   ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
     2}  hover:opacity-90 hover:scale-105 transition-transform ease-in-out duration-150 p-2 m-0.5 rounded-lg"
   style="
-    background-color: {color}60;
-    
+    background-color: {color}60; 
   "
 >
   <div

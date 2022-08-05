@@ -1,6 +1,8 @@
 <script lang="ts">
   import SubjectOptionItem from "./SubjectOptionItem.svelte";
   import type { Choice } from "scheduler-wasm";
+  import { slide } from "svelte/transition";
+
   // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
   import options from "../store/OptionStore";
@@ -22,11 +24,13 @@
       if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
       return indexA - indexB;
     } ) as [code, subject], i}
-    <SubjectOptionItem
-      toggle={selected}
-      color={colors[i]}
-      subject={subject.name}
-      commission={subject.commission}
-    />
+    <div transition:slide|local>
+      <SubjectOptionItem
+        toggle={selected}
+        color={colors[i]}
+        subject={subject.name}
+        commission={subject.commission}
+      />
+    </div>
   {/each}
 </div>

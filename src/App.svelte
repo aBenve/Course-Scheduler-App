@@ -3,7 +3,7 @@
   import Input from "./routes/Input.svelte";
   import Options from "./routes/Options.svelte";
   import NotFound from "./routes/NotFound.svelte";
-
+  import { scale } from "svelte/transition";
   export let url = "";
 
   import init, { set_panic_hook } from "scheduler-wasm";
@@ -20,7 +20,10 @@
   <div id="app" class="font-principal">
     {#await loading}
       <Route>
-        <div class="w-full h-screen flex items-center justify-center">
+        <div
+          class="w-full h-screen flex items-center justify-center"
+          transition:scale
+        >
           <LoadingSpinner />
         </div>
       </Route>

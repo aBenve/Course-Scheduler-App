@@ -1,11 +1,8 @@
 <script lang="ts">
   import { Link } from "svelte-routing";
-  import CustomOptionInput from "../components/CustomOptionInput.svelte";
-  import ControlDragZone from "./ControlDragZone.svelte";
   import BackIcon from "../assets/icons/Back.svg";
-  import ControlSidebar from "./ControlSidebar.svelte";
-  import ControlPageSelector from "./ControlPageSelector.svelte";
   import ControlContent from "./ControlContent.svelte";
+  import { fly } from "svelte/transition";
   let clazz: string;
   export { clazz as class };
 
@@ -18,6 +15,7 @@
 
 <div class={clazz}>
   <div
+    in:fly={{ x: -10, duration: 500, delay: 200 }}
     class="bg-area dark:bg-area-dark h-full p-5 rounded-lg flex flex-col items-center gap-y-5 "
   >
     <div class="flex justify-between w-full">

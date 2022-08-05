@@ -6,6 +6,7 @@
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
   import subjects from "../store/SubjectStore";
+  import { fly, fade } from "svelte/transition";
   import {
     Semester,
     get_subject_info,
@@ -81,7 +82,7 @@
     };
 
     /*function timeout(ms: number) {*/
-      /*return new Promise((resolve) => setTimeout(resolve, ms));*/
+    /*return new Promise((resolve) => setTimeout(resolve, ms));*/
     /*}*/
     /*await timeout(1000000);*/
   }
@@ -98,10 +99,13 @@
 <main class="bg-background dark:bg-background-dark h-screen">
   {#await loading}
     <div class="w-full h-full flex items-center justify-center">
-      <LoadingSpinner/>
+      <LoadingSpinner />
     </div>
   {:then}
-    <div class="w-full h-full gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4">
+    <div
+      class="w-full h-full gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
+      transition:fade={{ duration: 500 }}
+    >
       <ControlsArea
         class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 "
       />
