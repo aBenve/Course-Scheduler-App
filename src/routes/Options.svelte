@@ -6,6 +6,13 @@
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
   import subjects from "../store/SubjectStore";
+  import {
+    Semester,
+    get_subject_info,
+    load_from_api,
+    SubjectInfo,
+  } from "scheduler-wasm";
+  import LoadingSpinner from "../components/LoadingSpinner.svelte";
 
   $: {
     $selectedOption = null;
@@ -29,6 +36,57 @@
     colorMode = colorMode === "light" ? "dark" : "light";
     aux.classList.add(colorMode);
   }
+
+  async function load() {
+    await load_from_api(2022, Semester.Second);
+
+    let mandatory = ["72.07", "72.38", "12.83"];
+    let optional = [
+      "72.37",
+      "61.23",
+      "72.41",
+      "72.42",
+      "93.75",
+      "72.43",
+      "94.23",
+      "16.50",
+      "23.15",
+      "61.50",
+      "72.58",
+      "72.60",
+      "72.74",
+      "72.75",
+      "72.89",
+      "72.92",
+      "94.42",
+      "94.62",
+    ];
+
+    function to_subject(subject: SubjectInfo): Subject {
+      return {
+        id: subject.code,
+        title: subject.name,
+      };
+    }
+
+    let mandatory_subjects = mandatory.map(get_subject_info).map(to_subject);
+    let optional_subjects = optional.map(get_subject_info).map(to_subject);
+
+    console.log(mandatory_subjects, optional_subjects);
+
+    $subjects = {
+      mandatory: mandatory_subjects,
+      optional: optional_subjects,
+      ignore: [],
+    };
+
+    /*function timeout(ms: number) {*/
+      /*return new Promise((resolve) => setTimeout(resolve, ms));*/
+    /*}*/
+    /*await timeout(1000000);*/
+  }
+
+  let loading = load();
 </script>
 
 <div
@@ -37,16 +95,22 @@
 >
   toggle
 </div>
-<main
-  class="bg-background dark:bg-background-dark h-screen gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
->
-  <ControlsArea
-    class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 "
-  />
-  <SubjectsOptionsArea
-    class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto "
-  />
-  <CalendarArea class="col-start-2  col-span-full row-span-4" />
+<main class="bg-background dark:bg-background-dark h-screen">
+  {#await loading}
+    <div class="w-full h-full flex items-center justify-center">
+      <LoadingSpinner/>
+    </div>
+  {:then}
+    <div class="w-full h-full gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4">
+      <ControlsArea
+        class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 "
+      />
+      <SubjectsOptionsArea
+        class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto "
+      />
+      <CalendarArea class="col-start-2  col-span-full row-span-4" />
+    </div>
+  {/await}
 </main>
 
 <style>
