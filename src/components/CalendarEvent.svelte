@@ -30,7 +30,7 @@
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
   ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
-    2}  hover:opacity-90 hover:scale-105 transition-transform ease-in-out duration-150 p-2 m-0.5 rounded-lg"
+    2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg"
   style="
     background-color: {color}60; 
   "

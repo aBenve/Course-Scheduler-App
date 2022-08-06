@@ -61,7 +61,7 @@
         {/each}
 
         {#each Object.entries(option.week) as [day, dayTasks]}
-          {#each dayTasks as task, i}
+          {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
               title={option.subjects[task.subject].name}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
