@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 function generateNumberPairs(from, to) {
   return Object.fromEntries(Array(to - from).fill().map((_, i) => i + from).map(n => [String(n), String(n)]))
 }
@@ -20,15 +22,15 @@ const config = {
         ...generateNumberPairs(7, 40)
       },
       colors:{
-        'background': '#e5e7eb',
+        'background': colors.gray[200],
         'background-dark': '#191919',
-        'area': '#f3f4f6',
+        'area': colors.gray[100],
         'area-dark': '#202020',
-        'zone': '#ffffff',
+        'zone': colors.gray[50],
         'zone-dark': '#2c2c2c',
-        'zone-secondary': '#f8f8f8',
+        'zone-secondary': '#e8e8e8',
         'zone-secondary-dark': '#383838',
-        'zone-terciary': '#d1d5db',
+        'zone-terciary': colors.gray[300],
         'zone-terciary-dark': '#3f3f3f',
 
 

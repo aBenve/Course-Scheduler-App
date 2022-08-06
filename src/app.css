@@ -11,3 +11,30 @@
 	border: 0;
   box-sizing: border-box;
 }
+
+#app.light ::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: theme("colors.area");
+
+}
+
+#app.dark ::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: theme("colors.area-dark");
+
+}
+ 
+#app.light ::-webkit-scrollbar-thumb {
+  background-color: theme("colors.background");
+  border-radius: 10px;
+}
+#app.dark ::-webkit-scrollbar-thumb {
+  background-color: theme("colors.background-dark");
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.3em;
+  height: 0.3em;
+}
