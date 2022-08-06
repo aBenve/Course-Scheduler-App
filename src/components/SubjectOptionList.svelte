@@ -17,7 +17,7 @@
         <span
           class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30"
         >
-          {i}
+          {i + 1}
         </span>
         <SubjectOptionItemList
           optionData={option}
