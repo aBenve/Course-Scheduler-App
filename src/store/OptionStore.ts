@@ -46,7 +46,9 @@ function createOptions() {
     setQuery: (parameters: QueryParameters) => {
       update((v) => {
         if (v.free) {
-          v.free();
+          try {
+            v.free();
+          } catch {}
         }
         let { iterator: generator, free } = generateChoices(parameters);
         return {

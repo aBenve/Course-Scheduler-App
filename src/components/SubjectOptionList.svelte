@@ -2,16 +2,15 @@
   import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
   import options, { type QueryParameters } from "../store/OptionStore";
   import IntersectionObserver from "svelte-intersection-observer";
+  import { slide, fade } from "svelte/transition";
 
   let endOfList: HTMLElement;
 </script>
 
-<div
-  class="w-full p-5 flex flex-col items-center justify-center"
->
+<div class="w-full p-5 flex flex-col items-center justify-center">
   {#if $options.options.length > 0 || !$options.isComplete}
     <div
-      class="gap-y-4 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
+      class="w-full gap-y-4 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
     >
       {#each $options.options as option, i}
         <span
@@ -19,11 +18,13 @@
         >
           {i + 1}
         </span>
-        <SubjectOptionItemList
-          optionData={option}
-          optionIndex={i}
-          sortedSubjects={$options.sortedSubjects}
-        />
+        <div transition:fade>
+          <SubjectOptionItemList
+            optionData={option}
+            optionIndex={i}
+            sortedSubjects={$options.sortedSubjects}
+          />
+        </div>
       {/each}
     </div>
     {#if !$options.isComplete}
