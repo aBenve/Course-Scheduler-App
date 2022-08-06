@@ -18,7 +18,7 @@
         >
           {i + 1}
         </span>
-        <div transition:fade>
+        <div transition:fade class="w-full overflow-x-auto">
           <SubjectOptionItemList
             optionData={option}
             optionIndex={i}

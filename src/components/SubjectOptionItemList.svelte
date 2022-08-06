@@ -15,7 +15,7 @@
 </script>
 
 <div
-  class="bg-zone dark:bg-zone-dark hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark h-fit w-full p-2 rounded-lg flex gap-x-2  cursor-pointer overflow-x-auto items-center"
+  class="bg-zone dark:bg-zone-dark hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark h-fit w-fit p-2 rounded-lg flex gap-x-2  cursor-pointer items-center"
   on:click={() => ($selectedOption = optionIndex)}
 >
   {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {
