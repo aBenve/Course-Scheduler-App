@@ -20,12 +20,14 @@ function createOptions() {
   }: Writable<{
     generator: Iterator<Choice>;
     free: () => void;
+    isComplete: boolean;
     parameters: QueryParameters;
     options: Choice[];
     sortedSubjects: string[];
   }> = writable({
     parameters: { mandatory: [], optional: [] },
     free: null,
+    isComplete: true,
     generator: null,
     options: [],
     sortedSubjects: [],
@@ -50,6 +52,7 @@ function createOptions() {
         return {
           generator,
           free,
+          isComplete: false,
           parameters: parameters,
           sortedSubjects: [...parameters.mandatory, ...parameters.optional],
           options: [],
@@ -57,13 +60,18 @@ function createOptions() {
       });
     },
     addPage: () =>
-      update((v) => ({
-        generator: v.generator,
-        free: v.free,
-        parameters: v.parameters,
-        options: v.options.concat(...take(v.generator, 10)),
-        sortedSubjects: v.sortedSubjects,
-      })),
+      update((v) => {
+        let count = 10;
+        let toAdd = [...take(v.generator, count)];
+        return {
+          generator: v.generator,
+          free: v.free,
+          isComplete: toAdd.length < count,
+          parameters: v.parameters,
+          options: v.options.concat(...toAdd),
+          sortedSubjects: v.sortedSubjects,
+        };
+      }),
   };
 }
 

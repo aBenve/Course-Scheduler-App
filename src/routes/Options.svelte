@@ -27,7 +27,7 @@
       min_credit_count: $settings.credits,
       min_subject_count: $settings.subjects,
     });
-    options.addPage();
+    /*options.addPage();*/
   }
 
   let colorMode = "light";
