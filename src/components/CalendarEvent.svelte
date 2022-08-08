@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Time, DaysOfTheWeek } from "scheduler-wasm";
   import { fly, fade } from "svelte/transition";
+  import colorSettings from "../store/UserColorsStore";
 
   export let start: Time;
   export let end: Time;
@@ -8,8 +9,6 @@
   export let title: string;
   export let calendarFirstHour: number;
   export let color: string;
-
-  console.log(color);
 
   $: dayIndex = [
     "monday",
@@ -32,7 +31,8 @@
   ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
     2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg"
   style="
-    background-color: {color}60; 
+    background-color: 
+  {$colorSettings.colorMode == 'dark' ? color + '70' : color + '40'}; 
   "
 >
   <div

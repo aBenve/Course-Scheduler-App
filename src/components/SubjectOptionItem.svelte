@@ -1,5 +1,6 @@
 <script lang="ts">
   import Tooltip from "./Tooltip.svelte";
+  import colorSettings from "../store/UserColorsStore";
 
   export let color: string;
   export let subject: string;
@@ -12,7 +13,11 @@
 <div
   class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative text-text-dark dark:text-text"
   style="
-    background-color: {toggle ? color + '20' : ''}; 
+    background-color: {toggle
+    ? $colorSettings.colorMode == 'dark'
+      ? color + '70'
+      : color + '20'
+    : ''}; 
     color: {toggle ? color + 'ff' : ''};
 
   "

@@ -2,7 +2,7 @@
   import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
   import options, { type QueryParameters } from "../store/OptionStore";
   import IntersectionObserver from "svelte-intersection-observer";
-  import { slide, fade } from "svelte/transition";
+  import { slide, fade, fly } from "svelte/transition";
 
   let endOfList: HTMLElement;
 </script>
@@ -18,7 +18,7 @@
         >
           {i + 1}
         </span>
-        <div transition:fade class="w-full overflow-x-auto">
+        <div in:fade class="w-full overflow-x-auto">
           <SubjectOptionItemList
             optionData={option}
             optionIndex={i}

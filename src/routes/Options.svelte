@@ -5,6 +5,7 @@
   import options from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
+  import colorSettings from "../store/UserColorsStore";
   import subjects from "../store/SubjectStore";
   import { fly, fade } from "svelte/transition";
   import {
@@ -30,12 +31,11 @@
     /*options.addPage();*/
   }
 
-  let colorMode = "light";
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
-    aux.classList.remove(colorMode);
-    colorMode = colorMode === "light" ? "dark" : "light";
-    aux.classList.add(colorMode);
+    aux.classList.remove($colorSettings.colorMode);
+    $colorSettings.changeColorMode();
+    aux.classList.add($colorSettings.colorMode);
   }
 
   async function load() {
