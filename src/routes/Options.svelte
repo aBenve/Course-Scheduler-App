@@ -7,6 +7,7 @@
   import settings from "../store/UserSettingsStore";
   import colorSettings from "../store/UserColorsStore";
   import subjects from "../store/SubjectStore";
+  import finalizedSubjects from "../store/FinalizedSubjectsStore";
   import { fly, fade } from "svelte/transition";
   import {
     Semester,
@@ -19,10 +20,10 @@
   $: {
     $selectedOption = null;
     options.setQuery({
-      mandatory: $subjects.mandatory
+      mandatory: $finalizedSubjects.mandatory
         .filter((s) => !s.isDndShadowItem)
         .map((s) => s.id),
-      optional: $subjects.optional
+      optional: $finalizedSubjects.optional
         .filter((s) => !s.isDndShadowItem)
         .map((s) => s.id),
       min_credit_count: $settings.credits,
@@ -80,6 +81,8 @@
       optional: optional_subjects,
       ignore: [],
     };
+
+    $finalizedSubjects = $subjects;
 
     /*function timeout(ms: number) {*/
     /*return new Promise((resolve) => setTimeout(resolve, ms));*/

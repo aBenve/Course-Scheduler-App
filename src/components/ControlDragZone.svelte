@@ -4,6 +4,7 @@
   import { flip } from "svelte/animate";
 
   import subjects from "../store/SubjectStore";
+  import finalizedSubjects from "../store/FinalizedSubjectsStore";
 
   export let flipDurationMs;
   export let dragZoneArea;
@@ -21,6 +22,9 @@
       currentSubjects[dragZoneArea] = e.detail.items;
       return currentSubjects;
     });
+    if (e.type == 'finalize') {
+      $finalizedSubjects = $subjects;
+    }
   }
 </script>
 

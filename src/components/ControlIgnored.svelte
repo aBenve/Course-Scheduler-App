@@ -4,6 +4,7 @@
   import { flip } from "svelte/animate";
 
   import subjects from "../store/SubjectStore";
+  import finalizedSubjects from "../store/FinalizedSubjectsStore";
 
   export let flipDurationMs;
 
@@ -18,6 +19,10 @@
       copiedSubs.ignore = e.detail.items;
       return copiedSubs;
     });
+  }
+
+  function onFinalize() {
+    $finalizedSubjects = $subjects;
   }
 </script>
 

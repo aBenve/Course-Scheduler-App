@@ -5,6 +5,9 @@
   import { slide, fade, fly } from "svelte/transition";
 
   let endOfList: HTMLElement;
+
+  let reachedEnd: boolean;
+  /*$: reachedEnd && options.addPage();*/
 </script>
 
 <div class="w-full p-5 flex flex-col items-center justify-center">
@@ -35,6 +38,7 @@
             console.log("Intersecting");
             options.addPage();
           }}
+          bind:intersecting={reachedEnd}
         >
           <div bind:this={endOfList}>Loading...</div>
         </IntersectionObserver>
