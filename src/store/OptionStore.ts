@@ -22,6 +22,7 @@ import {
   share,
   shareReplay,
   ReplaySubject,
+  combineLatestWith,
 } from "rxjs";
 import finalizedSubjects from "./FinalizedSubjectsStore";
 import { toObservable, debug } from "./utils";
@@ -64,7 +65,10 @@ function createOptions() {
     //debug("Settings!"),
     shareReplay()
   );
-  let queryParameters = combineLatest([subjects, querySettings]).pipe(
+  let combinedParameters = subjects.pipe(
+    combineLatestWith(querySettings),
+  );
+  let queryParameters = combinedParameters.pipe(
     map(
       ([subjects, querySettings]) =>
         ({
@@ -101,7 +105,7 @@ function createOptions() {
 
   let options = zip(
     optionsHigherOrder,
-    combineLatest([subjects, querySettings]).pipe(map(([s, q]) => s))
+    combinedParameters.pipe(map(([s, q]) => s))
   ).pipe(
     switchMap(([options, subjects]) => {
       let sortedSubjects = [...subjects.mandatory, ...subjects.optional].map(
