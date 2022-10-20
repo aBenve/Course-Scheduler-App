@@ -59,16 +59,18 @@ export function addPage() {
 function createOptions() {
   let subjects = toObservable(finalizedSubjects).pipe(
     //debug("Subjects!"),
-    shareReplay()
+    //shareReplay()
   );
   let querySettings = toObservable(settings).pipe(
     //debug("Settings!"),
-    shareReplay()
+    //shareReplay()
   );
   let combinedParameters = subjects.pipe(
     combineLatestWith(querySettings),
+    //share(),
   );
   let queryParameters = combinedParameters.pipe(
+    //debug("QueryParameters!"),
     map(
       ([subjects, querySettings]) =>
         ({
@@ -78,15 +80,16 @@ function createOptions() {
           min_credit_count: querySettings.credits,
         } as QueryParameters)
     ),
-    //debug("QueryParameters!"),
-    share()
+    share(),
   );
 
-  let generator = queryParameters.pipe(map(generateChoices));
+  let generator = queryParameters.pipe(
+    map(generateChoices),
+    //debug("Created Generator!"),
+  );
 
   let optionsHigherOrder = generator.pipe(
     tap({ next: () => selectedOption.set(null) }),
-    //debug("Generator!"),
     map((gen) =>
       addPageObservable.pipe(
         startWith(null),
@@ -100,7 +103,8 @@ function createOptions() {
         })),
         finalize(() => gen.free())
       )
-    )
+    ),
+    //debug("Generator!"),
   );
 
   let options = zip(
@@ -117,7 +121,11 @@ function createOptions() {
     shareReplay(1)
   );
 
-  return options;
+  let newSearch = combinedParameters.pipe(
+    //debug("New Search"),
+  );
+
+  return [newSearch, options];
 }
 
-export const options = createOptions();
+export const [newSearch, options] = createOptions();
