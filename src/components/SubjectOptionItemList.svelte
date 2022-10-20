@@ -5,7 +5,6 @@
 
   // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
-  import options from "../store/OptionStore";
   import colors from "../utils/colors";
   export let optionData: Choice;
   export let optionIndex: number;

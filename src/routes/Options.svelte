@@ -2,7 +2,7 @@
   import SubjectsOptionsArea from "../components/SubjectsOptionsArea.svelte";
   import ControlsArea from "../components/ControlsArea.svelte";
   import CalendarArea from "../components/CalendarArea.svelte";
-  import options from "../store/OptionStore";
+  import { options } from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
   import colorSettings from "../store/UserColorsStore";
@@ -16,21 +16,6 @@
     SubjectInfo,
   } from "scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
-
-  $: {
-    $selectedOption = null;
-    options.setQuery({
-      mandatory: $finalizedSubjects.mandatory
-        .filter((s) => !s.isDndShadowItem)
-        .map((s) => s.id),
-      optional: $finalizedSubjects.optional
-        .filter((s) => !s.isDndShadowItem)
-        .map((s) => s.id),
-      min_credit_count: $settings.credits,
-      min_subject_count: $settings.subjects,
-    });
-    /*options.addPage();*/
-  }
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
@@ -74,7 +59,7 @@
     let mandatory_subjects = mandatory.map(get_subject_info).map(to_subject);
     let optional_subjects = optional.map(get_subject_info).map(to_subject);
 
-    console.log(mandatory_subjects, optional_subjects);
+    /*console.log(mandatory_subjects, optional_subjects);*/
 
     $subjects = {
       mandatory: mandatory_subjects,

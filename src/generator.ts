@@ -9,6 +9,7 @@ export default function generate_choices({
   min_subject_count,
   max_subject_count,
 }: QueryParameters): { iterator: Iterator<Choice>; free: () => void } {
+  //console.log("Generator called!");
   // console.log(mandatory, optional);
 
   let iter = start_generator(

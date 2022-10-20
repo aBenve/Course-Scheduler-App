@@ -1,21 +1,22 @@
 <script lang="ts">
   import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
-  import options, { type QueryParameters } from "../store/OptionStore";
+  import { addPage, options, type QueryParameters } from "../store/OptionStore";
   import IntersectionObserver from "svelte-intersection-observer";
   import { slide, fade, fly } from "svelte/transition";
 
   let endOfList: HTMLElement;
 
   let reachedEnd: boolean;
+  // $: console.log($options);
   /*$: reachedEnd && options.addPage();*/
 </script>
 
 <div class="w-full p-5 flex flex-col items-center justify-center">
-  {#if $options.options.length > 0 || !$options.isComplete}
+  {#if $options.values.length > 0 || !$options.done}
     <div
       class="w-full gap-y-4 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
     >
-      {#each $options.options as option, i}
+      {#each $options.values as option, i}
         <span
           class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30"
         >
@@ -30,18 +31,21 @@
         </div>
       {/each}
     </div>
-    {#if !$options.isComplete}
+    {#if !$options.done}
       <div class="mt-4">
+        <!--<button on:click={addPage}>Add Page</button>-->
+        
         <IntersectionObserver
           element={endOfList}
           on:intersect={() => {
             console.log("Intersecting");
-            options.addPage();
+            addPage();
           }}
           bind:intersecting={reachedEnd}
         >
           <div bind:this={endOfList}>Loading...</div>
         </IntersectionObserver>
+        
       </div>
     {/if}
   {:else}

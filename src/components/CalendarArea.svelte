@@ -1,7 +1,7 @@
 <script lang="ts">
   import CalendarEvent from "./CalendarEvent.svelte";
   import selectedOption from "../store/SelectedOptionStore";
-  import options from "../store/OptionStore";
+  import { options } from "../store/OptionStore";
   import colors from "../utils/colors";
   import { fly } from "svelte/transition";
 
@@ -10,7 +10,7 @@
 
   let clazz: string;
 
-  $: option = selectedOption == null ? null : $options.options[$selectedOption];
+  $: option = selectedOption == null ? null : $options.values[$selectedOption];
 
   $: localSortedSubjects =
     option == null

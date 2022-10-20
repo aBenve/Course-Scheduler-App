@@ -13,6 +13,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "@tsconfig/svelte": "^3.0.0",
+    "@types/lodash": "^4.14.182",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-load-config": "^4.0.1",
@@ -28,6 +29,8 @@
     "wasm-pack": "^0.10.3"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
+    "rxjs": "^7.5.6",
     "svelte-intersection-observer": "^0.10.0",
     "svelte-routing": "^1.6.0"
   }
