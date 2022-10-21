@@ -9,7 +9,12 @@ export default defineConfig(({ mode }) => {
   const API_KEY = process.env.VITE_API_KEY;
 
   return {
-    plugins: [wasmPack("./scheduler-wasm"), svelte()],
+    plugins: [wasmPack([], ['@course-scheduler-app/scheduler-wasm']), svelte()],
+    resolve: {
+      alias: {
+        'scheduler-wasm': '@course-scheduler-app/scheduler-wasm',
+      }
+    },
     server: {
       proxy: {
         "/api": {
