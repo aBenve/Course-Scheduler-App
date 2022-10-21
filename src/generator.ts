@@ -1,4 +1,4 @@
-import { type Choice, start_generator } from "scheduler-wasm";
+import { type Choice, GeneratorBuilder } from "scheduler-wasm";
 import type { QueryParameters } from "./store/OptionStore";
 
 export default function generate_choices({
@@ -12,20 +12,19 @@ export default function generate_choices({
   //console.log("Generator called!");
   // console.log(mandatory, optional);
 
-  let iter = start_generator(
-    mandatory,
-    optional,
-    [
-      //[
-      //["72.37", "S"],
-      //["72.07", "S"],
-      //],
-    ],
-    min_credit_count,
-    max_credit_count,
-    min_subject_count,
-    max_subject_count
-  );
+  let builder = new GeneratorBuilder()
+    .set_mandatory_codes(mandatory)
+    .set_optional_codes(optional)
+    .set_collision_exceptions([])
+    .set_min_credit_count(min_credit_count)
+    .set_max_credit_count(max_credit_count)
+    .set_min_subject_count(min_subject_count)
+    .set_max_subject_count(max_subject_count);
+
+  console.log(builder);
+
+  let iter = builder.build();
+
   return {
     iterator: {
       next() {

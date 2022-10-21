@@ -1,12 +1,13 @@
 mod utils;
 
 use std::{
-    collections::HashSet,
+    collections::{HashMap, HashSet},
     iter::FromIterator,
     ops::{Bound, RangeBounds},
     sync::{Arc, Mutex},
 };
 
+use anyhow::{anyhow, Result};
 use js_sys::Array;
 use scheduler::{
     models::{Code, Subject, SubjectCommision},
@@ -82,6 +83,25 @@ pub async fn load_from_api(year: u32, semester: Semester) {
 
 static SUBJECTS: Mutex<Vec<Arc<Subject>>> = Mutex::new(vec![]);
 
+fn find_subject_by_code(code: Code) -> Option<Arc<Subject>> {
+    let subjects = SUBJECTS.lock().unwrap();
+    subjects.iter().find(|s| s.code == code).cloned()
+}
+
+fn find_subjects_by_code(codes: Vec<Code>) -> Result<Vec<Arc<Subject>>> {
+    codes
+        .into_iter()
+        //.map(|c| c.parse().unwrap())
+        .map(|code| {
+            find_subject_by_code(code).ok_or_else(|| anyhow!("Subject {} was not found", code))
+        })
+        .collect::<Result<Vec<_>>>()
+}
+
+fn parse_codes(codes: impl IntoIterator<Item = String>) -> impl Iterator<Item = Code> {
+    codes.into_iter().map(|c| c.parse().unwrap())
+}
+
 #[wasm_bindgen]
 pub fn set_panic_hook() {
     utils::set_panic_hook();
@@ -130,6 +150,38 @@ extern "C" {
 
     #[wasm_bindgen(typescript_type = "[[string, string], [string, string]][]")]
     pub type CollisionExceptions;
+}
+
+impl From<StringArray> for Vec<String> {
+    fn from(sa: StringArray) -> Self {
+        Array::from(&sa)
+            .iter()
+            .map(|v| v.as_string().expect("Must be a string array"))
+            .collect()
+    }
+}
+
+impl From<CollisionExceptions> for Vec<((String, String), (String, String))> {
+    fn from(ce: CollisionExceptions) -> Self {
+        Array::from(&ce)
+            .iter()
+            .map(|e| {
+                let exception: Array = e.into();
+                assert_eq!(exception.length(), 2);
+                let mut exception = exception.iter().map(|pair| {
+                    let commission: Array = pair.into();
+                    assert_eq!(commission.length(), 2);
+                    let (sub_code, com_name) = (
+                        commission.get(0).as_string().unwrap(),
+                        commission.get(1).as_string().unwrap(),
+                    );
+                    let sub_code = sub_code.parse().unwrap();
+                    (sub_code, com_name)
+                });
+                (exception.next().unwrap(), exception.next().unwrap())
+            })
+            .collect()
+    }
 }
 
 struct OptionalBound<Idx: PartialOrd>(Option<Idx>);
@@ -222,85 +274,110 @@ impl ChoiceGenerator {
 }
 
 #[wasm_bindgen]
-pub fn start_generator(
-    mandatory_codes: StringArray,
-    optional_codes: StringArray,
-    collision_exceptions: CollisionExceptions,
+#[derive(Debug, Default)]
+pub struct GeneratorBuilder {
+    mandatory: Vec<Arc<Subject>>,
+    optional: Vec<Arc<Subject>>,
+    collision_exceptions: HashSet<((Code, SubjectCommision), (Code, SubjectCommision))>,
     min_credit_count: Option<u32>,
     max_credit_count: Option<u32>,
     min_subject_count: Option<u32>,
     max_subject_count: Option<u32>,
-) -> ChoiceGenerator {
-    let subjects = SUBJECTS.lock().unwrap();
-    let find_subject = |code: Code| {
-        subjects
-            .iter()
-            .find(|s| s.code == code)
-            .ok_or(format!("Could not find subject with code {}", code))
-    };
-    let find_subjects = |codes: Vec<String>| {
-        codes
-            .into_iter()
-            .map(|c| c.parse().unwrap())
-            .map(|code| find_subject(code).map(|sub| (code, sub)))
-            .collect::<Result<Vec<_>, _>>()
-            .expect("A subject was not found.")
-    };
-    let find_commissions = |codes: StringArray| {
-        find_subjects(
-            Array::from(&codes)
+}
+
+#[wasm_bindgen]
+impl GeneratorBuilder {
+    #[wasm_bindgen(constructor)]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn set_min_credit_count(mut self, min_credit_count: Option<u32>) -> Self {
+        self.min_credit_count = min_credit_count;
+        self
+    }
+
+    pub fn set_max_credit_count(mut self, max_credit_count: Option<u32>) -> Self {
+        self.max_credit_count = max_credit_count;
+        self
+    }
+
+    pub fn set_min_subject_count(mut self, min_subject_count: Option<u32>) -> Self {
+        self.min_subject_count = min_subject_count;
+        self
+    }
+
+    pub fn set_max_subject_count(mut self, max_subject_count: Option<u32>) -> Self {
+        self.max_subject_count = max_subject_count;
+        self
+    }
+
+    pub fn set_mandatory_codes(mut self, mandatory_codes: StringArray) -> Self {
+        self.mandatory =
+            find_subjects_by_code(parse_codes(Vec::<String>::from(mandatory_codes)).collect())
+                .unwrap();
+        self
+    }
+
+    pub fn set_optional_codes(mut self, optional_codes: StringArray) -> Self {
+        self.optional =
+            find_subjects_by_code(parse_codes(Vec::<String>::from(optional_codes)).collect())
+                .unwrap();
+        self
+    }
+
+    pub fn set_collision_exceptions(mut self, collision_exceptions: CollisionExceptions) -> Self {
+        let collision_exceptions: Vec<((String, String), (String, String))> =
+            collision_exceptions.into();
+        let find_commission = |sub_code: Code, com_name: String| {
+            let sub = find_subject_by_code(sub_code)
+                .unwrap_or_else(|| panic!("Coud not find subject {}", sub_code));
+            sub.commissions
                 .iter()
-                .map(|v| v.as_string().expect("Must be a string array"))
-                .collect(),
-        )
-        .into_iter()
-        .map(|(code, sub)| (code, sub.commissions.clone()))
-        .collect::<Vec<_>>()
-    };
-    let find_commission = |sub_code: Code, com_name: String| {
-        let sub =
-            find_subject(sub_code).unwrap_or_else(|_| panic!("Coud not find subject {}", sub_code));
-        sub.commissions
-            .iter()
-            .find(|c| c.name == com_name)
-            .unwrap_or_else(|| {
-                panic!(
-                    "Could not find commission {} from subject {}.",
-                    com_name, sub_code
+                .find(|c| c.name == com_name)
+                .unwrap_or_else(|| {
+                    panic!(
+                        "Could not find commission {} from subject {}.",
+                        com_name, sub_code
+                    )
+                })
+                .clone()
+        };
+        self.collision_exceptions = HashSet::from_iter(collision_exceptions.into_iter().map(
+            |((sub_a, com_a), (sub_b, com_b))| {
+                let code_a = sub_a.parse().unwrap();
+                let code_b = sub_b.parse().unwrap();
+                (
+                    (code_a, find_commission(code_a, com_a)),
+                    (code_b, find_commission(code_b, com_b)),
                 )
-            })
-    };
-    let mandatory = find_commissions(mandatory_codes);
-    let optional = find_commissions(optional_codes);
+            },
+        ));
+        self
+    }
 
-    let collision_exceptions =
-        HashSet::from_iter(Array::from(&collision_exceptions).iter().map(|e| {
-            let exception: Array = e.into();
-            assert_eq!(exception.length(), 2);
-            let mut exception = exception.iter().map(|pair| {
-                let commission: Array = pair.into();
-                assert_eq!(commission.length(), 2);
-                let (sub_code, com_name) = (
-                    commission.get(0).as_string().unwrap(),
-                    commission.get(1).as_string().unwrap(),
-                );
-                let sub_code = sub_code.parse().unwrap();
-                (sub_code, find_commission(sub_code, com_name).clone())
-            });
-            (exception.next().unwrap(), exception.next().unwrap())
-        }));
+    pub fn build(self) -> ChoiceGenerator {
+        let find_commissions = |subjects: Vec<Arc<Subject>>| {
+            subjects
+                .into_iter()
+                .map(|sub| (sub.code, sub.commissions.clone()))
+                .collect::<Vec<_>>()
+        };
+        let mandatory = find_commissions(self.mandatory);
+        let optional = find_commissions(self.optional);
 
-    ChoiceGenerator {
-        iter: Box::new(
-            generate(mandatory, optional, collision_exceptions)
-                .filter_choices(SubjectCount::new(OptionallyBoundRange::new(
-                    min_subject_count,
-                    max_subject_count,
-                )))
-                .filter_choices(CreditCount::new(OptionallyBoundRange::new(
-                    min_credit_count,
-                    max_credit_count,
-                ))),
-        ),
+        ChoiceGenerator {
+            iter: Box::new(
+                generate(mandatory, optional, self.collision_exceptions)
+                    .filter_choices(SubjectCount::new(OptionallyBoundRange::new(
+                        self.min_subject_count,
+                        self.max_subject_count,
+                    )))
+                    .filter_choices(CreditCount::new(OptionallyBoundRange::new(
+                        self.min_credit_count,
+                        self.max_credit_count,
+                    ))),
+            ),
+        }
     }
 }
