@@ -27,7 +27,7 @@
     "vite-plugin-wasm-pack": "0.1.12"
   },
   "dependencies": {
-    "@course-scheduler-app/scheduler-wasm": "^0.1.1",
+    "@course-scheduler-app/scheduler-wasm": "^0.2.1",
     "lodash": "^4.17.21",
     "rxjs": "^7.5.6",
     "svelte-intersection-observer": "^0.10.0",

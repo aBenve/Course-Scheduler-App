@@ -25,7 +25,7 @@
   }
 
   async function load() {
-    await load_from_api(2022, Semester.Second);
+    await load_from_api(import.meta.env.VITE_API_HOST, 2022, Semester.Second);
 
     let mandatory = ["72.07", "72.38", "12.83"];
     let optional = [
