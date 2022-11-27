@@ -49,6 +49,14 @@
       "94.62",
     ];
 
+    function getSubjectInfo(code: String): SubjectInfo {
+      let info = get_subject_info(code);
+      if (info == null) {
+        throw Error(`Subject code ${code} does not exist.`);
+      }
+      return info;
+    }
+
     function to_subject(subject: SubjectInfo): Subject {
       return {
         id: subject.code,
@@ -56,8 +64,8 @@
       };
     }
 
-    let mandatory_subjects = mandatory.map(get_subject_info).map(to_subject);
-    let optional_subjects = optional.map(get_subject_info).map(to_subject);
+    let mandatory_subjects = mandatory.map(getSubjectInfo).map(to_subject);
+    let optional_subjects = optional.map(getSubjectInfo).map(to_subject);
 
     /*console.log(mandatory_subjects, optional_subjects);*/
 
