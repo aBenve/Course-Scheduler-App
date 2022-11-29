@@ -9,11 +9,11 @@ const config = {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         "principal": ["Poppins", "sans-serif"],
       },
-      fontSize:{
-        'xxs': ['0.5rem', {lineHeight: '0.5rem'}],
+      fontSize: {
+        'xxs': ['0.5rem', { lineHeight: '0.5rem' }],
       },
       gridRowStart: {
         ...generateNumberPairs(7, 40)
@@ -21,7 +21,7 @@ const config = {
       gridRowEnd: {
         ...generateNumberPairs(7, 40)
       },
-      colors:{
+      colors: {
         'background': colors.gray[200],
         'background-dark': '#191919',
         'area': colors.gray[100],
@@ -33,6 +33,9 @@ const config = {
         'zone-terciary': colors.gray[300],
         'zone-terciary-dark': '#3f3f3f',
 
+
+        'accent': '#5375F3',
+        'accent-dark': '#4865D1',
 
         'text-dark': '#161616',
         'text-dark-secondary': '#383838',

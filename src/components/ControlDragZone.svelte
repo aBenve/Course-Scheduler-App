@@ -22,7 +22,7 @@
       currentSubjects[dragZoneArea] = e.detail.items;
       return currentSubjects;
     });
-    if (e.type == 'finalize') {
+    if (e.type == "finalize") {
       $finalizedSubjects = $subjects;
     }
   }

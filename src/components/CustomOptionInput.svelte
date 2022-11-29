@@ -33,7 +33,7 @@
     {toCapitalice(label)}
   </label>
   <input
-    class="appearance-none rounded text-xs w-full max-w-[7em] py-2 px-4 text-text-dark-secondary bg-zone dark:text-text-secondary dark:bg-zone-dark leading-tight focus:outline-blue-500 focus:outline focus:outline-2"
+    class="appearance-none rounded text-xs w-full max-w-[7em] py-2 px-4 text-text-dark-secondary bg-zone dark:text-text-secondary dark:bg-zone-dark leading-tight focus:outline-accent focus:outline focus:outline-2"
     id={label}
     type="number"
     {placeholder}

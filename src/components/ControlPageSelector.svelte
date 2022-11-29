@@ -14,8 +14,8 @@
     <div
       class=" w-1/2 flex justify-center items-center  flex-col p-5 rounded-lg cursor-pointer 
       {$pages.pages[$pages.currentPage] === page
-        ? 'bg-blue-200 dark:bg-blue-800 text-blue-600 dark:text-blue-400  hover:bg-blue-300 dark:hover:bg-blue-600 '
-        : 'hover:bg-background dark:hover:bg-zone-dark text-text-dark dark:text-text-secondary text-opacity-20 '}
+        ? 'bg-accent text-accent hover:bg-accent-dark bg-opacity-30 hover:bg-opacity-30 hover:dark:bg-opacity-30'
+        : 'hover:bg-background dark:hover:bg-zone-dark text-text-dark dark:text-text-secondary text-opacity-30 '}
       "
       on:click={() => selectPage(i)}
     >

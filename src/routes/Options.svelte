@@ -8,6 +8,7 @@
   import colorSettings from "../store/UserColorsStore";
   import subjects from "../store/SubjectStore";
   import finalizedSubjects from "../store/FinalizedSubjectsStore";
+  import Icon from "@iconify/svelte";
   import { fly, fade } from "svelte/transition";
   import {
     Semester,
@@ -90,7 +91,12 @@
   class="absolute top-4 right-4 p-2 hidden xl:block bg-area rounded-lg dark:bg-area-dark text-text-dark dark:text-text cursor-pointer hover:opacity-50"
   on:click={handleColorModeToggle}
 >
-  toggle
+  <Icon
+    icon="material-symbols:invert-colors"
+    width="18"
+    height="18"
+    class="text-gray-500"
+  />
 </div>
 <main class="bg-background dark:bg-background-dark h-screen">
   {#await loading}

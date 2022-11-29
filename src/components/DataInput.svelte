@@ -13,7 +13,7 @@
   </label>
   <textarea
     rows="6"
-    class="resize-none  appearance-none rounded text-sm w-full py-2 px-4 text-text-dark dark:text-text-secondary bg-zone dark:bg-zone-dark leading-tight focus:outline-blue-500 focus:outline focus:outline-2 "
+    class="resize-none  appearance-none rounded text-sm w-full py-2 px-4 text-text-dark dark:text-text-secondary bg-zone dark:bg-zone-dark leading-tight focus:outline-accent focus:outline focus:outline-2 "
     id={label}
     {type}
     {placeholder}

@@ -21,13 +21,19 @@
 </script>
 
 <div class={clazz}>
-  <div
+  <!-- <div
     in:fly={{ y: 10, duration: 500, delay: 500 }}
     class="bg-area dark:bg-area-dark h-full w-full p-5 rounded-lg flex flex-col items-center gap-y-5 overflow-auto "
+  > -->
+  <div
+    in:fly={{ y: 10, duration: 500, delay: 500 }}
+    class=" h-full w-full rounded-lg flex flex-col items-center gap-y-5 overflow-auto "
   >
     <!-- <Calendar {plugins} {options} /> -->
     {#if option == null}
-      <div class="w-full h-full flex justify-center items-center  ">
+      <div
+        class="w-full h-full flex justify-center items-center  bg-area dark:bg-area-dark"
+      >
         <span
           class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg transition-all ease-in-out duration-150"
         >
@@ -36,7 +42,7 @@
       </div>
     {:else}
       <div
-        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text"
+        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(lastHour - firstHour + 1) as _, i}

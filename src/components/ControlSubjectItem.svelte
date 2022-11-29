@@ -4,9 +4,14 @@
 </script>
 
 <div
-  class="w-full flex items-center rounded-lg h-fit py-3 px-4 hover:bg-blue-100 text-xs
-    hover:font-bold text-text-dark dark:text-text-secondary dark:hover:bg-blue-900 hover:text-blue-600  dark:hover:text-blue-400  font-medium"
+  class="w-full flex items-center rounded-lg h-fit py-3 px-4 hover:bg-accent text-xs hover:bg-opacity-20
+     text-text-dark dark:text-text-secondary dark:hover:bg-accent hover:text-accent  dark:hover:text-accent  font-medium dark:bg-opacity-30 hover:dark:bg-opacity-20"
 >
-  <Icon icon="material-symbols:drag-indicator" class="opacity-25" width={20} height={20}/>
-  <span class="ml-4"> {title} </span>
+  <Icon
+    icon="material-symbols:drag-indicator"
+    class="opacity-25"
+    width={25}
+    height={25}
+  />
+  <span class="ml-4 w-full"> {title} </span>
 </div>

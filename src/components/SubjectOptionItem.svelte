@@ -15,7 +15,7 @@
   style="
     background-color: {toggle
     ? $colorSettings.colorMode == 'dark'
-      ? color + '70'
+      ? color + '30'
       : color + '20'
     : ''}; 
     color: {toggle ? color + 'ff' : ''};
@@ -29,7 +29,7 @@
       <circle cx="5" cy="5" r="5" fill={color} />
     </svg>
   </div>
-  <div class="flex flex-col max-w-[7em]">
+  <div class="flex max-w-[7em]">
     <div class="overflow-hidden">
       <div
         class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip
@@ -39,11 +39,14 @@
         {subject}
       </div>
     </div>
-    <span class="text-xxs sm:text-xs font-normal italic truncate opacity-70">
-      commission: {commission}
-    </span>
   </div>
-  <!-- <Tooltip message={subject} toggle={tooltip} /> -->
+  <span
+    class="text-xs sm:text-lg font-normal {toggle
+      ? ''
+      : 'text-text-dark dark:text-text opacity-80'}"
+  >
+    {commission}
+  </span>
 </div>
 
 <style>

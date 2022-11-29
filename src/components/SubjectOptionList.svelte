@@ -11,10 +11,10 @@
   /*$: reachedEnd && options.addPage();*/
 </script>
 
-<div class="w-full p-5 flex flex-col items-center justify-center">
+<div class="w-full p-3 flex flex-col items-center justify-center">
   {#if $options.values.length > 0 || !$options.done}
     <div
-      class="w-full gap-y-4 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
+      class="w-full gap-y-2 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
     >
       {#each $options.values as option, i}
         <span
@@ -22,7 +22,10 @@
         >
           {i + 1}
         </span>
-        <div in:fade class="w-full overflow-x-auto">
+        <div
+          in:fade
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-x-auto border-solid  border-x-8 py-2 border-area dark:border-area-dark hover:border-zone hover:dark:border-zone-dark"
+        >
           <SubjectOptionItemList
             optionData={option}
             optionIndex={i}
@@ -32,23 +35,22 @@
       {/each}
     </div>
     {#if !$options.done}
-      <div class="mt-4">
-        <!--<button on:click={addPage}>Add Page</button>-->
-        
-        <IntersectionObserver
-          element={endOfList}
-          on:intersect={() => {
-            console.log("Intersecting");
-            addPage();
-          }}
-          bind:intersecting={reachedEnd}
-        >
-          <div bind:this={endOfList}>Loading...</div>
-        </IntersectionObserver>
-        
-      </div>
+      <IntersectionObserver
+        element={endOfList}
+        on:intersect={() => {
+          console.log("Intersecting");
+          addPage();
+        }}
+        bind:intersecting={reachedEnd}
+      >
+        <div bind:this={endOfList}>Loading...</div>
+      </IntersectionObserver>
     {/if}
   {:else}
-    <div class="text-center text-sm font-medium">No subjects available.</div>
+    <span
+      class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg transition-all ease-in-out duration-150"
+    >
+      No subjects available.
+    </span>
   {/if}
 </div>
