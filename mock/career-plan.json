@@ -1,0 +1,2819 @@
+{
+	"careerplan" : {
+		"name" : "S10 A - Rev18",
+		"career" : "S",
+		"degreeLevel" : "GRADUATE",
+		"since" : "2018-07-21T00:00:00-03:00",
+		"section" : [ {
+			"name" : "Ciclo Básico",
+			"terms" : {
+				"term" : [ {
+					"year" : "1",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Sistemas de Representación",
+							"code" : "31.08",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Introducción a la Informática",
+							"code" : "72.03",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático I",
+							"code" : "93.26",
+							"credits" : "6",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Álgebra",
+							"code" : "93.58",
+							"credits" : "9",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Metodología del Aprendizaje",
+							"code" : "94.24",
+							"credits" : "3",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "1",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Programación Imperativa",
+							"code" : "72.31",
+							"credits" : "9",
+							"dependencies" : {
+								"dependency" : [ "93.58", "72.03" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático II",
+							"code" : "93.28",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "93.58", "93.26" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física I",
+							"code" : "93.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.26"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Matemática Discreta",
+							"code" : "93.59",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.58"
+							}
+						} ]
+					}
+				}, {
+					"year" : "2",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Química",
+							"code" : "12.09",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Diseño y Procesamiento de Documentos XML",
+							"code" : "72.32",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "72.31"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Programación Orientada a Objetos",
+							"code" : "72.33",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.31"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Lógica Computacional",
+							"code" : "93.35",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.58"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física II",
+							"code" : "93.42",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.28"
+							}
+						} ]
+					}
+				}, {
+					"year" : "2",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Arquitectura de Computadoras",
+							"code" : "72.08",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.31"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Estructura de Datos y Algoritmos",
+							"code" : "72.34",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "93.59", "72.33" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Probabilidad y Estadística",
+							"code" : "93.24",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.28"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física III",
+							"code" : "93.43",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "93.28", "93.41" ]
+							}
+						} ]
+					}
+				}, {
+					"year" : "3",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Sistemas Operativos",
+							"code" : "72.11",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.08", "72.34" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Ingenieria de Software I",
+							"code" : "72.35",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.33"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Interacción Hombre-Computadora (HCI)",
+							"code" : "72.36",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.33", "72.32" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Base de Datos I",
+							"code" : "72.37",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.34", "93.35" ]
+							}
+						} ]
+					}
+				}, {
+					"year" : "3",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Protocolos de Comunicación",
+							"code" : "72.07",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.11"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto de Aplicaciones Web",
+							"code" : "72.38",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.11", "72.37", "72.36", "72.35" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Autómatas, Teoría de Lenguajes y Compiladores",
+							"code" : "72.39",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.34"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos",
+							"code" : "93.07",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.28"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Formación General I",
+							"code" : "94.21",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés I",
+							"code" : "94.51",
+							"credits" : "0",
+							"dependencies" : null
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : null
+		}, {
+			"name" : "Ciclo Profesional - Orientaciones",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "section",
+					"name" : "Ciclo Profesional General (Sin orientación)",
+					"credits" : "96",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Ciencias de la Imagen",
+					"credits" : "96",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Ciencias de la Informacion",
+					"credits" : "96",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Inteligencia Computacional",
+					"credits" : "96",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Ciclo Profesional General (Sin orientación)",
+			"terms" : {
+				"term" : [ {
+					"year" : "4",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Economía para Ingenieros",
+							"code" : "61.23",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.24"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Derecho para Ingenieros",
+							"code" : "61.32",
+							"credits" : "3",
+							"creditsRequired" : "144",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Ingenieria del Software II",
+							"code" : "72.40",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.38", "72.35" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Base de Datos II",
+							"code" : "72.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.11", "72.37" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Programación de Objetos Distribuidos",
+							"code" : "72.42",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos Avanzados",
+							"code" : "93.75",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Simulación de Sistemas",
+							"code" : "72.25",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : [ "72.34", "93.07" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Sistemas de Inteligencia Artificial",
+							"code" : "72.27",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : [ "93.24", "72.34" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Gestión de Proyectos Informáticos",
+							"code" : "72.43",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "61.23", "72.40" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Criptografía y Seguridad",
+							"code" : "72.44",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "section",
+							"name" : "Electivas",
+							"credits" : "27",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Seguridad Ocupacional y Ambiental",
+							"code" : "12.83",
+							"credits" : "3",
+							"creditsRequired" : "140",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto Final  (Anual)",
+							"code" : "72.45",
+							"credits" : "12",
+							"creditsRequired" : "160",
+							"dependencies" : {
+								"dependency" : "72.43"
+							}
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Redes de Información",
+							"code" : "72.20",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Práctica Laboral",
+							"code" : "72.98",
+							"credits" : "0",
+							"creditsRequired" : "192",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Formación General III",
+							"code" : "94.23",
+							"credits" : "3",
+							"creditsRequired" : "168",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés II",
+							"code" : "94.52",
+							"credits" : "0",
+							"dependencies" : {
+								"dependency" : "94.51"
+							}
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : null
+		}, {
+			"name" : "Electivas",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Formación para Emprendedores",
+					"code" : "10.09",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Innovación y Competitividad",
+					"code" : "11.36",
+					"credits" : "3",
+					"creditsRequired" : "192",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Neurociencias y Desarrollo Productivo",
+					"code" : "16.04",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Bioinformática",
+					"code" : "16.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Fundamentos Electrónicos de la Informática",
+					"code" : "22.09",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Transmisión de Datos",
+					"code" : "22.27",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Realidad Virtual",
+					"code" : "23.15",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.58", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Finanzas de la Empresa",
+					"code" : "61.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "61.23"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Organización Básica de la Computadora",
+					"code" : "72.02",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.18",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.22",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Diseño y Construcción de Compiladores",
+					"code" : "72.23",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Topología de Internet: Análisis y Modelado",
+					"code" : "72.28",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.07"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tipos para Lenguajes de Programación",
+					"code" : "72.29",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Basada en Comportamiento",
+					"code" : "72.46",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.49",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción al Desarrollo de Videojuegos",
+					"code" : "72.50",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tecnologías para Web 2.0 y Redes Sociales",
+					"code" : "72.51",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Tratamiento de Imágenes",
+					"code" : "72.52",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Visión Computacional 3D",
+					"code" : "72.53",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "OLAP y Explotación de Datos",
+					"code" : "72.54",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.24", "72.41" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Ontologías en la Web",
+					"code" : "72.55",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Automatización e Integración de Sistemas de Información",
+					"code" : "72.56",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.57",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.43"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Computación Gráfica",
+					"code" : "72.58",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas de Inteligencia Artificial II",
+					"code" : "72.59",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.60",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Taller de Diseño de Videojuegos",
+					"code" : "72.61",
+					"credits" : "1",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Desarrollo de Videojuegos 2D en iPhone OS",
+					"code" : "72.65",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.66",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Cinemática Computacional",
+					"code" : "72.67",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Arte y Ciencia Interactivos",
+					"code" : "72.68",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Seguridad de Software basada en Flujo de Información",
+					"code" : "72.69",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Modelos e Imágenes Fractales",
+					"code" : "72.70",
+					"credits" : "1",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Integración de Sistemas de Información",
+					"code" : "72.71",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Verificación de Modelos y Códigos",
+					"code" : "72.72",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje por Refuerzo en Robótica",
+					"code" : "72.73",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Visualización de Información",
+					"code" : "72.74",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.31"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje Automático (Machine Learning)",
+					"code" : "72.75",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Automáticas para  Testing de Software",
+					"code" : "72.77",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "OLAP Espacial",
+					"code" : "72.78",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Big Data",
+					"code" : "72.80",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Simulación y Animación de Sistemas Multipartículas",
+					"code" : "72.81",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tópicos de NOSQL",
+					"code" : "72.82",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas de HCI con Uso de Rastreadores de Ojos y Manos",
+					"code" : "72.83",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.36"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Base de Datos Espaciales y Sistemas de Información Geográfica",
+					"code" : "72.84",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis de Datos en la Web Semántica",
+					"code" : "72.85",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas en Videojuegos",
+					"code" : "72.86",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.07", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Diseño Sonoro para Animación y Videojuegos",
+					"code" : "72.87",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Neurociencia Computacional",
+					"code" : "72.88",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Moneda Digital Descentralizada",
+					"code" : "72.89",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.44"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Internet de las Cosas (IoT)",
+					"code" : "72.90",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.07", "93.43" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "El Paradigma NoSQL - Bases de Datos de Grafos",
+					"code" : "72.92",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.41"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a los Sistemas Embebidos",
+					"code" : "72.94",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.08"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Innovación Científico-Tecnológico",
+					"code" : "72.95",
+					"credits" : "12",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Aplicaciones Móviles",
+					"code" : "72.96",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Cloud Computing",
+					"code" : "82.08",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.32"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Organizacional",
+					"code" : "94.26",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Estratégica",
+					"code" : "94.42",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Ética en los Negocios",
+					"code" : "94.62",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Escritura Académica",
+					"code" : "94.92",
+					"credits" : "3",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Ciencias de la Imagen",
+			"terms" : {
+				"term" : [ {
+					"year" : "4",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Economía para Ingenieros",
+							"code" : "61.23",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.24"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Derecho para Ingenieros",
+							"code" : "61.32",
+							"credits" : "3",
+							"creditsRequired" : "144",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Ingenieria del Software II",
+							"code" : "72.40",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.38", "72.35" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Base de Datos II",
+							"code" : "72.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.11", "72.37" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Programación de Objetos Distribuidos",
+							"code" : "72.42",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos Avanzados",
+							"code" : "93.75",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Simulación de Sistemas",
+							"code" : "72.25",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Sistemas de Inteligencia Artificial",
+							"code" : "72.27",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : [ "93.24", "72.34" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Gestión de Proyectos Informáticos",
+							"code" : "72.43",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "61.23", "72.40" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Criptografía y Seguridad",
+							"code" : "72.44",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.32" ]
+							}
+						}, {
+							"type" : "section",
+							"name" : "Electivas Cs. Imagen",
+							"credits" : "15",
+							"dependencies" : null
+						}, {
+							"type" : "section",
+							"name" : "Electivas Generales Cs. Imagen",
+							"credits" : "12",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Seguridad Ocupacional y Ambiental",
+							"code" : "12.83",
+							"credits" : "3",
+							"creditsRequired" : "140",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto Final  (Anual)",
+							"code" : "72.45",
+							"credits" : "12",
+							"creditsRequired" : "160",
+							"dependencies" : {
+								"dependency" : "72.43"
+							}
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Redes de Información",
+							"code" : "72.20",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Práctica Laboral",
+							"code" : "72.98",
+							"credits" : "0",
+							"creditsRequired" : "192",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Formación General III",
+							"code" : "94.23",
+							"credits" : "3",
+							"creditsRequired" : "168",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés II",
+							"code" : "94.52",
+							"credits" : "0",
+							"dependencies" : {
+								"dependency" : "94.51"
+							}
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : null
+		}, {
+			"name" : "Electivas Cs. Imagen",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Realidad Virtual",
+					"code" : "23.15",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.58", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción al Desarrollo de Videojuegos",
+					"code" : "72.50",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Tratamiento de Imágenes",
+					"code" : "72.52",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Visión Computacional 3D",
+					"code" : "72.53",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Computación Gráfica",
+					"code" : "72.58",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Taller de Diseño de Videojuegos",
+					"code" : "72.61",
+					"credits" : "1",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Desarrollo de Videojuegos 2D en iPhone OS",
+					"code" : "72.65",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Arte y Ciencia Interactivos",
+					"code" : "72.68",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Modelos e Imágenes Fractales",
+					"code" : "72.70",
+					"credits" : "1",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Visualización de Información",
+					"code" : "72.74",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.31"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Big Data",
+					"code" : "72.80",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Simulación y Animación de Sistemas Multipartículas",
+					"code" : "72.81",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas de HCI con Uso de Rastreadores de Ojos y Manos",
+					"code" : "72.83",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.36"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Base de Datos Espaciales y Sistemas de Información Geográfica",
+					"code" : "72.84",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas en Videojuegos",
+					"code" : "72.86",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.07", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Diseño Sonoro para Animación y Videojuegos",
+					"code" : "72.87",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Aplicaciones Móviles",
+					"code" : "72.96",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Programación de Videojuegos",
+					"code" : "72.97",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				} ]
+			}
+		}, {
+			"name" : "Electivas Generales Cs. Imagen",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Formación para Emprendedores",
+					"code" : "10.09",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Neurociencias y Desarrollo Productivo",
+					"code" : "16.04",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Bioinformática",
+					"code" : "16.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Fundamentos Electrónicos de la Informática",
+					"code" : "22.09",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Transmisión de Datos",
+					"code" : "22.27",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Finanzas de la Empresa",
+					"code" : "61.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "61.23"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Organización Básica de la Computadora",
+					"code" : "72.02",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.18",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.22",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Diseño y Construcción de Compiladores",
+					"code" : "72.23",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Topología de Internet: Análisis y Modelado",
+					"code" : "72.28",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.07"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tipos para Lenguajes de Programación",
+					"code" : "72.29",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Basada en Comportamiento",
+					"code" : "72.46",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.49",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tecnologías para Web 2.0 y Redes Sociales",
+					"code" : "72.51",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "OLAP y Explotación de Datos",
+					"code" : "72.54",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.24", "72.41" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Ontologías en la Web",
+					"code" : "72.55",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Automatización e Integración de Sistemas de Información",
+					"code" : "72.56",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.57",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.43"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas de Inteligencia Artificial II",
+					"code" : "72.59",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.60",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.66",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.11"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Seguridad de Software basada en Flujo de Información",
+					"code" : "72.69",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Integración de Sistemas de Información",
+					"code" : "72.71",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Verificación de Modelos y Códigos",
+					"code" : "72.72",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje por Refuerzo en Robótica",
+					"code" : "72.73",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje Automático (Machine Learning)",
+					"code" : "72.75",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Automáticas para  Testing de Software",
+					"code" : "72.77",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "OLAP Espacial",
+					"code" : "72.78",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Multiagente I",
+					"code" : "72.79",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tópicos de NOSQL",
+					"code" : "72.82",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis de Datos en la Web Semántica",
+					"code" : "72.85",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Neurociencia Computacional",
+					"code" : "72.88",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Moneda Digital Descentralizada",
+					"code" : "72.89",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.44"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Internet de las Cosas (IoT)",
+					"code" : "72.90",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.07", "93.43" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a los Sistemas Embebidos",
+					"code" : "72.94",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.08"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Innovación Científico-Tecnológico",
+					"code" : "72.95",
+					"credits" : "12",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Cloud Computing",
+					"code" : "82.08",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.32"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Procesamiento del Lenguaje Natural",
+					"code" : "82.18",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.07"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Organizacional",
+					"code" : "94.26",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Estratégica",
+					"code" : "94.42",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Ética en los Negocios",
+					"code" : "94.62",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Escritura Académica",
+					"code" : "94.92",
+					"credits" : "3",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Ciencias de la Informacion",
+			"terms" : {
+				"term" : [ {
+					"year" : "4",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Economía para Ingenieros",
+							"code" : "61.23",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.24"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Derecho para Ingenieros",
+							"code" : "61.32",
+							"credits" : "3",
+							"creditsRequired" : "144",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Ingenieria del Software II",
+							"code" : "72.40",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.38", "72.35" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Base de Datos II",
+							"code" : "72.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.37", "72.11" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Programación de Objetos Distribuidos",
+							"code" : "72.42",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos Avanzados",
+							"code" : "93.75",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Simulación de Sistemas",
+							"code" : "72.25",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Sistemas de Inteligencia Artificial",
+							"code" : "72.27",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : [ "72.34", "93.24" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Gestión de Proyectos Informáticos",
+							"code" : "72.43",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "61.23", "72.40" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Criptografía y Seguridad",
+							"code" : "72.44",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "section",
+							"name" : "Electivas Cs. de la Inform.",
+							"credits" : "15",
+							"dependencies" : null
+						}, {
+							"type" : "section",
+							"name" : "Electivas Generales Cs. de la Información",
+							"credits" : "12",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Seguridad Ocupacional y Ambiental",
+							"code" : "12.83",
+							"credits" : "3",
+							"creditsRequired" : "140",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto Final  (Anual)",
+							"code" : "72.45",
+							"credits" : "12",
+							"creditsRequired" : "160",
+							"dependencies" : {
+								"dependency" : "72.43"
+							}
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Redes de Información",
+							"code" : "72.20",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Práctica Laboral",
+							"code" : "72.98",
+							"credits" : "0",
+							"creditsRequired" : "192",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Formación General III",
+							"code" : "94.23",
+							"credits" : "3",
+							"creditsRequired" : "168",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés II",
+							"code" : "94.52",
+							"credits" : "0",
+							"dependencies" : {
+								"dependency" : "94.51"
+							}
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : null
+		}, {
+			"name" : "Electivas Cs. de la Inform.",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Introducción a la Bioinformática",
+					"code" : "16.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Transmisión de Datos",
+					"code" : "22.27",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.18",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Topología de Internet: Análisis y Modelado",
+					"code" : "72.28",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Tipos para Lenguajes de Programación",
+					"code" : "72.29",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.49",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tecnologías para Web 2.0 y Redes Sociales",
+					"code" : "72.51",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "OLAP y Explotación de Datos",
+					"code" : "72.54",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.24", "72.41" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Ontologías en la Web",
+					"code" : "72.55",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Automatización e Integración de Sistemas de Información",
+					"code" : "72.56",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.60",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Seguridad de Software basada en Flujo de Información",
+					"code" : "72.69",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Integración de Sistemas de Información",
+					"code" : "72.71",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Verificación de Modelos y Códigos",
+					"code" : "72.72",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Visualización de Información",
+					"code" : "72.74",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.31"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Automáticas para  Testing de Software",
+					"code" : "72.77",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "OLAP Espacial",
+					"code" : "72.78",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Big Data",
+					"code" : "72.80",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tópicos de NOSQL",
+					"code" : "72.82",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas de HCI con Uso de Rastreadores de Ojos y Manos",
+					"code" : "72.83",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.36"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Base de Datos Espaciales y Sistemas de Información Geográfica",
+					"code" : "72.84",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis de Datos en la Web Semántica",
+					"code" : "72.85",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Neurociencia Computacional",
+					"code" : "72.88",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Moneda Digital Descentralizada",
+					"code" : "72.89",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.44"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Internet de las Cosas (IoT)",
+					"code" : "72.90",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.07", "93.43" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "El Paradigma NoSQL - Bases de Datos de Grafos",
+					"code" : "72.92",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.41"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Cloud Computing",
+					"code" : "82.08",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.32"
+					}
+				} ]
+			}
+		}, {
+			"name" : "Electivas Generales Cs. de la Información",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Formación para Emprendedores",
+					"code" : "10.09",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Neurociencias y Desarrollo Productivo",
+					"code" : "16.04",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Fundamentos Electrónicos de la Informática",
+					"code" : "22.09",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Realidad Virtual",
+					"code" : "23.15",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.58", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Finanzas de la Empresa",
+					"code" : "61.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "61.23"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Organización Básica de la Computadora",
+					"code" : "72.02",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.22",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Diseño y Construcción de Compiladores",
+					"code" : "72.23",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Basada en Comportamiento",
+					"code" : "72.46",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción al Desarrollo de Videojuegos",
+					"code" : "72.50",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Tratamiento de Imágenes",
+					"code" : "72.52",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Visión Computacional 3D",
+					"code" : "72.53",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.57",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.43"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Computación Gráfica",
+					"code" : "72.58",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas de Inteligencia Artificial II",
+					"code" : "72.59",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Taller de Diseño de Videojuegos",
+					"code" : "72.61",
+					"credits" : "1",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Desarrollo de Videojuegos 2D en iPhone OS",
+					"code" : "72.65",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.66",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.11"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Arte y Ciencia Interactivos",
+					"code" : "72.68",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje por Refuerzo en Robótica",
+					"code" : "72.73",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje Automático (Machine Learning)",
+					"code" : "72.75",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Multiagente I",
+					"code" : "72.79",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Simulación y Animación de Sistemas Multipartículas",
+					"code" : "72.81",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas en Videojuegos",
+					"code" : "72.86",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.07", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Diseño Sonoro para Animación y Videojuegos",
+					"code" : "72.87",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a los Sistemas Embebidos",
+					"code" : "72.94",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.08"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Innovación Científico-Tecnológico",
+					"code" : "72.95",
+					"credits" : "12",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Aplicaciones Móviles",
+					"code" : "72.96",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Programación de Videojuegos",
+					"code" : "72.97",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Procesamiento del Lenguaje Natural",
+					"code" : "82.18",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.07"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Organizacional",
+					"code" : "94.26",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Estratégica",
+					"code" : "94.42",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Ética en los Negocios",
+					"code" : "94.62",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Escritura Académica",
+					"code" : "94.92",
+					"credits" : "3",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Inteligencia Computacional",
+			"terms" : {
+				"term" : [ {
+					"year" : "4",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Economía para Ingenieros",
+							"code" : "61.23",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.24"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Derecho para Ingenieros",
+							"code" : "61.32",
+							"credits" : "3",
+							"creditsRequired" : "144",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Ingenieria del Software II",
+							"code" : "72.40",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.38", "72.35" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Base de Datos II",
+							"code" : "72.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.37", "72.11" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Programación de Objetos Distribuidos",
+							"code" : "72.42",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos Avanzados",
+							"code" : "93.75",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Simulación de Sistemas",
+							"code" : "72.25",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : "93.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Sistemas de Inteligencia Artificial",
+							"code" : "72.27",
+							"credits" : "6",
+							"creditsRequired" : "140",
+							"dependencies" : {
+								"dependency" : [ "72.34", "93.24" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Gestión de Proyectos Informáticos",
+							"code" : "72.43",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "61.23", "72.40" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Criptografía y Seguridad",
+							"code" : "72.44",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "72.07", "72.38" ]
+							}
+						}, {
+							"type" : "section",
+							"name" : "Electivas Generales Inteligencia Computacional",
+							"credits" : "12",
+							"dependencies" : null
+						}, {
+							"type" : "section",
+							"name" : "Electivas Inteligencia Comp.",
+							"credits" : "15",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Seguridad Ocupacional y Ambiental",
+							"code" : "12.83",
+							"credits" : "3",
+							"creditsRequired" : "140",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto Final  (Anual)",
+							"code" : "72.45",
+							"credits" : "12",
+							"creditsRequired" : "160",
+							"dependencies" : {
+								"dependency" : "72.43"
+							}
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Redes de Información",
+							"code" : "72.20",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "72.07"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Práctica Laboral",
+							"code" : "72.98",
+							"credits" : "0",
+							"creditsRequired" : "192",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Formación General III",
+							"code" : "94.23",
+							"credits" : "3",
+							"creditsRequired" : "168",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés II",
+							"code" : "94.52",
+							"credits" : "0",
+							"dependencies" : {
+								"dependency" : "94.51"
+							}
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : null
+		}, {
+			"name" : "Electivas Generales Inteligencia Computacional",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Formación para Emprendedores",
+					"code" : "10.09",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Neurociencias y Desarrollo Productivo",
+					"code" : "16.04",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Bioinformática",
+					"code" : "16.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Transmisión de Datos",
+					"code" : "22.27",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Finanzas de la Empresa",
+					"code" : "61.50",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "61.23"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.18",
+					"credits" : "4",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.22",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Topología de Internet: Análisis y Modelado",
+					"code" : "72.28",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.07"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tipos para Lenguajes de Programación",
+					"code" : "72.29",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Tolerantes a Fallas",
+					"code" : "72.49",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción al Desarrollo de Videojuegos",
+					"code" : "72.50",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tecnologías para Web 2.0 y Redes Sociales",
+					"code" : "72.51",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Tratamiento de Imágenes",
+					"code" : "72.52",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Ontologías en la Web",
+					"code" : "72.55",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Automatización e Integración de Sistemas de Información",
+					"code" : "72.56",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.42"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Computación Gráfica",
+					"code" : "72.58",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Taller de Diseño de Videojuegos",
+					"code" : "72.61",
+					"credits" : "1",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Desarrollo de Videojuegos 2D en iPhone OS",
+					"code" : "72.65",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Seguridad de Software basada en Flujo de Información",
+					"code" : "72.69",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Integración de Sistemas de Información",
+					"code" : "72.71",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Verificación de Modelos y Códigos",
+					"code" : "72.72",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Visualización de Información",
+					"code" : "72.74",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.31"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Automáticas para  Testing de Software",
+					"code" : "72.77",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "OLAP Espacial",
+					"code" : "72.78",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Big Data",
+					"code" : "72.80",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Tópicos de NOSQL",
+					"code" : "72.82",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas de HCI con Uso de Rastreadores de Ojos y Manos",
+					"code" : "72.83",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.36"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Base de Datos Espaciales y Sistemas de Información Geográfica",
+					"code" : "72.84",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.37"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis de Datos en la Web Semántica",
+					"code" : "72.85",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.32", "72.37" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Técnicas Avanzadas en Videojuegos",
+					"code" : "72.86",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "72.07", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Diseño Sonoro para Animación y Videojuegos",
+					"code" : "72.87",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Moneda Digital Descentralizada",
+					"code" : "72.89",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.44"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Innovación Científico-Tecnológico",
+					"code" : "72.95",
+					"credits" : "12",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Proyecto de Aplicaciones Móviles",
+					"code" : "72.96",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Programación de Videojuegos",
+					"code" : "72.97",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Organizacional",
+					"code" : "94.26",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Estratégica",
+					"code" : "94.42",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Ética en los Negocios",
+					"code" : "94.62",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Escritura Académica",
+					"code" : "94.92",
+					"credits" : "3",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Electivas Inteligencia Comp.",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Fundamentos Electrónicos de la Informática",
+					"code" : "22.09",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Realidad Virtual",
+					"code" : "23.15",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.58", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Economía para Ingenieros",
+					"code" : "61.24",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Organización Básica de la Computadora",
+					"code" : "72.02",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Diseño y Construcción de Compiladores",
+					"code" : "72.23",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Basada en Comportamiento",
+					"code" : "72.46",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Análisis y Tratamiento de Imágenes",
+					"code" : "72.52",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Visión Computacional 3D",
+					"code" : "72.53",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "OLAP y Explotación de Datos",
+					"code" : "72.54",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.24", "72.41" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.57",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.43"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas de Inteligencia Artificial II",
+					"code" : "72.59",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Programación Funcional",
+					"code" : "72.60",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.34"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Embebidos",
+					"code" : "72.66",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "72.11"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Robótica Cinemática Computacional",
+					"code" : "72.67",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje por Refuerzo en Robótica",
+					"code" : "72.73",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Aprendizaje Automático (Machine Learning)",
+					"code" : "72.75",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "93.24", "72.34" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas Multiagente I",
+					"code" : "72.79",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.27"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Simulación y Animación de Sistemas Multipartículas",
+					"code" : "72.81",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.38"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la Neurociencia Computacional",
+					"code" : "72.88",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.75", "72.34", "93.24" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Internet de las Cosas (IoT)",
+					"code" : "72.90",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : [ "93.07", "93.43" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a los Sistemas Embebidos",
+					"code" : "72.94",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.08"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Cloud Computing",
+					"code" : "82.08",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "72.32"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Procesamiento del Lenguaje Natural",
+					"code" : "82.18",
+					"credits" : "3",
+					"dependencies" : {
+						"dependency" : "93.07"
+					}
+				} ]
+			}
+		} ]
+	}
+}

@@ -6,7 +6,7 @@
   import { scale } from "svelte/transition";
   export let url = "";
 
-  import init, { set_panic_hook } from "scheduler-wasm";
+  import init, { set_panic_hook } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "./components/LoadingSpinner.svelte";
 
   async function load() {

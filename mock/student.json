@@ -1,0 +1,22 @@
+{
+  "code": "66666",
+  "dni": "44444444",
+  "civicId": "44444444",
+  "career": "Ingeniería en Informática",
+  "careerCode": "S",
+  "activeCareerPlans": {
+    "careerPlans": {
+      "name": "S10 A - Rev18",
+      "career": "S",
+      "degreeLevel": "GRADUATE",
+      "since": "2018-00-00T00:00:00-03:00"
+    }
+  },
+  "plan": "S10 A - Rev18",
+  "email": "email@itba.edu.ar",
+  "startYear": "2019",
+  "startPeriod": "SecondSemester",
+  "studentType": "LOCAL",
+  "links": [{ "rel": "", "href": "" }]
+}
+

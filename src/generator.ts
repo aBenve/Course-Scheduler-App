@@ -1,4 +1,4 @@
-import { type Choice, GeneratorBuilder } from "scheduler-wasm";
+import { type Choice, GeneratorBuilder } from "@course-scheduler-app/scheduler-wasm";
 import type { QueryParameters } from "./store/OptionStore";
 
 export default function generate_choices({

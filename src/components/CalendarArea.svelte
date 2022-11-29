@@ -4,18 +4,20 @@
   import { options } from "../store/OptionStore";
   import colors from "../utils/colors";
   import { fly } from "svelte/transition";
+  import type { Choice } from "@course-scheduler-app/scheduler-wasm";
 
   let firstHour = 8;
   let lastHour = 22;
 
   let clazz: string;
 
+  let option: Choice | null;
   $: option = selectedOption == null ? null : $options.values[$selectedOption];
 
   $: localSortedSubjects =
     option == null
       ? null
-      : $options.sortedSubjects.filter((v) => v in option.subjects);
+      : $options.sortedSubjects.filter((v) => option.subjects.has(v));
 
   export { clazz as class };
 </script>
@@ -66,10 +68,10 @@
           </div>
         {/each}
 
-        {#each Object.entries(option.week) as [day, dayTasks]}
+        {#each Array.from(option.week.entries()) as [day, dayTasks]}
           {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
-              title={option.subjects[task.subject].name}
+              title={option.subjects.get(task.subject).name}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}

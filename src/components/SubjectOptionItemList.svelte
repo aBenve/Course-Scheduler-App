@@ -1,6 +1,6 @@
 <script lang="ts">
   import SubjectOptionItem from "./SubjectOptionItem.svelte";
-  import type { Choice } from "scheduler-wasm";
+  import type { Choice } from "@course-scheduler-app/scheduler-wasm";
   import { slide } from "svelte/transition";
 
   // import subjects from "../store/SubjectStore";
@@ -21,7 +21,7 @@
   class=" h-fit flex gap-x-2  cursor-pointer items-center"
   on:click={() => ($selectedOption = optionIndex)}
 >
-  {#each Object.entries(optionData.subjects).sort( ([codeA, _1], [codeB, _2]) => {
+  {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
       let indexA = sortedSubjects.indexOf(codeA);
       let indexB = sortedSubjects.indexOf(codeB);
       if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;

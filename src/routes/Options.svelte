@@ -13,9 +13,9 @@
   import {
     Semester,
     get_subject_info,
-    load_from_api,
+    Api,
     SubjectInfo,
-  } from "scheduler-wasm";
+  } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
 
   function handleColorModeToggle() {
@@ -26,7 +26,8 @@
   }
 
   async function load() {
-    await load_from_api(import.meta.env.VITE_API_HOST, 2022, Semester.Second);
+    let api = Api.new(import.meta.env.VITE_API_HOST);
+    await api.load_subjects_from_api(2022, Semester.Second);
 
     let mandatory = ["72.07", "72.38", "12.83"];
     let optional = [

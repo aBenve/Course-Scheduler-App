@@ -1,33 +1,24 @@
-import { derived, writable, type Writable } from "svelte/store";
-import type { Choice } from "scheduler-wasm";
-import { isEqual } from "lodash";
 import generateChoices from "../generator";
 import {
   scan,
   map,
   takeUntil,
   switchMap,
-  switchAll,
-  takeWhile,
-  toArray,
   Subject,
-  combineLatest,
-  concatAll,
   startWith,
   finalize,
   zip,
   tap,
-  distinctUntilChanged,
-  BehaviorSubject,
   share,
   shareReplay,
-  ReplaySubject,
   combineLatestWith,
+  Observable,
 } from "rxjs";
 import finalizedSubjects from "./FinalizedSubjectsStore";
 import { toObservable, debug } from "./utils";
 import settings from "./UserSettingsStore";
 import selectedOption from "./SelectedOptionStore";
+import type { Choice } from "@course-scheduler-app/scheduler-wasm";
 
 export type QueryParameters = {
   mandatory: string[];
@@ -57,16 +48,18 @@ export function addPage() {
 }
 
 function createOptions() {
-  let subjects = toObservable(finalizedSubjects).pipe(
+  let subjects = toObservable(finalizedSubjects)
+    .pipe
     //debug("Subjects!"),
     //shareReplay()
-  );
-  let querySettings = toObservable(settings).pipe(
+    ();
+  let querySettings = toObservable(settings)
+    .pipe
     //debug("Settings!"),
     //shareReplay()
-  );
+    ();
   let combinedParameters = subjects.pipe(
-    combineLatestWith(querySettings),
+    combineLatestWith(querySettings)
     //share(),
   );
   let queryParameters = combinedParameters.pipe(
@@ -80,11 +73,11 @@ function createOptions() {
           min_credit_count: querySettings.credits,
         } as QueryParameters)
     ),
-    share(),
+    share()
   );
 
   let generator = queryParameters.pipe(
-    map(generateChoices),
+    map(generateChoices)
     //debug("Created Generator!"),
   );
 
@@ -95,7 +88,7 @@ function createOptions() {
         startWith(null),
         map((_) => [...take(gen.iterator, 10)]),
         map((v) => ({ values: v, done: v.length == 0 })),
-        startWith({ values: [], done: false }),
+        startWith({ values: [] as Choice[], done: false }),
         takeUntil(generator),
         scan((a, v) => ({
           values: [...a.values, ...v.values],
@@ -103,11 +96,15 @@ function createOptions() {
         })),
         finalize(() => gen.free())
       )
-    ),
+    )
     //debug("Generator!"),
   );
 
-  let options = zip(
+  let options: Observable<{
+    values: Choice[];
+    sortedSubjects: string[];
+    done: boolean;
+  }> = zip(
     optionsHigherOrder,
     combinedParameters.pipe(map(([s, q]) => s))
   ).pipe(
@@ -121,11 +118,12 @@ function createOptions() {
     shareReplay(1)
   );
 
-  let newSearch = combinedParameters.pipe(
+  let newSearch = combinedParameters
+    .pipe
     //debug("New Search"),
-  );
+    ();
 
-  return [newSearch, options];
+  return [newSearch, options] as const;
 }
 
 export const [newSearch, options] = createOptions();
