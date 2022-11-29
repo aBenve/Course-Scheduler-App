@@ -30,6 +30,7 @@
     await api.load_subjects_from_api(2022, Semester.Second);
     let plan = await api.get_plan_from_api("S10 A - Rev18");
     // console.log(plan.get_subject_dependencies("72.07").map(code => plan.get_subject_info(code).name))
+    // console.log(plan.get_subjects())
     api.free();
 
     let mandatory = ["72.07", "72.38", "12.83"];
