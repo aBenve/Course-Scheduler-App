@@ -1,4 +1,3 @@
-
 @tailwind base;
 
 @tailwind components;
@@ -7,29 +6,30 @@
 
 * {
   margin: 0;
-	padding: 0;
-	border: 0;
+  padding: 0;
+  border: 0;
   box-sizing: border-box;
 }
 
 #app.light ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: theme("colors.area");
+  background-color: transparent;
 
 }
 
 #app.dark ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: theme("colors.area-dark");
+  background-color: transparent;
 
 }
- 
+
 #app.light ::-webkit-scrollbar-thumb {
   background-color: theme("colors.background");
   border-radius: 10px;
 }
+
 #app.dark ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.background-dark");
+  background-color: theme("colors.zone-secondary-dark");
   border-radius: 10px;
 }
 
