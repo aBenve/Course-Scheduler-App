@@ -15,8 +15,6 @@
   let width: number, height: number;
   $: resizedSvg(width, height);
   function resizedSvg(width: number, height: number) {
-    console.log(simulation, width, height);
-
     if (simulation !== undefined)
       simulation
         .force("center")
@@ -31,7 +29,7 @@
 
   $: changeLinkStrength(link);
   function changeLinkStrength(link: number) {
-    if (simulation !== undefined) simulation.force("link").strength(charge);
+    if (simulation !== undefined) simulation.force("link").strength(link);
   }
 
   onMount(() => {
