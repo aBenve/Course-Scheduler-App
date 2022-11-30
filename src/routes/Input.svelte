@@ -5,10 +5,14 @@
   import { fade, fly } from "svelte/transition";
   import * as d3 from "d3";
   import { onMount } from "svelte";
+  import { check_outros } from "svelte/internal";
 
   let svgElem;
   let svg;
   let simulation;
+
+  let charge = 0,
+    link = 0;
 
   let width: number, height: number;
   $: resizedSvg(width, height);
@@ -46,7 +50,7 @@
 
     simulation = d3
       .forceSimulation(nodes)
-      .force("charge", d3.forceManyBody().strength(-200))
+      .force("charge", d3.forceManyBody().strength(charge))
       .force("center", d3.forceCenter(width / 2, height / 2))
       .force(
         "link",
@@ -55,9 +59,9 @@
           .id(({ index }) => {
             return N[index];
           })
-          .strength(1)
+          .strength(link)
       )
-      
+
       .force("x", d3.forceX())
       .force("y", d3.forceY())
       .force(
@@ -142,5 +146,27 @@
   </div>
   <div class="absolute right-2 bottom-2">
     <LinkButton title="Start" link="Options" />
+  </div>
+  <div
+    class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-5"
+  >
+    <label for="charge">Charge</label>
+
+    <div class="flex items-center space-x-4">
+      <input
+        id="charge"
+        type="range"
+        min={-1000}
+        max={1000}
+        bind:value={charge}
+      />
+      <span>{charge}</span>
+    </div>
+
+    <label for="link">Link</label>
+    <div class="flex items-center space-x-4">
+      <input id="link" type="range" min={-1000} max={1000} bind:value={link} />
+      <span>{link}</span>
+    </div>
   </div>
 </main>
