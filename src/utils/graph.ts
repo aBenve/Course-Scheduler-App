@@ -39,13 +39,28 @@ export function graph(
     .on("tick", ticked);
 
   let svg = d3.select(svgElement);
+  svg
+    .append("svg:defs")
+    .append("svg:marker")
+    .attr("id", "arrow")
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -0.5)
+    .attr("markerWidth", 3)
+    .attr("markerHeight", 3)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("fill", "black")
+    .attr("d", "M0,-5L10,0L0,5");
+
   const edge = svg
     .append("g")
-    .attr("stroke", "yellow")
-    .attr("stroke-width", 5)
+    .attr("stroke", "black")
+    .attr("stroke-width", 3)
     .selectAll("line")
     .data(edges)
-    .join("line");
+    .join("line")
+    .attr("marker-end", "url(#arrow)");
   const node = svg
     .append("g")
     .selectAll("g")
@@ -56,25 +71,25 @@ export function graph(
     .call(drag(simulation));
   const rectWidth = 100;
   const rectHeight = 24;
-  const rect = node
-    .append("rect")
-    .attr("rx", 15)
-    .attr("transform", `translate(${-rectWidth / 2}, ${-rectHeight / 2})`)
-    .attr("width", rectWidth)
-    .attr("height", rectHeight);
+  const rect = node.append("circle")
+    .attr("paint-order", "stroke")
+    .attr("stroke", "white")
+    .attr("stroke-width", "5px")
+    .attr("fill", "black")
+    .attr("r", 6);
   const text = node
     .append("text")
-    .attr("text-anchor", "middle")
+    .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
     .attr("fill", "black")
-    .attr("stroke-width", "0px")
+    .attr("stroke", "white")
+    .attr("stroke-width", "2px")
     .attr("width", 10)
+    .attr("x", 17)
     .text((d) => d.label);
 
   function ticked() {
-    node.attr("transform", function (d) {
-      return `translate(${d.x},${d.y})`;
-    });
+    node.attr("transform", (d) => `translate(${d.x},${d.y})`);
 
     edge
       .attr("x1", (d) => d.source.x)
