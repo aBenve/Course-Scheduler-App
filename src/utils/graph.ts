@@ -52,7 +52,8 @@ export function graph(
     .data(nodes)
     .join("g")
     .attr("fill", "white")
-    .attr("stroke", "black");
+    .attr("stroke", "black")
+    .call(drag(simulation));
   const rectWidth = 100;
   const rectHeight = 24;
   const rect = node
@@ -61,7 +62,6 @@ export function graph(
     .attr("transform", `translate(${-rectWidth / 2}, ${-rectHeight / 2})`)
     .attr("width", rectWidth)
     .attr("height", rectHeight);
-  console.log(nodes);
   const text = node
     .append("text")
     .attr("text-anchor", "middle")
@@ -72,11 +72,9 @@ export function graph(
     .text((d) => d.label);
 
   function ticked() {
-    node
-      .attr("transform", function (d) {
-        return `translate(${d.x},${d.y})`;
-      })
-      .call(drag(simulation));
+    node.attr("transform", function (d) {
+      return `translate(${d.x},${d.y})`;
+    });
 
     edge
       .attr("x1", (d) => d.source.x)
