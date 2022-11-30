@@ -34,7 +34,8 @@
 
   onMount(() => {
     let nodes = new Array(8).fill(0).map((_, i) => ({
-      id: i,
+      id: i.toString(),
+      label: `Subject N°${i}`,
     }));
     let edges = [
       { source: 0, target: 1 },
@@ -43,7 +44,10 @@
       { source: 3, target: 4 },
       { source: 4, target: 5 },
       { source: 6, target: 7 },
-    ];
+    ].map(({ source, target }) => ({
+      source: source.toString(),
+      target: target.toString(),
+    }));
     simulation = graph(svgElem, nodes, edges, width, height);
   });
 </script>

@@ -5,14 +5,14 @@ export function graph(
   nodes: { id: string; label: string }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
-  initialHeight: number,
+  initialHeight: number
 ) {
   let N = d3.map(nodes, (n) => n.id);
   let LS = d3.map(edges, ({ source }) => source);
   let LE = d3.map(edges, ({ target }) => target);
 
-  nodes = d3.map(nodes, (_, i) => ({ id: N[i] }));
-  edges = d3.map(edges, (_, i) => ({ source: LS[i], target: LE[i] }));
+  nodes = d3.map(nodes, (n, i) => ({ id: N[i], label: n.label }));
+  edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
   const simulation = d3
     .forceSimulation(nodes)
@@ -48,21 +48,33 @@ export function graph(
     .join("line");
   const node = svg
     .append("g")
-    .selectAll("rect")
+    .selectAll("g")
     .data(nodes)
-    .join("rect")
+    .join("g")
+    .attr("fill", "white")
+    .attr("stroke", "black");
+  const rectWidth = 100;
+  const rectHeight = 24;
+  const rect = node
+    .append("rect")
     .attr("rx", 15)
-    .attr("transform", "translate(-50,-50)")
-    .attr("width", 100)
-    .attr("height", 100);
+    .attr("transform", `translate(${-rectWidth / 2}, ${-rectHeight / 2})`)
+    .attr("width", rectWidth)
+    .attr("height", rectHeight);
+  console.log(nodes);
+  const text = node
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .attr("fill", "black")
+    .attr("stroke-width", "0px")
+    .attr("width", 10)
+    .text((d) => d.label);
 
   function ticked() {
     node
-      .attr("x", function (d) {
-        return d.x;
-      })
-      .attr("y", function (d) {
-        return d.y;
+      .attr("transform", function (d) {
+        return `translate(${d.x},${d.y})`;
       })
       .call(drag(simulation));
 
