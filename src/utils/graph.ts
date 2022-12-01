@@ -21,7 +21,7 @@ export function graph(
 
   const simulation = d3
     .forceSimulation(nodes)
-    .force("charge", d3.forceManyBody().strength(-200))
+    .force("charge", d3.forceManyBody().strength(-400))
     .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
     .force(
       "link",
@@ -30,16 +30,14 @@ export function graph(
         .id(({ index }) => {
           return N[index];
         })
-        .strength(1)
+        .strength(0.5)
     )
 
     .force("x", d3.forceX())
     .force("y", d3.forceY())
     .force(
       "collision",
-      d3.forceCollide().radius(function (d) {
-        return 75;
-      })
+      d3.forceCollide().radius((d) => 50)
     )
     .on("tick", ticked);
 
