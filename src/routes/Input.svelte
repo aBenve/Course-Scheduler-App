@@ -6,6 +6,7 @@
   import { onMount } from "svelte";
   import { graph } from "../utils/graph";
   import colors from "../utils/colors";
+  import { api } from "../api";
 
   let svgElem: Element;
   let simulation;
@@ -33,26 +34,28 @@
     if (simulation !== undefined) simulation.force("link").strength(link);
   }
 
-  onMount(() => {
+  onMount(async () => {
     const deselectedColor = colors[0];
     const selectedColor = colors[1];
-    let nodes = new Array(8).fill(0).map((_, i) => ({
-      id: i.toString(),
-      label: `Subject N°${i}`,
-      color: deselectedColor,
-    }));
-    let edges = [
-      { source: 0, target: 1 },
-      { source: 1, target: 2 },
-      { source: 2, target: 3 },
-      { source: 3, target: 4 },
-      { source: 4, target: 5 },
-      { source: 6, target: 7 },
-    ].map(({ source, target }) => ({
-      source: source.toString(),
-      target: target.toString(),
-    }));
-    let selected = new Set();
+    const plan = await api.get_plan_from_api("S10 A - Rev18");
+    const subjects = plan.get_subjects();
+    let selected = new Set(JSON.parse(localStorage.getItem('selectedSubjects')) ?? []);
+    let nodes = subjects.map((code, i) => {
+      const info = plan.get_subject_info(code);
+      const node = {
+        id: info.code,
+        label: info.name,
+        color: selected.has(info.code) ? selectedColor : deselectedColor,
+      };
+      info.free();
+      return node;
+    });
+    let edges = subjects.flatMap((code) =>
+      plan
+        .get_subject_dependencies(code)
+        .map((dep) => ({ source: dep, target: code }))
+    );
+    console.log(selected);
     simulation = graph(svgElem, nodes, edges, width, height, (node) => {
       const code = node.id;
       if (selected.has(code)) {
@@ -62,8 +65,9 @@
         node.color = selectedColor;
         selected.add(code);
       }
-
+      localStorage.setItem('selectedSubjects', JSON.stringify(Array.from(selected)));
     });
+    plan.free();
   });
 </script>
 

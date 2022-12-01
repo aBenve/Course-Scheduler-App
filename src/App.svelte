@@ -8,10 +8,12 @@
 
   import init, { set_panic_hook } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "./components/LoadingSpinner.svelte";
+  import { initializeApi } from "./api";
 
   async function load() {
     await init();
     set_panic_hook();
+    initializeApi();
   }
   let loading = load();
 </script>

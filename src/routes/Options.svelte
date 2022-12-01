@@ -17,6 +17,7 @@
     SubjectInfo,
   } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
+  import {api} from "../api";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
@@ -26,12 +27,10 @@
   }
 
   async function load() {
-    let api = new Api(import.meta.env.VITE_API_HOST);
     await api.load_subjects_from_api(2022, Semester.Second);
     let plan = await api.get_plan_from_api("S10 A - Rev18");
     // console.log(plan.get_subject_dependencies("72.07").map(code => plan.get_subject_info(code).name))
     // console.log(plan.get_subjects())
-    api.free();
 
     let mandatory = ["72.07", "72.38", "12.83"];
     let optional = [
