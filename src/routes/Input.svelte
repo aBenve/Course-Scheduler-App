@@ -90,7 +90,7 @@
   <div class="absolute right-2 bottom-2">
     <LinkButton title="Start" link="Options" />
   </div>
-  <div
+  <!-- <div
     class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-5"
   >
     <label for="charge">Charge</label>
@@ -111,6 +111,6 @@
       <input id="link" type="range" min={-1000} max={1000} bind:value={link} />
       <span>{link}</span>
     </div>
-  </div>
+  </div> -->
   <ToggleColorModeButton />
 </main>

@@ -21,7 +21,7 @@ export function graph(
 
   const simulation = d3
     .forceSimulation(nodes)
-    .force("charge", d3.forceManyBody().strength(-400))
+    .force("charge", d3.forceManyBody().strength(-300))
     .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
     .force(
       "link",
@@ -30,7 +30,7 @@ export function graph(
         .id(({ index }) => {
           return N[index];
         })
-        .strength(0.5)
+        .strength(0.1)
     )
 
     .force("x", d3.forceX())
@@ -56,6 +56,7 @@ export function graph(
     .attr("fill", "black")
     .attr("d", "M0,-5L10,0L0,5");
 
+
   const edge = svg
     .append("g")
     .attr("class", "stroke-edge dark:stroke-edge-dark")
@@ -65,6 +66,14 @@ export function graph(
     .data(edges)
     .join("line")
     .attr("marker-end", "url(#arrow)");
+
+  const shadows = svg
+    .append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .join("circle")
+    .attr("r", 10);
+
   const node = svg
     .append("g")
     .selectAll("g")
@@ -86,17 +95,24 @@ export function graph(
     .attr("dominant-baseline", "middle")
     .attr("class", "fill-text-dark dark:fill-text stroke-vertex dark:stroke-vertex-dark")
     .attr("stroke-width", "2px")
+    .attr("font-size", "0.75em")
     .attr("width", 10)
     .attr("x", 17)
     .text((d) => d.label);
 
   function ticked() {
-
+    shadows
+      .attr("class", (d) => (d.selected ? "fill-accent" : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"))
+      .attr("cx", (d) => d.x)
+      .attr("cy", (d) => d.y);
     node
       .attr("transform", (d) => `translate(${d.x},${d.y})`)
       .select("circle")
-      .attr("class", (d) => ((d.selected ? "fill-red-400" : "fill-vertex-dark dark:fill-vertex") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent cursor-pointer"))
+      .attr("class", (d) => ((d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"))
 
+    node
+      .select("text")
+      .attr("class", (d) => ((d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"))
     edge
       .attr("x1", (d) => d.source.x)
       .attr("y1", (d) => d.source.y)
