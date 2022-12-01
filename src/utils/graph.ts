@@ -1,15 +1,8 @@
 import * as d3 from "d3";
-import resolveConfig from 'tailwindcss/resolveConfig'
-import config from '../../tailwind.config.js'
-
-const asd = resolveConfig(config as any)
-console.log(asd)
-
-// const tailwindConfig = resolveConfig("../../tailwind.config.cjs" as any)
 
 export function graph(
   svgElement: Element,
-  nodes: { id: string; label: string }[],
+  nodes: { id: string; label: string, selected: boolean }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
   initialHeight: number,
@@ -22,7 +15,7 @@ export function graph(
   nodes = d3.map(nodes, (n, i) => ({
     id: N[i],
     label: n.label,
-    color: n.color,
+    selected: n.selected
   }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
@@ -75,10 +68,9 @@ export function graph(
   const node = svg
     .append("g")
     .selectAll("g")
+    .attr("class", "group")
     .data(nodes)
     .join("g")
-    // .attr("fill", "white")
-    // .attr("stroke", "black")
     .call(drag(simulation))
     .on("click", (_, node) => clickCallback(node));
   const rectWidth = 100;
@@ -86,18 +78,12 @@ export function graph(
   const rect = node
     .append("circle")
     .attr("paint-order", "stroke")
-    // .attr("stroke", "white")
     .attr("stroke-width", "5px")
-    // .attr("fill", "black")
-    .attr("class", "fill-vertex-dark dark:fill-vertex stroke-vertex-ring dark:stroke-vertex-ring-dark")
     .attr("r", 6);
   const text = node
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
-    // .attr("fill", "black")
-    // .attr("stroke", "white")
-    .attr("class", "fill-text-dark dark:fill-text stroke-vertex-ring dark:stroke-vertex-ring-dark")
 
     .attr("stroke-width", "2px")
     .attr("width", 10)
@@ -105,10 +91,11 @@ export function graph(
     .text((d) => d.label);
 
   function ticked() {
+
     node
       .attr("transform", (d) => `translate(${d.x},${d.y})`)
       .select("circle")
-      .attr("fill", (d) => d.color);
+      .attr("class", (d) => ((d.selected ? "fill-red-400" : "fill-vertex-dark dark:fill-vertex") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent cursor-pointer"))
 
     edge
       .attr("x1", (d) => d.source.x)
