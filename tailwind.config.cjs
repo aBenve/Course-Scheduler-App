@@ -33,7 +33,6 @@ const config = {
         'zone-terciary': colors.gray[300],
         'zone-terciary-dark': '#3f3f3f',
 
-
         'accent': '#5375F3',
         'accent-dark': '#4865D1',
 
@@ -41,6 +40,17 @@ const config = {
         'text-dark-secondary': '#383838',
         'text': '#a9a9a9',
         'text-secondary': '#9b9b9b',
+
+        'vertex': '#f9fafb',
+        'vertex-dark': '#2c2c2c',
+
+        'vertex-ring': '#e5e7eb',
+        'vertex-ring-dark': '#191919',
+
+        'edge': '#d1d5db',
+        'edge-dark': '#3f3f3f',
+
+
 
       },
       maxHeight: {
