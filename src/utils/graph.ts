@@ -84,7 +84,7 @@ export function graph(
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
-
+    .attr("class", "fill-text-dark dark:fill-text stroke-vertex dark:stroke-vertex-dark")
     .attr("stroke-width", "2px")
     .attr("width", 10)
     .attr("x", 17)

@@ -7,6 +7,7 @@
   import { graph } from "../utils/graph";
   import colors from "../utils/colors";
   import { api } from "../api";
+  import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
 
   let svgElem: Element;
   let simulation;
@@ -111,4 +112,5 @@
       <span>{link}</span>
     </div>
   </div>
+  <ToggleColorModeButton />
 </main>

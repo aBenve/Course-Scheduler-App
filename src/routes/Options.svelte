@@ -5,10 +5,8 @@
   import { options } from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
-  import colorSettings from "../store/UserColorsStore";
   import subjects from "../store/SubjectStore";
   import finalizedSubjects from "../store/FinalizedSubjectsStore";
-  import Icon from "@iconify/svelte";
   import { fly, fade } from "svelte/transition";
   import {
     Semester,
@@ -17,14 +15,8 @@
     SubjectInfo,
   } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
-  import {api} from "../api";
-
-  function handleColorModeToggle() {
-    let aux = document.getElementById("app");
-    aux.classList.remove($colorSettings.colorMode);
-    $colorSettings.changeColorMode();
-    aux.classList.add($colorSettings.colorMode);
-  }
+  import { api } from "../api";
+  import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
 
   async function load() {
     await api.load_subjects_from_api(2022, Semester.Second);
@@ -92,17 +84,7 @@
   let loading = load();
 </script>
 
-<div
-  class="absolute top-4 right-4 p-2 hidden xl:block bg-area rounded-lg dark:bg-area-dark text-text-dark dark:text-text cursor-pointer hover:opacity-50"
-  on:click={handleColorModeToggle}
->
-  <Icon
-    icon="material-symbols:invert-colors"
-    width="18"
-    height="18"
-    class="text-gray-500"
-  />
-</div>
+<ToggleColorModeButton />
 <main class="bg-background dark:bg-background-dark h-screen">
   {#await loading}
     <div class="w-full h-full flex items-center justify-center">
