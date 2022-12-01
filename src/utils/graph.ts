@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 export function graph(
   svgElement: Element,
-  nodes: { id: string; label: string, selected: boolean }[],
+  nodes: { id: string; label: string; selected: boolean }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
   initialHeight: number,
@@ -15,7 +15,7 @@ export function graph(
   nodes = d3.map(nodes, (n, i) => ({
     id: N[i],
     label: n.label,
-    selected: n.selected
+    selected: n.selected,
   }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
@@ -37,11 +37,21 @@ export function graph(
     .force("y", d3.forceY())
     .force(
       "collision",
-      d3.forceCollide().radius((d) => 50)
+      d3
+        .forceCollide()
+        .radius((d) => 50)
+        .strength(0.5)
     )
     .on("tick", ticked);
 
-  let svg = d3.select(svgElement);
+  function handleZoom(e) {
+    d3.select("svg g").attr("transform", e.transform);
+  }
+
+  let svg = d3
+    .select(svgElement)
+    .call(d3.zoom().on("zoom", handleZoom))
+    .append("g");
   svg
     .append("svg:defs")
     .append("svg:marker")
@@ -55,7 +65,6 @@ export function graph(
     .append("path")
     .attr("class", "fill-edge dark:fill-edge-dark")
     .attr("d", "M 0 0 L 10 2.5 L 0 5 z");
-
 
   const edge = svg
     .append("g")
@@ -93,7 +102,10 @@ export function graph(
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
-    .attr("class", "fill-text-dark dark:fill-text stroke-vertex dark:stroke-vertex-dark")
+    .attr(
+      "class",
+      "fill-text-dark dark:fill-text stroke-vertex dark:stroke-vertex-dark"
+    )
     .attr("stroke-width", "2px")
     .attr("font-size", "0.75em")
     .attr("width", 10)
@@ -102,17 +114,31 @@ export function graph(
 
   function ticked() {
     shadows
-      .attr("class", (d) => (d.selected ? "fill-accent" : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"))
+      .attr("class", (d) =>
+        d.selected
+          ? "fill-accent"
+          : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"
+      )
       .attr("cx", (d) => d.x)
       .attr("cy", (d) => d.y);
     node
       .attr("transform", (d) => `translate(${d.x},${d.y})`)
       .select("circle")
-      .attr("class", (d) => ((d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"))
+      .attr(
+        "class",
+        (d) =>
+          (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
+          "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"
+      );
 
     node
       .select("text")
-      .attr("class", (d) => ((d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") + "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"))
+      .attr(
+        "class",
+        (d) =>
+          (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
+          "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"
+      );
     edge
       .attr("x1", (d) => d.source.x)
       .attr("y1", (d) => d.source.y)
