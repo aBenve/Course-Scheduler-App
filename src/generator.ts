@@ -11,6 +11,10 @@ export default function generate_choices({
 }: QueryParameters): { iterator: Iterator<Choice>; free: () => void } {
   //console.log("Generator called!");
   // console.log(mandatory, optional);
+  
+  if (min_subject_count < 1) {
+    min_subject_count = 1;
+  }
 
   let builder = new GeneratorBuilder()
     .set_mandatory_codes(mandatory)

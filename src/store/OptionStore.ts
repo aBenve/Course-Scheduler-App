@@ -69,8 +69,8 @@ function createOptions() {
         ({
           mandatory: subjects.mandatory.map((s) => s.id),
           optional: subjects.optional.map((s) => s.id),
-          min_subject_count: querySettings.subjects,
-          min_credit_count: querySettings.credits,
+          min_subject_count: querySettings.min_subjects,
+          min_credit_count: querySettings.min_credits,
         } as QueryParameters)
     ),
     share()
