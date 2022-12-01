@@ -5,13 +5,18 @@ export function graph(
   nodes: { id: string; label: string }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
-  initialHeight: number
+  initialHeight: number,
+  clickCallback: (node) => void
 ) {
   let N = d3.map(nodes, (n) => n.id);
   let LS = d3.map(edges, ({ source }) => source);
   let LE = d3.map(edges, ({ target }) => target);
 
-  nodes = d3.map(nodes, (n, i) => ({ id: N[i], label: n.label }));
+  nodes = d3.map(nodes, (n, i) => ({
+    id: N[i],
+    label: n.label,
+    color: n.color,
+  }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
   const simulation = d3
@@ -68,10 +73,12 @@ export function graph(
     .join("g")
     .attr("fill", "white")
     .attr("stroke", "black")
-    .call(drag(simulation));
+    .call(drag(simulation))
+    .on("click", (_, node) => clickCallback(node));
   const rectWidth = 100;
   const rectHeight = 24;
-  const rect = node.append("circle")
+  const rect = node
+    .append("circle")
     .attr("paint-order", "stroke")
     .attr("stroke", "white")
     .attr("stroke-width", "5px")
@@ -89,7 +96,10 @@ export function graph(
     .text((d) => d.label);
 
   function ticked() {
-    node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+    node
+      .attr("transform", (d) => `translate(${d.x},${d.y})`)
+      .select("circle")
+      .attr("fill", (d) => d.color);
 
     edge
       .attr("x1", (d) => d.source.x)

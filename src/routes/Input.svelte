@@ -5,6 +5,7 @@
   import { fade, fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { graph } from "../utils/graph";
+  import colors from "../utils/colors";
 
   let svgElem: Element;
   let simulation;
@@ -33,9 +34,12 @@
   }
 
   onMount(() => {
+    const deselectedColor = colors[0];
+    const selectedColor = colors[1];
     let nodes = new Array(8).fill(0).map((_, i) => ({
       id: i.toString(),
       label: `Subject N°${i}`,
+      color: deselectedColor,
     }));
     let edges = [
       { source: 0, target: 1 },
@@ -48,7 +52,18 @@
       source: source.toString(),
       target: target.toString(),
     }));
-    simulation = graph(svgElem, nodes, edges, width, height);
+    let selected = new Set();
+    simulation = graph(svgElem, nodes, edges, width, height, (node) => {
+      const code = node.id;
+      if (selected.has(code)) {
+        node.color = deselectedColor;
+        selected.delete(code);
+      } else {
+        node.color = selectedColor;
+        selected.add(code);
+      }
+
+    });
   });
 </script>
 
