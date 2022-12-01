@@ -8,6 +8,7 @@
   import colors from "../utils/colors";
   import { api } from "../api";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
+  import {loadSelectedSubjects, saveSelectedSubjects} from "../storage";
 
   let svgElem: Element;
   let simulation;
@@ -40,9 +41,7 @@
     const selectedColor = colors[1];
     const plan = await api.get_plan_from_api("S10 A - Rev18");
     const subjects = plan.get_subjects();
-    let selected = new Set(
-      JSON.parse(localStorage.getItem("selectedSubjects")) ?? []
-    );
+    let selected = loadSelectedSubjects();
     let nodes = subjects.map((code, i) => {
       const info = plan.get_subject_info(code);
       const node = {
@@ -58,7 +57,7 @@
         .get_subject_dependencies(code)
         .map((dep) => ({ source: dep, target: code }))
     );
-    console.log(selected);
+    
     simulation = graph(svgElem, nodes, edges, width, height, (node) => {
       const code = node.id;
       if (selected.has(code)) {
@@ -68,10 +67,7 @@
         node.selected = true;
         selected.add(code);
       }
-      localStorage.setItem(
-        "selectedSubjects",
-        JSON.stringify(Array.from(selected))
-      );
+      saveSelectedSubjects(selected);
     });
     plan.free();
   });

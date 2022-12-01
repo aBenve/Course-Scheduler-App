@@ -5,7 +5,8 @@
   import { options } from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
-  import subjects from "../store/SubjectStore";
+  import colorSettings from "../store/UserColorsStore";
+  import subjects, { type SubjectCategorization } from "../store/SubjectStore";
   import finalizedSubjects from "../store/FinalizedSubjectsStore";
   import { fly, fade } from "svelte/transition";
   import {
@@ -17,34 +18,24 @@
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
   import { api } from "../api";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
+  import {
+    loadSelectedSubjectCategorization,
+    saveSelectedSubjectCategorization,
+  } from "../storage";
+  import { onDestroy } from "svelte";
+
+  function handleColorModeToggle() {
+    let aux = document.getElementById("app");
+    aux.classList.remove($colorSettings.colorMode);
+    $colorSettings.changeColorMode();
+    aux.classList.add($colorSettings.colorMode);
+  }
 
   async function load() {
     await api.load_subjects_from_api(2022, Semester.Second);
     let plan = await api.get_plan_from_api("S10 A - Rev18");
     // console.log(plan.get_subject_dependencies("72.07").map(code => plan.get_subject_info(code).name))
     // console.log(plan.get_subjects())
-
-    let mandatory = ["72.07", "72.38", "12.83"];
-    let optional = [
-      "72.37",
-      "61.23",
-      "72.41",
-      "72.42",
-      "93.75",
-      "72.43",
-      "94.23",
-      "16.50",
-      "23.15",
-      "61.50",
-      "72.58",
-      "72.60",
-      "72.74",
-      "72.75",
-      "72.89",
-      "72.92",
-      "94.42",
-      "94.62",
-    ];
 
     function getSubjectInfo(code: string): SubjectInfo {
       let info = plan.get_subject_info(code);
@@ -61,15 +52,15 @@
       };
     }
 
+    const { mandatory, optional, ignore } = loadSelectedSubjectCategorization();
     let mandatory_subjects = mandatory.map(getSubjectInfo).map(to_subject);
     let optional_subjects = optional.map(getSubjectInfo).map(to_subject);
-
-    /*console.log(mandatory_subjects, optional_subjects);*/
+    let ignore_subjects = ignore.map(getSubjectInfo).map(to_subject);
 
     $subjects = {
       mandatory: mandatory_subjects,
       optional: optional_subjects,
-      ignore: [],
+      ignore: ignore_subjects,
     };
 
     $finalizedSubjects = $subjects;
@@ -80,6 +71,31 @@
     /*await timeout(1000000);*/
     plan.free();
   }
+
+  $: save($subjects);
+
+  function save(subjects: SubjectCategorization) {
+    const { mandatory, optional, ignore } = subjects;
+    if (
+      mandatory.length === 0 &&
+      optional.length === 0 &&
+      ignore.length === 0
+    ) {
+      return;
+    }
+    function getCodes(subjects: Subject[]) {
+      return subjects.map((s) => s.id);
+    }
+    saveSelectedSubjectCategorization(
+      getCodes(mandatory),
+      getCodes(optional),
+      getCodes(ignore)
+    );
+  }
+
+  onDestroy(() => {
+    $subjects = { mandatory: [], optional: [], ignore: [] };
+  });
 
   let loading = load();
 </script>
