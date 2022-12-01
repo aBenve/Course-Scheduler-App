@@ -53,7 +53,7 @@ export function graph(
     .attr("markerHeight", 3)
     .attr("orient", "auto")
     .append("path")
-    .attr("fill", "black")
+    .attr("class", "fill-edge dark:fill-edge-dark")
     .attr("d", "M0,-5L10,0L0,5");
 
 
