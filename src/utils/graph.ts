@@ -1,4 +1,11 @@
 import * as d3 from "d3";
+import resolveConfig from 'tailwindcss/resolveConfig'
+import config from '../../tailwind.config.js'
+
+const asd = resolveConfig(config as any)
+console.log(asd)
+
+// const tailwindConfig = resolveConfig("../../tailwind.config.cjs" as any)
 
 export function graph(
   svgElement: Element,
@@ -60,8 +67,9 @@ export function graph(
 
   const edge = svg
     .append("g")
-    .attr("stroke", "black")
-    .attr("stroke-width", 3)
+    .attr("class", "stroke-edge dark:stroke-edge-dark")
+    // .attr("stroke", "red")
+    .attr("stroke-width", 2)
     .selectAll("line")
     .data(edges)
     .join("line")
@@ -71,8 +79,8 @@ export function graph(
     .selectAll("g")
     .data(nodes)
     .join("g")
-    .attr("fill", "white")
-    .attr("stroke", "black")
+    // .attr("fill", "white")
+    // .attr("stroke", "black")
     .call(drag(simulation))
     .on("click", (_, node) => clickCallback(node));
   const rectWidth = 100;
@@ -80,16 +88,19 @@ export function graph(
   const rect = node
     .append("circle")
     .attr("paint-order", "stroke")
-    .attr("stroke", "white")
+    // .attr("stroke", "white")
     .attr("stroke-width", "5px")
-    .attr("fill", "black")
+    // .attr("fill", "black")
+    .attr("class", "fill-vertex-dark dark:fill-vertex stroke-vertex-ring dark:stroke-vertex-ring-dark")
     .attr("r", 6);
   const text = node
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
-    .attr("fill", "black")
-    .attr("stroke", "white")
+    // .attr("fill", "black")
+    // .attr("stroke", "white")
+    .attr("class", "fill-text-dark dark:fill-text stroke-vertex-ring dark:stroke-vertex-ring-dark")
+
     .attr("stroke-width", "2px")
     .attr("width", 10)
     .attr("x", 17)

@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+import colors from 'tailwindcss/colors.js'
 
 function generateNumberPairs(from, to) {
   return Object.fromEntries(Array(to - from).fill().map((_, i) => i + from).map(n => [String(n), String(n)]))
@@ -41,8 +41,8 @@ const config = {
         'text': '#a9a9a9',
         'text-secondary': '#9b9b9b',
 
-        'vertex': '#f9fafb',
-        'vertex-dark': '#2c2c2c',
+        'vertex': '#e8e8e8',
+        'vertex-dark': '#383838',
 
         'vertex-ring': '#e5e7eb',
         'vertex-ring-dark': '#191919',
@@ -70,4 +70,4 @@ const config = {
   plugins: [],
 };
 
-module.exports = config;
+export default config;
