@@ -39,12 +39,13 @@
     const selectedColor = colors[1];
     const plan = await api.get_plan_from_api("S10 A - Rev18");
     const subjects = plan.get_subjects();
+    let selected = new Set(JSON.parse(localStorage.getItem('selectedSubjects')) ?? []);
     let nodes = subjects.map((code, i) => {
       const info = plan.get_subject_info(code);
       const node = {
         id: info.code,
         label: info.name,
-        color: deselectedColor,
+        color: selected.has(info.code) ? selectedColor : deselectedColor,
       };
       info.free();
       return node;
@@ -54,7 +55,7 @@
         .get_subject_dependencies(code)
         .map((dep) => ({ source: dep, target: code }))
     );
-    let selected = new Set();
+    console.log(selected);
     simulation = graph(svgElem, nodes, edges, width, height, (node) => {
       const code = node.id;
       if (selected.has(code)) {
@@ -64,6 +65,7 @@
         node.color = selectedColor;
         selected.add(code);
       }
+      localStorage.setItem('selectedSubjects', JSON.stringify(Array.from(selected)));
     });
     plan.free();
   });
