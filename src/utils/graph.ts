@@ -46,15 +46,15 @@ export function graph(
     .append("svg:defs")
     .append("svg:marker")
     .attr("id", "arrow")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -0.5)
-    .attr("markerWidth", 3)
-    .attr("markerHeight", 3)
-    .attr("orient", "auto")
+    .attr("viewBox", "0 0 10 5")
+    .attr("refX", 12.5)
+    .attr("refY", 2.5)
+    .attr("markerWidth", 10)
+    .attr("markerHeight", 10)
+    .attr("orient", "auto-start-reverse")
     .append("path")
     .attr("class", "fill-edge dark:fill-edge-dark")
-    .attr("d", "M0,-5L10,0L0,5");
+    .attr("d", "M 0 0 L 10 2.5 L 0 5 z");
 
 
   const edge = svg
