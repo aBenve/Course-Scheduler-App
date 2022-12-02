@@ -65,7 +65,7 @@
       transform: translateX(0%);
     }
     50% {
-      transform: translateX(calc(-100% + 7em));
+      transform: translateX(min(calc(-100% + 7em), 0%));
     }
     100% {
       transform: translateX(0%);
