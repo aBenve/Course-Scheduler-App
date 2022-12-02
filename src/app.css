@@ -38,3 +38,7 @@
   width: 0.3em;
   height: 0.3em;
 }
+
+.colorTransition{
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
+}

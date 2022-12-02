@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative text-text-dark dark:text-text"
+  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative text-text-dark dark:text-text colorTransition"
   style="
     background-color: {toggle
     ? $colorSettings.colorMode == 'dark'

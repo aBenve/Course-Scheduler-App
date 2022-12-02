@@ -9,10 +9,10 @@
   }
 </script>
 
-<div class=" w-full flex gap-x-1 rounded-lg">
+<div class=" w-full flex gap-x-1 rounded-lg ">
   {#each $pages.pages as page, i}
     <div
-      class=" w-1/2 flex justify-center items-center  flex-col p-5 rounded-lg cursor-pointer 
+      class=" w-1/2 flex justify-center items-center  flex-col p-5 rounded-lg cursor-pointer colorTransition 
       {$pages.pages[$pages.currentPage] === page
         ? 'bg-accent text-accent hover:bg-accent-dark bg-opacity-30 hover:bg-opacity-30 hover:dark:bg-opacity-30'
         : 'hover:bg-background dark:hover:bg-zone-dark text-text-dark dark:text-text-secondary text-opacity-30 '}

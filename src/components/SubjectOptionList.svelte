@@ -43,12 +43,17 @@
         }}
         bind:intersecting={reachedEnd}
       >
-        <div bind:this={endOfList}>Loading...</div>
+        <div
+          bind:this={endOfList}
+          class="colorTransition text-text-dark dark:text-text"
+        >
+          Loading...
+        </div>
       </IntersectionObserver>
     {/if}
   {:else}
     <span
-      class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg transition-all ease-in-out duration-150"
+      class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg colorTransition"
     >
       No subjects available.
     </span>

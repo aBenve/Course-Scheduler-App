@@ -8,7 +8,7 @@
   import colors from "../utils/colors";
   import { api } from "../api";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
-  import {loadSelectedSubjects, saveSelectedSubjects} from "../storage";
+  import { loadSelectedSubjects, saveSelectedSubjects } from "../storage";
 
   let svgElem: Element;
   let simulation;
@@ -57,7 +57,7 @@
         .get_subject_dependencies(code)
         .map((dep) => ({ source: dep, target: code }))
     );
-    
+
     simulation = graph(svgElem, nodes, edges, width, height, (node) => {
       const code = node.id;
       if (selected.has(code)) {
@@ -74,7 +74,7 @@
 </script>
 
 <main
-  class="flex justify-center items-center h-screen bg-background dark:bg-background-dark "
+  class="flex justify-center items-center h-screen bg-background dark:bg-background-dark colorTransition"
 >
   <div
     class="w-full h-full"

@@ -28,8 +28,9 @@
   }
 </script>
 
-<div class="{clazz} flex flex-col">
-  <span class="mb-2 text-xs text-text-dark-secondary dark:text-text-secondary"
+<div class="{clazz} flex flex-col ">
+  <span
+    class="mb-2 text-xs text-text-dark-secondary dark:text-text-secondary colorTransition"
     >{title}</span
   >
   <section
@@ -40,7 +41,7 @@
     }}
     on:consider={handleOrderAndMove}
     on:finalize={handleOrderAndMove}
-    class="bg-zone dark:bg-zone-dark w-full h-full flex flex-col min-h-[4em] items-center rounded-lg overflow-y-auto p-2 gap-y-2  "
+    class="bg-zone dark:bg-zone-dark w-full h-full flex flex-col min-h-[4em] items-center rounded-lg overflow-y-auto p-2 gap-y-2 colorTransition "
   >
     {#each $subjects[dragZoneArea] as { id, title } (id)}
       <div animate:flip={{ duration: flipDurationMs }} class="w-full">

@@ -51,6 +51,22 @@ export function graph(
 
   let isDragging = false;
 
+  const circleClasses = (d) => {
+    return (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition" ;
+  }
+
+  const textClasses = (d) => {
+    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") + 
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer colorTransition";
+  }
+
+  const shadowClasses = (d) => {
+    return d.selected
+      ? "stroke-accent fill-transparent"
+      : "invisible" + " active:scale-[0.9] hover:scale-[1.1] colorTransition";
+  }
+
   let svg = d3
     .select(svgElement)
     .call(d3.zoom().on("zoom", handleZoom))
@@ -66,12 +82,12 @@ export function graph(
     .attr("markerHeight", 10)
     .attr("orient", "auto-start-reverse")
     .append("path")
-    .attr("class", "fill-edge dark:fill-edge-dark")
+    .attr("class", "fill-edge dark:fill-edge-dark colorTransition")
     .attr("d", "M 0 0 L 10 2.5 L 0 5 z");
 
   const edge = svg
     .append("g")
-    .attr("class", "stroke-edge dark:stroke-edge-dark")
+    .attr("class", "stroke-edge dark:stroke-edge-dark colorTransition") 
     // .attr("stroke", "red")
     .attr("stroke-width", 2)
     .selectAll("line")
@@ -126,10 +142,6 @@ export function graph(
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
-    .attr(
-      "class",
-      "fill-text-dark dark:fill-text stroke-vertex dark:stroke-vertex-dark"
-    )
     .attr("stroke-width", "2px")
     .attr("font-size", "0.75em")
     .attr("width", 10)
@@ -137,21 +149,6 @@ export function graph(
     .attr("id", "text")
     .text((d) => d.label);
 
-  const circleClasses = (d) => {
-    return (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
-      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"
-  }
-
-  const textClasses = (d) => {
-    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
-      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"
-  }
-
-  const shadowClasses = (d) => {
-    return d.selected
-      ? "stroke-accent fill-transparent"
-      : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"
-  }
 
   function ticked() {
     shadows

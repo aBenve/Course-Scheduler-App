@@ -34,17 +34,17 @@
     <!-- <Calendar {plugins} {options} /> -->
     {#if option == null}
       <div
-        class="w-full h-full flex justify-center items-center  bg-area dark:bg-area-dark"
+        class="w-full h-full flex justify-center items-center  bg-area dark:bg-area-dark colorTransition"
       >
         <span
-          class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg transition-all ease-in-out duration-150"
+          class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg colorTransition"
         >
           No option selected
         </span>
       </div>
     {:else}
       <div
-        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50"
+        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(lastHour - firstHour + 1) as _, i}
