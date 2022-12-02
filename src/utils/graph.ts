@@ -22,8 +22,7 @@ export function graph(
 
   const simulation = d3
     .forceSimulation(nodes)
-    .force("charge", d3.forceManyBody().strength(-300))
-    .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
+    
     .force(
       "link",
       d3
@@ -36,13 +35,17 @@ export function graph(
 
     .force("x", d3.forceX())
     .force("y", d3.forceY())
+
     .force(
       "collision",
       d3
         .forceCollide()
-        .radius((d) => 20)
+        .radius(20)
         .strength(0.5)
     )
+    .force("charge", d3.forceManyBody().strength(-300))   
+    // .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
+
     .on("tick", ticked);
 
   function handleZoom(e) {
@@ -69,6 +72,7 @@ export function graph(
 
   let svg = d3
     .select(svgElement)
+    .attr("viewBox", [-initialWidth / 2, -initialHeight / 2, initialWidth, initialHeight])
     .call(d3.zoom().on("zoom", handleZoom))
     .append("g");
   svg
