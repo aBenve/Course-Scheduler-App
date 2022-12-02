@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { schemeSet3 } from "d3";
 
 export function graph(
   svgElement: Element,
@@ -39,7 +40,7 @@ export function graph(
       "collision",
       d3
         .forceCollide()
-        .radius((d) => 50)
+        .radius((d) => 20)
         .strength(0.5)
     )
     .on("tick", ticked);
@@ -74,6 +75,7 @@ export function graph(
     .selectAll("line")
     .data(edges)
     .join("line")
+    .attr("id", "edge")
     .attr("marker-end", "url(#arrow)");
 
   const shadows = svg
@@ -81,7 +83,9 @@ export function graph(
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-    .attr("r", 10);
+    .attr("r", 10)
+    .attr("id", "shadow")
+    .attr("stroke-width", "2px");
 
   const node = svg
     .append("g")
@@ -91,13 +95,29 @@ export function graph(
     .join("g")
     .call(drag(simulation))
     .on("click", (_, node) => clickCallback(node));
+
   const rectWidth = 100;
   const rectHeight = 24;
   const rect = node
     .append("circle")
     .attr("paint-order", "stroke")
     .attr("stroke-width", "5px")
-    .attr("r", 6);
+    .attr("id", "node")
+
+    .attr("r", 6)
+    .on("mouseover", (_, node) => {
+      d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+      d3.selectAll("#shadow").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+      d3.selectAll("#edge").filter((e) => e.source.id !== node.id && e.target.id !== node.id).attr("style", "opacity: 0.3");
+      d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3");
+      d3.selectAll("#text").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+    })
+    .on("mouseout", (_, node) => {
+      d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 1");
+      d3.selectAll("#shadow").attr("style", "opacity: 1");
+      d3.selectAll("#edge").attr("style", "opacity: 1");
+      d3.selectAll("#text").attr("style", "opacity: 1");
+    });
   const text = node
     .append("text")
     .attr("paint-order", "stroke")
@@ -110,14 +130,29 @@ export function graph(
     .attr("font-size", "0.75em")
     .attr("width", 10)
     .attr("x", 17)
+    .attr("id", "text")
     .text((d) => d.label);
+
+  const circleClasses = (d) => {
+    return (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"
+  }
+
+  const textClasses = (d) => {
+    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"
+  }
+
+  const shadowClasses = (d) => {
+    return d.selected
+      ? "stroke-accent fill-transparent"
+      : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"
+  }
 
   function ticked() {
     shadows
       .attr("class", (d) =>
-        d.selected
-          ? "fill-accent"
-          : "invisible" + " active:scale-[0.9] hover:scale-[1.1]"
+        shadowClasses(d)
       )
       .attr("cx", (d) => d.x)
       .attr("cy", (d) => d.y);
@@ -126,9 +161,7 @@ export function graph(
       .select("circle")
       .attr(
         "class",
-        (d) =>
-          (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
-          "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer"
+        (d) => circleClasses(d)
       );
 
     node
@@ -136,8 +169,7 @@ export function graph(
       .attr(
         "class",
         (d) =>
-          (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
-          "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer"
+          textClasses(d)
       );
     edge
       .attr("x1", (d) => d.source.x)

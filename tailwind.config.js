@@ -47,7 +47,7 @@ const config = {
         'vertex-ring': '#e5e7eb',
         'vertex-ring-dark': '#191919',
 
-        'edge': '#d1d5db',
+        'edge': '#C5C9CE',
         'edge-dark': '#3f3f3f',
 
 
