@@ -49,6 +49,8 @@ export function graph(
     d3.select("svg g").attr("transform", e.transform);
   }
 
+  let isDragging = false;
+
   let svg = d3
     .select(svgElement)
     .call(d3.zoom().on("zoom", handleZoom))
@@ -106,11 +108,13 @@ export function graph(
 
     .attr("r", 6)
     .on("mouseover", (_, node) => {
-      d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
-      d3.selectAll("#shadow").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
-      d3.selectAll("#edge").filter((e) => e.source.id !== node.id && e.target.id !== node.id).attr("style", "opacity: 0.3");
-      d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3");
-      d3.selectAll("#text").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+      if (!isDragging) {
+        d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+        d3.selectAll("#shadow").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+        d3.selectAll("#edge").filter((e) => e.source.id !== node.id && e.target.id !== node.id).attr("style", "opacity: 0.3");
+        d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3");
+        d3.selectAll("#text").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+      }
     })
     .on("mouseout", (_, node) => {
       d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 1");
@@ -183,6 +187,7 @@ export function graph(
       if (!event.active) simulation.alphaTarget(0.3).restart();
       event.subject.fx = event.subject.x;
       event.subject.fy = event.subject.y;
+      isDragging = true;
     }
 
     function dragged(event) {
@@ -194,6 +199,7 @@ export function graph(
       if (!event.active) simulation.alphaTarget(0);
       event.subject.fx = null;
       event.subject.fy = null;
+      isDragging = false;
     }
 
     return d3
