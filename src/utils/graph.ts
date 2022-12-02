@@ -22,7 +22,7 @@ export function graph(
 
   const simulation = d3
     .forceSimulation(nodes)
-    
+
     .force(
       "link",
       d3
@@ -43,7 +43,7 @@ export function graph(
         .radius(20)
         .strength(0.5)
     )
-    .force("charge", d3.forceManyBody().strength(-300))   
+    .force("charge", d3.forceManyBody().strength(-300))
     // .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
 
     .on("tick", ticked);
@@ -56,11 +56,11 @@ export function graph(
 
   const circleClasses = (d) => {
     return (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
-      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition" ;
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition";
   }
 
   const textClasses = (d) => {
-    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") + 
+    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
       "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer colorTransition";
   }
 
@@ -68,6 +68,13 @@ export function graph(
     return d.selected
       ? "stroke-accent fill-transparent"
       : "invisible" + " active:scale-[0.9] hover:scale-[1.1] colorTransition";
+  }
+
+  const releaseHover = (_, nd) => {
+    node.filter((n) => n.id !== nd.id).attr("style", "opacity: 1");
+    shadows.attr("style", "opacity: 1");
+    edge.attr("style", "opacity: 1").attr("marker-end", "url(#arrow)");
+    text.attr("style", "opacity: 1");
   }
 
   let svg = d3
@@ -99,7 +106,7 @@ export function graph(
 
   const edge = svg
     .append("g")
-    .attr("class", "stroke-edge dark:stroke-edge-dark colorTransition") 
+    .attr("class", "stroke-edge dark:stroke-edge-dark colorTransition")
     // .attr("stroke", "red")
     .attr("stroke-width", 2)
     .selectAll("line")
@@ -135,21 +142,18 @@ export function graph(
     .attr("id", "node")
 
     .attr("r", 6)
-    .on("mouseover", (_, node) => {
+    .on("mouseover", (_, nd) => {
       if (!isDragging) {
-        d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
-        d3.selectAll("#shadow").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
-        d3.selectAll("#edge").filter((e) => e.source.id !== node.id && e.target.id !== node.id).attr("style", "opacity: 0.3");
-        d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3").attr("marker-end", "url(#arrow-highlight)");
-        d3.selectAll("#text").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
+        node.filter((n) => n.id !== nd.id).attr("style", "opacity: 0.3");
+        shadows.filter((n) => n.id !== nd.id).attr("style", "opacity: 0.3");
+        edge.filter((e) => e.source.id !== nd.id && e.target.id !== nd.id).attr("style", "opacity: 0.3");
+        edge.filter((e) => e.source.id === nd.id || e.target.id === nd.id).attr("style", "stroke: #5375F3").attr("marker-end", "url(#arrow-highlight)");
+        text.filter((n) => n.id !== nd.id).attr("style", "display: none");
       }
     })
-    .on("mouseout", (_, node) => {
-      d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 1");
-      d3.selectAll("#shadow").attr("style", "opacity: 1");
-      d3.selectAll("#edge").attr("style", "opacity: 1").attr("marker-end", "url(#arrow)");
-      d3.selectAll("#text").attr("style", "opacity: 1");
-    });
+    .on("mouseout", releaseHover)
+    .on("mousedown", releaseHover);
+
   const text = node
     .append("text")
     .attr("paint-order", "stroke")
