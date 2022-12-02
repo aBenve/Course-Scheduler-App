@@ -75,7 +75,8 @@ export function graph(
     .attr("viewBox", [-initialWidth / 2, -initialHeight / 2, initialWidth, initialHeight])
     .call(d3.zoom().on("zoom", handleZoom))
     .append("g");
-  svg
+
+  const marker = svg
     .append("svg:defs")
     .append("svg:marker")
     .attr("id", "arrow")
@@ -88,6 +89,13 @@ export function graph(
     .append("path")
     .attr("class", "fill-edge dark:fill-edge-dark colorTransition")
     .attr("d", "M 0 0 L 10 2.5 L 0 5 z");
+
+  // Clone the arrow marker and changes color.
+  const arrowHighlight = d3.select(marker.node().parentElement).clone(true);
+  arrowHighlight
+    .attr("id", "arrow-highlight")
+    .select("path")
+    .attr("style", "fill: #5375F3");
 
   const edge = svg
     .append("g")
@@ -132,14 +140,14 @@ export function graph(
         d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
         d3.selectAll("#shadow").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
         d3.selectAll("#edge").filter((e) => e.source.id !== node.id && e.target.id !== node.id).attr("style", "opacity: 0.3");
-        d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3");
+        d3.selectAll("#edge").filter((e) => e.source.id === node.id || e.target.id === node.id).attr("style", "stroke: #5375F3").attr("marker-end", "url(#arrow-highlight)");
         d3.selectAll("#text").filter((n) => n.id !== node.id).attr("style", "opacity: 0.3");
       }
     })
     .on("mouseout", (_, node) => {
       d3.selectAll("#node").filter((n) => n.id !== node.id).attr("style", "opacity: 1");
       d3.selectAll("#shadow").attr("style", "opacity: 1");
-      d3.selectAll("#edge").attr("style", "opacity: 1");
+      d3.selectAll("#edge").attr("style", "opacity: 1").attr("marker-end", "url(#arrow)");
       d3.selectAll("#text").attr("style", "opacity: 1");
     });
   const text = node
@@ -152,7 +160,6 @@ export function graph(
     .attr("x", 17)
     .attr("id", "text")
     .text((d) => d.label);
-
 
   function ticked() {
     shadows
