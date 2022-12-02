@@ -40,6 +40,7 @@ const config = {
         'text-dark-secondary': '#383838',
         'text': '#a9a9a9',
         'text-secondary': '#9b9b9b',
+        'text-terciary': '#6b7280',
 
         'vertex': '#e8e8e8',
         'vertex-dark': '#383838',
