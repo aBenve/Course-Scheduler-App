@@ -4,4 +4,5 @@ export let api: Api;
 
 export function initializeApi() {
     api = new Api(import.meta.env.VITE_API_HOST);
+    return api;
 }

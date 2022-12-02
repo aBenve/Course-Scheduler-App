@@ -13,12 +13,17 @@ import {
   shareReplay,
   combineLatestWith,
   Observable,
+  sample,
+  withLatestFrom,
+  concatMap,
 } from "rxjs";
 import finalizedSubjects from "./FinalizedSubjectsStore";
 import { toObservable, debug } from "./utils";
-import settings from "./UserSettingsStore";
+import settings, { type Settings } from "./UserSettingsStore";
 import selectedOption from "./SelectedOptionStore";
 import type { Choice } from "@course-scheduler-app/scheduler-wasm";
+import courseCommissionsStore from "./CourseCommissionsStore";
+import type { SubjectCategorization } from "./SubjectStore";
 
 export type QueryParameters = {
   mandatory: string[];
@@ -77,7 +82,8 @@ function createOptions() {
   );
 
   let generator = queryParameters.pipe(
-    map(generateChoices)
+    withLatestFrom(courseCommissionsStore),
+    map(([a, s]) => generateChoices(s, a))
     //debug("Created Generator!"),
   );
 
@@ -126,4 +132,13 @@ function createOptions() {
   return [newSearch, options] as const;
 }
 
-export const [newSearch, options] = createOptions();
+export function initialize() {
+  [newSearch, options] = createOptions();
+}
+
+export let newSearch: Observable<[SubjectCategorization, Settings]>,
+  options: Observable<{
+    values: Choice[];
+    sortedSubjects: string[];
+    done: boolean;
+  }>;

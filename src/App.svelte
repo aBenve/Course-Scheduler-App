@@ -5,22 +5,14 @@
   import NotFound from "./routes/NotFound.svelte";
   import { scale } from "svelte/transition";
   export let url = "";
+  import apiStore from "./store/ApiStore";
 
-  import init, { set_panic_hook } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "./components/LoadingSpinner.svelte";
-  import { initializeApi } from "./api";
-
-  async function load() {
-    await init();
-    set_panic_hook();
-    initializeApi();
-  }
-  let loading = load();
 </script>
 
 <Router {url}>
   <div id="app" class="font-principal">
-    {#await loading}
+    {#if $apiStore == null}
       <Route>
         <div
           class="w-full h-screen flex items-center justify-center"
@@ -29,10 +21,10 @@
           <LoadingSpinner />
         </div>
       </Route>
-    {:then _}
+    {:else}
       <Route path="Options" component={Options} />
       <Route path="/"><Input /></Route>
       <Route path="*"><NotFound /></Route>
-    {/await}
+    {/if}
   </div>
 </Router>
