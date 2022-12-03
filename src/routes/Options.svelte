@@ -2,7 +2,7 @@
   import SubjectsOptionsArea from "../components/SubjectsOptionsArea.svelte";
   import ControlsArea from "../components/ControlsArea.svelte";
   import CalendarArea from "../components/CalendarArea.svelte";
-  import { initialize, options } from "../store/OptionStore";
+  import { options } from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import settings from "../store/UserSettingsStore";
   import courseCommissionsStore from "../store/CourseCommissionsStore";
@@ -17,11 +17,6 @@
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
   import { api } from "../api";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
-  import {
-    loadSelectedSubjectCategorization,
-    saveSelectedSubjectCategorization,
-  } from "../storage";
-  import { onDestroy } from "svelte";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
@@ -29,73 +24,6 @@
     $colorSettings.changeColorMode();
     aux.classList.add($colorSettings.colorMode);
   }
-
-  $: $courseCommissionsStore !== null &&
-    courseCommissionsChanged($courseCommissionsStore);
-
-  function courseCommissionsChanged(courseCommissions: Commissions) {
-    initialize();
-    // console.log(plan.get_subject_dependencies("72.07").map(code => plan.get_subject_info(code).name))
-    // console.log(plan.get_subjects())
-
-    function getSubjectInfo(code: string): SubjectInfo {
-      let info = courseCommissions.get_subject_info(code);
-      if (info == null) {
-        throw Error(`Subject code ${code} does not exist.`);
-      }
-      return info;
-    }
-
-    function to_subject(subject: SubjectInfo): Subject {
-      return {
-        id: subject.code,
-        title: subject.name,
-      };
-    }
-
-    const { mandatory, optional, ignore } = loadSelectedSubjectCategorization();
-    let mandatory_subjects = mandatory.map(getSubjectInfo).map(to_subject);
-    let optional_subjects = optional.map(getSubjectInfo).map(to_subject);
-    let ignore_subjects = ignore.map(getSubjectInfo).map(to_subject);
-
-    $subjects = {
-      mandatory: mandatory_subjects,
-      optional: optional_subjects,
-      ignore: ignore_subjects,
-    };
-
-    $finalizedSubjects = $subjects;
-
-    /*function timeout(ms: number) {*/
-    /*return new Promise((resolve) => setTimeout(resolve, ms));*/
-    /*}*/
-    /*await timeout(1000000);*/
-  }
-
-  $: save($subjects);
-
-  function save(subjects: SubjectCategorization) {
-    const { mandatory, optional, ignore } = subjects;
-    if (
-      mandatory.length === 0 &&
-      optional.length === 0 &&
-      ignore.length === 0
-    ) {
-      return;
-    }
-    function getCodes(subjects: Subject[]) {
-      return subjects.map((s) => s.id);
-    }
-    saveSelectedSubjectCategorization(
-      getCodes(mandatory),
-      getCodes(optional),
-      getCodes(ignore)
-    );
-  }
-
-  onDestroy(() => {
-    $subjects = { mandatory: [], optional: [], ignore: [] };
-  });
 
   $: loading = $courseCommissionsStore === null;
 </script>

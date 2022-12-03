@@ -64,11 +64,11 @@ function createOptions() {
     //shareReplay()
     ();
   let combinedParameters = subjects.pipe(
-    combineLatestWith(querySettings)
+    combineLatestWith(querySettings),
+    debug("Combined params"),
     //share(),
   );
   let queryParameters = combinedParameters.pipe(
-    //debug("QueryParameters!"),
     map(
       ([subjects, querySettings]) =>
         ({
@@ -78,6 +78,7 @@ function createOptions() {
           min_credit_count: querySettings.min_credits,
         } as QueryParameters)
     ),
+    debug("Query params"),
     share()
   );
 
@@ -102,7 +103,7 @@ function createOptions() {
         })),
         finalize(() => gen.free())
       )
-    )
+    ),
     //debug("Generator!"),
   );
 
@@ -132,13 +133,4 @@ function createOptions() {
   return [newSearch, options] as const;
 }
 
-export function initialize() {
-  [newSearch, options] = createOptions();
-}
-
-export let newSearch: Observable<[SubjectCategorization, Settings]>,
-  options: Observable<{
-    values: Choice[];
-    sortedSubjects: string[];
-    done: boolean;
-  }>;
+export let [newSearch, options] = createOptions();

@@ -12,7 +12,7 @@
 
 <Router {url}>
   <div id="app" class="font-principal">
-    {#if $apiStore == null}
+    {#if $apiStore === null}
       <Route>
         <div
           class="w-full h-screen flex items-center justify-center"
@@ -22,7 +22,7 @@
         </div>
       </Route>
     {:else}
-      <Route path="Options" component={Options} />
+      <Route path="Options"><Options /></Route>
       <Route path="/"><Input /></Route>
       <Route path="*"><NotFound /></Route>
     {/if}

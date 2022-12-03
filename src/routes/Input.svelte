@@ -8,7 +8,6 @@
   import colors from "../utils/colors";
   import { api } from "../api";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
-  import { loadSelectedSubjects, saveSelectedSubjects } from "../storage";
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import planStore from "../store/PlanStore";
   import type {
@@ -17,6 +16,11 @@
   } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
   import type { Simulation, SimulationNodeDatum } from "d3";
+  import selected, {
+    addSelected,
+    removeSelected,
+    toggleSubject,
+  } from "src/store/GraphSelectedStore";
 
   let svgElem: Element;
   let simulation: Simulation<SimulationNodeDatum, undefined> | undefined;
@@ -42,28 +46,7 @@
     if (simulation !== undefined) simulation.force("link").strength(link);
   }
 
-  let selected: Set<string>;
-
   $: courseCommissions = $courseCommissionsStore;
-  $: removeNonExistentInTerm($courseCommissionsStore, selected);
-
-  function removeNonExistentInTerm(
-    termSubjects: Commissions,
-    selected: Set<string>
-  ) {
-    if (selected === undefined || termSubjects === null) {
-      return;
-    }
-    for (const code of selected) {
-      if (termSubjects.get_subject_info(code) === undefined) {
-        console.log(
-          `Subject with code ${code} was removed from selected because it's not on term's subjects.`
-        );
-        selected.delete(code);
-      }
-    }
-    saveSelectedSubjects(selected);
-  }
 
   $: $planStore !== null && svgElem !== undefined && planChanged($planStore);
   function planChanged(plan: SubjectPlan) {
@@ -71,14 +54,12 @@
     const deselectedColor = colors[0];
     const selectedColor = colors[1];
     const subjects = plan.get_subjects();
-    selected = loadSelectedSubjects();
 
     let nodes = subjects.map((code, i) => {
       const info = plan.get_subject_info(code);
       const node = {
         id: info.code,
         label: info.name,
-        selected: selected.has(info.code),
       };
       info.free();
       return node;
@@ -91,14 +72,15 @@
 
     simulation = graph(svgElem, nodes, edges, width, height, (node) => {
       const code = node.id;
-      if (selected.has(code)) {
-        selected.delete(code);
-      } else if (courseCommissions.get_subject_info(code) !== undefined) {
-        selected.add(code);
-      }
+      toggleSubject(code);
+    });
+  }
 
-      node.selected = selected.has(code);
-      saveSelectedSubjects(selected);
+  $: simulation !== undefined && $selected !== null && selectedChanged($selected);
+
+  function selectedChanged(selected: Set<string>) {
+    simulation.nodes().forEach((node) => {
+      node.selected = selected.has(node.id);
     });
   }
 
