@@ -50,7 +50,7 @@ function createOptions() {
     ();
   let combinedParameters = subjects.pipe(
     combineLatestWith(querySettings),
-    debug("Combined params")
+    //debug("Combined params")
     //share(),
   );
   let queryParameters = combinedParameters.pipe(
@@ -63,7 +63,7 @@ function createOptions() {
           min_credit_count: querySettings.min_credits,
         } as QueryParameters)
     ),
-    debug("Query params"),
+    //debug("Query params"),
     share()
   );
 
