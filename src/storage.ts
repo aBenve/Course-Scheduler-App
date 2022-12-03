@@ -3,7 +3,7 @@ export function loadSelectedSubjectCategorization(): {
   optional: string[];
   ignore: string[];
 } {
-  const all = JSON.parse(localStorage.selectedSubjectCategorization);
+  const all = JSON.parse(localStorage.getItem("selectedSubjectCategorization"));
   return all ?? { mandatory: [], optional: [], ignore: [] };
 }
 
