@@ -27,6 +27,7 @@
     simulation.force("x").x(width / 2);
     simulation.force("y").y(height / 2);
     simulation.alpha(1);
+    simulation.restart();
   }
 
   $: changeChargeStrength(charge);
