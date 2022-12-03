@@ -53,8 +53,8 @@ export function graph(
       (d.selected
         ? "fill-accent"
         : !d.available
-        ? "fill-text-terciary"
-        : "fill-vertex-dark dark:fill-vertex") +
+          ? "fill-edge dark:fill-edge-dark"
+          : "fill-vertex-dark dark:fill-vertex") +
       "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition"
     );
   };
@@ -64,8 +64,8 @@ export function graph(
       (d.selected
         ? "fill-accent font-medium translate-y-1"
         : !d.available
-        ? "fill-text-terciary"
-        : "fill-text-dark dark:fill-text") +
+          ? "fill-edge dark:fill-edge-dark"
+          : "fill-text-dark dark:fill-text") +
       "  stroke-vertex-ring dark:stroke-vertex-ring-dark cursor-pointer colorTransition"
     );
   };
