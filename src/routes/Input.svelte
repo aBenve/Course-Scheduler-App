@@ -1,5 +1,6 @@
 <script lang="ts">
   import type {
+  Commissions,
     SubjectPlan
   } from "@course-scheduler-app/scheduler-wasm";
   import type { Simulation, SimulationNodeDatum } from "d3";
@@ -75,6 +76,16 @@
   function selectedChanged(selected: Set<string>) {
     simulation.nodes().forEach((node) => {
       node.selected = selected.has(node.id);
+    });
+  }
+
+  $: simulation !== undefined &&
+    $courseCommissionsStore !== null &&
+    courseCommissionsChanged($courseCommissionsStore);
+
+  function courseCommissionsChanged(courseCommissions: Commissions) {
+    simulation.nodes().forEach((node) => {
+      node.available = courseCommissions.get_subject_info(node.id) !== undefined;
     });
   }
 

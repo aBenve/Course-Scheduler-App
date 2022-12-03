@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 export function graph(
   svgElement: Element,
-  nodes: { id: string; label: string; selected: boolean }[],
+  nodes: { id: string; label: string; selected: boolean; available: boolean }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
   initialHeight: number,
@@ -16,6 +16,7 @@ export function graph(
     id: N[i],
     label: n.label,
     selected: n.selected,
+    available: n.available,
   }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
@@ -49,8 +50,12 @@ export function graph(
 
   const circleClasses = (d) => {
     return (
-      (d.selected ? "fill-accent" : "fill-vertex-dark dark:fill-vertex") +
-      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition"
+      (d.selected
+        ? "fill-accent"
+        : !d.available
+        ? "fill-text-terciary"
+        : "fill-vertex-dark dark:fill-vertex") +
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:scale-[0.9] hover:scale-[1.1] cursor-pointer colorTransition"
     );
   };
 
@@ -58,8 +63,10 @@ export function graph(
     return (
       (d.selected
         ? "fill-accent font-medium translate-y-1"
+        : !d.available
+        ? "fill-text-terciary"
         : "fill-text-dark dark:fill-text") +
-      "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer colorTransition"
+      "  stroke-vertex-ring dark:stroke-vertex-ring-dark cursor-pointer colorTransition"
     );
   };
 
@@ -138,7 +145,6 @@ export function graph(
     .attr("paint-order", "stroke")
     .attr("stroke-width", "5px")
     .attr("id", "node")
-
     .attr("r", 6)
     .on("mouseover", (_, nd) => {
       if (!isDragging) {
