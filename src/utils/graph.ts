@@ -60,7 +60,7 @@ export function graph(
   }
 
   const textClasses = (d) => {
-    return (d.selected ? "fill-accent font-medium" : "fill-text-dark dark:fill-text") +
+    return (d.selected ? "fill-accent font-medium translate-y-1" : "fill-text-dark dark:fill-text") +
       "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer colorTransition";
   }
 
@@ -143,17 +143,17 @@ export function graph(
     .attr("r", 6)
     .on("mouseover", (_, nd) => {
       if (!isDragging) {
-        const transition = "transition: all 0.3s 0.1s ease-in-out";
+        const transition = "transition: all 0.3s 0.2s ease-in-out";
         node.filter((n) => n.id !== nd.id).attr("style", "opacity: 0.3; " + transition);
         shadows.filter((n) => n.id !== nd.id).attr("style", "opacity: 0.3; " + transition);
         edge.filter((e) => e.source.id !== nd.id && e.target.id !== nd.id).attr("style", "opacity: 0.3; " + transition);
         edge.filter((e) => e.source.id === nd.id || e.target.id === nd.id).attr("style", "stroke: #5375F3; " + transition).attr("marker-end", "url(#arrow-highlight)");
-        text.filter((n) => n.id !== nd.id).attr("style", "visibility: hidden; " + transition);
+        text.filter((n) => n.id !== nd.id).attr("style", "visibility:hidden; " + transition);
         
         let selectedNodes = edges.filter((e) => e.source.id === nd.id || e.target.id === nd.id).map((e) => e.source.id === nd.id ? e.target.id : e.source.id);
         node.filter((n) => selectedNodes.includes(n.id)).attr("style", "opacity: 1");
         shadows.filter((n) => selectedNodes.includes(n.id)).attr("style", "opacity: 1");
-        text.filter((n) => selectedNodes.includes(n.id)).attr("style", "visibility: visible");
+        text.filter((n) => selectedNodes.includes(n.id)).attr("style", "visibility:visible;");
       }
     })
     .on("mouseout", releaseHover)
@@ -163,10 +163,11 @@ export function graph(
     .append("text")
     .attr("paint-order", "stroke")
     .attr("dominant-baseline", "middle")
+    .attr("text-anchor", "middle")
     .attr("stroke-width", "2px")
     .attr("font-size", "0.75em")
     .attr("width", 10)
-    .attr("x", 17)
+    .attr("y", 17)
     .attr("id", "text")
     .text((d) => d.label);
 

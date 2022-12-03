@@ -42,10 +42,10 @@ const config = {
         'text-secondary': '#9b9b9b',
         'text-terciary': '#6b7280',
 
-        'vertex': '#e8e8e8',
-        'vertex-dark': '#383838',
+        'vertex': colors.gray[300],
+        'vertex-dark': '#525252',
 
-        'vertex-ring': '#e5e7eb',
+        'vertex-ring': colors.gray[200],
         'vertex-ring-dark': '#191919',
 
         'edge': '#C5C9CE',
