@@ -1,26 +1,18 @@
 <script lang="ts">
-  import CustomOptionInput from "../components/CustomOptionInput.svelte";
-  import DataInput from "../components/DataInput.svelte";
+  import type {
+    SubjectPlan
+  } from "@course-scheduler-app/scheduler-wasm";
+  import type { Simulation, SimulationNodeDatum } from "d3";
+  import selected, {
+    toggleSubject
+  } from "src/store/GraphSelectedStore";
   import LinkButton from "../components/LinkButton.svelte";
-  import { fade, fly } from "svelte/transition";
-  import { onMount } from "svelte";
-  import { graph } from "../utils/graph";
-  import colors from "../utils/colors";
-  import { api } from "../api";
+  import LoadingSpinner from "../components/LoadingSpinner.svelte";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import planStore from "../store/PlanStore";
-  import type {
-    Commissions,
-    SubjectPlan,
-  } from "@course-scheduler-app/scheduler-wasm";
-  import LoadingSpinner from "../components/LoadingSpinner.svelte";
-  import type { Simulation, SimulationNodeDatum } from "d3";
-  import selected, {
-    addSelected,
-    removeSelected,
-    toggleSubject,
-  } from "src/store/GraphSelectedStore";
+  import colors from "../utils/colors";
+  import { graph } from "../utils/graph";
 
   let svgElem: Element;
   let simulation: Simulation<SimulationNodeDatum, undefined> | undefined;
@@ -76,7 +68,9 @@
     });
   }
 
-  $: simulation !== undefined && $selected !== null && selectedChanged($selected);
+  $: simulation !== undefined &&
+    $selected !== null &&
+    selectedChanged($selected);
 
   function selectedChanged(selected: Set<string>) {
     simulation.nodes().forEach((node) => {

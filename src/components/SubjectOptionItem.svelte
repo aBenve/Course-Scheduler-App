@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Tooltip from "./Tooltip.svelte";
   import colorSettings from "../store/UserColorsStore";
 
   export let color: string;

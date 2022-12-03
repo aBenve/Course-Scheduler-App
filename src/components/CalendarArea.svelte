@@ -1,10 +1,10 @@
 <script lang="ts">
-  import CalendarEvent from "./CalendarEvent.svelte";
-  import selectedOption from "../store/SelectedOptionStore";
-  import { options } from "../store/OptionStore";
-  import colors from "../utils/colors";
-  import { fly } from "svelte/transition";
   import type { Choice } from "@course-scheduler-app/scheduler-wasm";
+  import { fly } from "svelte/transition";
+  import { options } from "../store/OptionStore";
+  import selectedOption from "../store/SelectedOptionStore";
+  import colors from "../utils/colors";
+  import CalendarEvent from "./CalendarEvent.svelte";
 
   let firstHour = 8;
   let lastHour = 22;

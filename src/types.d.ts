@@ -1,10 +1,10 @@
-interface Subject{
-    id: string,
-    title: string,
-    isDndShadowItem?: bool,
+interface Subject {
+  id: string;
+  title: string;
+  isDndShadowItem?: bool;
 }
 
 interface Subjects {
-    mandatory: Array<Subject>;
-    optional: Array<Subject>;
+  mandatory: Array<Subject>;
+  optional: Array<Subject>;
 }

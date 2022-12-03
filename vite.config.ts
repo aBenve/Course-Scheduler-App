@@ -1,9 +1,9 @@
-import { defineConfig, loadEnv } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
-import wasmPack from "vite-plugin-wasm-pack";
-import { viteMockServe } from "vite-plugin-mock";
-import postcssConfig from "./postcss.config.js";
 import * as path from "path";
+import { defineConfig } from "vite";
+import { viteMockServe } from "vite-plugin-mock";
+import wasmPack from "vite-plugin-wasm-pack";
+import postcssConfig from "./postcss.config.js";
 
 // https://vitejs.dev/config/
 export default defineConfig({

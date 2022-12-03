@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ControlSubjectItem from "./ControlSubjectItem.svelte";
   import { dndzone } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
+  import ControlSubjectItem from "./ControlSubjectItem.svelte";
 
   import subjects from "../store/SubjectStore";
 

@@ -10,4 +10,4 @@ const colors = [
   "#D8AE43",
   "#D87843",
 ];
-export default colors
+export default colors;

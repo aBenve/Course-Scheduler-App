@@ -1,7 +1,7 @@
 <script lang="ts">
-  import SubjectOptionList from "./SubjectOptionList.svelte";
   import { fly } from "svelte/transition";
   import { newSearch } from "../store/OptionStore";
+  import SubjectOptionList from "./SubjectOptionList.svelte";
 
   let scrollable;
 

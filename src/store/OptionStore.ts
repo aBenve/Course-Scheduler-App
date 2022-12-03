@@ -1,29 +1,14 @@
-import generateChoices from "../generator";
-import {
-  scan,
-  map,
-  takeUntil,
-  switchMap,
-  Subject,
-  startWith,
-  finalize,
-  zip,
-  tap,
-  share,
-  shareReplay,
-  combineLatestWith,
-  Observable,
-  sample,
-  withLatestFrom,
-  concatMap,
-} from "rxjs";
-import finalizedSubjects from "./FinalizedSubjectsStore";
-import { toObservable, debug } from "./utils";
-import settings, { type Settings } from "./UserSettingsStore";
-import selectedOption from "./SelectedOptionStore";
 import type { Choice } from "@course-scheduler-app/scheduler-wasm";
+import {
+  combineLatestWith, finalize, map, Observable, scan, share,
+  shareReplay, startWith, Subject, switchMap, takeUntil, tap, withLatestFrom, zip
+} from "rxjs";
+import generateChoices from "../generator";
 import courseCommissionsStore from "./CourseCommissionsStore";
-import type { SubjectCategorization } from "./SubjectStore";
+import finalizedSubjects from "./FinalizedSubjectsStore";
+import selectedOption from "./SelectedOptionStore";
+import settings from "./UserSettingsStore";
+import { debug, toObservable } from "./utils";
 
 export type QueryParameters = {
   mandatory: string[];
@@ -65,7 +50,7 @@ function createOptions() {
     ();
   let combinedParameters = subjects.pipe(
     combineLatestWith(querySettings),
-    debug("Combined params"),
+    debug("Combined params")
     //share(),
   );
   let queryParameters = combinedParameters.pipe(
@@ -103,7 +88,7 @@ function createOptions() {
         })),
         finalize(() => gen.free())
       )
-    ),
+    )
     //debug("Generator!"),
   );
 

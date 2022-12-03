@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Link } from "svelte-routing";
   import Icon from "@iconify/svelte";
-  import ControlContent from "./ControlContent.svelte";
+  import { Link } from "svelte-routing";
   import { fly } from "svelte/transition";
+  import ControlContent from "./ControlContent.svelte";
   let clazz: string;
   export { clazz as class };
 

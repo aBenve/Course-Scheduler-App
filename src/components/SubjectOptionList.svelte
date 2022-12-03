@@ -1,8 +1,8 @@
 <script lang="ts">
-  import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
-  import { addPage, options, type QueryParameters } from "../store/OptionStore";
   import IntersectionObserver from "svelte-intersection-observer";
-  import { slide, fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
+  import { addPage, options } from "../store/OptionStore";
+  import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
 
   let endOfList: HTMLElement;
 

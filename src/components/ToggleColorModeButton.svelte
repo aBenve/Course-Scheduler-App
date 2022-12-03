@@ -1,6 +1,6 @@
 <script>
-  import colorSettings from "../store/UserColorsStore";
   import Icon from "@iconify/svelte";
+  import colorSettings from "../store/UserColorsStore";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");

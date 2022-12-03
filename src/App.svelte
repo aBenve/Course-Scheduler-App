@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { Router, Link, Route } from "svelte-routing";
-  import Input from "./routes/Input.svelte";
-  import Options from "./routes/Options.svelte";
-  import NotFound from "./routes/NotFound.svelte";
+  import { Route, Router } from "svelte-routing";
   import { scale } from "svelte/transition";
-  export let url = "";
+  import Input from "./routes/Input.svelte";
+  import NotFound from "./routes/NotFound.svelte";
+  import Options from "./routes/Options.svelte";
   import apiStore from "./store/ApiStore";
 
   import LoadingSpinner from "./components/LoadingSpinner.svelte";
+
+  export let url = "";
 </script>
 
 <Router {url}>

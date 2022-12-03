@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Time, DaysOfTheWeek } from "scheduler-wasm";
-  import { fly, fade } from "svelte/transition";
+  import type { DaysOfTheWeek, Time } from "scheduler-wasm";
+  import { fade, fly } from "svelte/transition";
   import colorSettings from "../store/UserColorsStore";
 
   export let start: Time;

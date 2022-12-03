@@ -1,16 +1,14 @@
 import type {
   Commissions,
-  SubjectInfo,
+  SubjectInfo
 } from "@course-scheduler-app/scheduler-wasm";
-import { ignoreElements } from "rxjs";
 import {
   loadSelectedSubjectCategorization,
-  saveSelectedSubjectCategorization,
+  saveSelectedSubjectCategorization
 } from "src/storage";
 import { writable, type Writable } from "svelte/store";
 import courseCommissionsStore from "./CourseCommissionsStore";
 import finalizedSubjectsStore from "./FinalizedSubjectsStore";
-import { options } from "./OptionStore";
 //import { SubjectInfo } from "scheduler-wasm";
 
 export type SubjectCategorization = {

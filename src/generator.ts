@@ -1,7 +1,4 @@
-import type {
-  Choice,
-  Commissions,
-} from "@course-scheduler-app/scheduler-wasm";
+import type { Choice, Commissions } from "@course-scheduler-app/scheduler-wasm";
 import type { QueryParameters } from "./store/OptionStore";
 
 export default function generate_choices(
@@ -22,7 +19,8 @@ export default function generate_choices(
     min_subject_count = 1;
   }
 
-  let builder = courseCommissions.create_generator_builder()
+  let builder = courseCommissions
+    .create_generator_builder()
     .set_mandatory_codes(mandatory)
     .set_optional_codes(optional)
     .set_collision_exceptions([])

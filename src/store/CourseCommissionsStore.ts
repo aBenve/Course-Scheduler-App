@@ -1,9 +1,13 @@
 import selectedTerm from "./SelectedTermStore";
 
-import { combineLatestWith, concatMap, map, pipe, shareReplay, startWith } from "rxjs";
-import { debug, toObservable } from "./utils";
-import apiStore from "./ApiStore";
 import type { Commissions } from "@course-scheduler-app/scheduler-wasm";
+import {
+  combineLatestWith,
+  concatMap, shareReplay,
+  startWith
+} from "rxjs";
+import apiStore from "./ApiStore";
+import { toObservable } from "./utils";
 
 const term = toObservable(selectedTerm);
 

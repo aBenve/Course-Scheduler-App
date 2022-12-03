@@ -1,22 +1,12 @@
 <script lang="ts">
-  import SubjectsOptionsArea from "../components/SubjectsOptionsArea.svelte";
-  import ControlsArea from "../components/ControlsArea.svelte";
+  import { fade } from "svelte/transition";
   import CalendarArea from "../components/CalendarArea.svelte";
-  import { options } from "../store/OptionStore";
-  import selectedOption from "../store/SelectedOptionStore";
-  import settings from "../store/UserSettingsStore";
+  import ControlsArea from "../components/ControlsArea.svelte";
+  import LoadingSpinner from "../components/LoadingSpinner.svelte";
+  import SubjectsOptionsArea from "../components/SubjectsOptionsArea.svelte";
+  import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import colorSettings from "../store/UserColorsStore";
-  import subjects, { type SubjectCategorization } from "../store/SubjectStore";
-  import finalizedSubjects from "../store/FinalizedSubjectsStore";
-  import { fly, fade } from "svelte/transition";
-  import type {
-    SubjectInfo,
-    Commissions,
-  } from "@course-scheduler-app/scheduler-wasm";
-  import LoadingSpinner from "../components/LoadingSpinner.svelte";
-  import { api } from "../api";
-  import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
