@@ -101,7 +101,7 @@
 </script>
 
 <ToggleColorModeButton />
-<main class="bg-background dark:bg-background-dark h-screen">
+<main class="bg-background dark:bg-background-dark h-screen colorTransition">
   {#if loading}
     <div class="w-full h-full flex items-center justify-center">
       <LoadingSpinner />

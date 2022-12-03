@@ -18,13 +18,13 @@
     >
       {#each $options.values as option, i}
         <span
-          class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30"
+          class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30 colorTransition"
         >
           {i + 1}
         </span>
         <div
           in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-x-auto border-solid  border-x-8 py-2 border-area dark:border-area-dark hover:border-zone hover:dark:border-zone-dark"
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-x-auto border-solid  border-x-8 py-2 border-area dark:border-area-dark hover:border-zone hover:dark:border-zone-dark colorTransition"
         >
           <SubjectOptionItemList
             optionData={option}

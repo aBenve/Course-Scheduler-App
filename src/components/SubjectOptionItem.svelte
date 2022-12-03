@@ -41,7 +41,7 @@
     </div>
   </div>
   <span
-    class="text-xs sm:text-lg font-normal {toggle
+    class="text-xs sm:text-lg font-normal colorTransition {toggle
       ? ''
       : 'text-text-dark dark:text-text opacity-80'}"
   >

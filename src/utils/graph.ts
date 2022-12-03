@@ -60,7 +60,7 @@ export function graph(
   }
 
   const textClasses = (d) => {
-    return (d.selected ? "fill-accent" : "fill-text-dark dark:fill-text") +
+    return (d.selected ? "fill-accent font-medium" : "fill-text-dark dark:fill-text") +
       "  stroke-vertex-ring dark:stroke-vertex-ring-dark active:fill-accent-dark cursor-pointer colorTransition";
   }
 

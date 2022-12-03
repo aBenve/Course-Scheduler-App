@@ -52,7 +52,7 @@
             class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
             2
               ? 'bg-zone dark:bg-zone-dark'
-              : 'bg-area dark:bg-area-dark'}"
+              : 'bg-area dark:bg-area-dark'} colorTransition"
           />
         {/each}
 
