@@ -107,7 +107,7 @@ export function graph(
   arrowHighlight
     .attr("id", "arrow-highlight")
     .select("path")
-    .attr("style", "fill: #5375F3; transition: all 0.3s 0.3s ease-in-out");
+    .attr("style", "fill: #5375F3;");
 
   const edge = svg
     .append("g")
@@ -148,7 +148,7 @@ export function graph(
     .attr("r", 6)
     .on("mouseover", (_, nd) => {
       if (!isDragging) {
-        const transition = "transition: all 0.3s 0.2s ease-in-out";
+        const transition = "transition: all 0.2s 0.1s ease-in-out";
         node
           .filter((n) => n.id !== nd.id)
           .attr("style", "opacity: 0.3; " + transition);
@@ -162,6 +162,7 @@ export function graph(
           .filter((e) => e.source.id === nd.id || e.target.id === nd.id)
           .attr("style", "stroke: #5375F3; " + transition)
           .attr("marker-end", "url(#arrow-highlight)");
+
         text
           .filter((n) => n.id !== nd.id)
           .attr("style", "visibility:hidden; " + transition);
