@@ -7,6 +7,7 @@
   export let end: Time;
   export let day: DaysOfTheWeek;
   export let title: string;
+  export let commision: string;
   export let calendarFirstHour: number;
   export let color: string;
 
@@ -29,16 +30,19 @@
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
   ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
-    2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg"
+    2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg relative"
   style="
     background-color: 
-  {$colorSettings.colorMode == 'dark' ? color + '70' : color + '40'}; 
+  {$colorSettings.colorMode == 'dark' ? color + '50' : color + '30'}; 
   "
 >
   <div
-    class="h-full flex justify-center items-center text-center sm:text-xs text-[0.6rem] font-bold"
+    class="h-full flex justify-center items-center text-center sm:text-xs text-[0.6rem] font-medium"
     style="color: {color}"
   >
     {title}
+  </div>
+  <div class="absolute right-1 bottom-1 opacity-50" style="color: {color}">
+    {commision}
   </div>
 </div>

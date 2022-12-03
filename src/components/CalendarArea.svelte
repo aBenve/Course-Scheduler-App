@@ -44,14 +44,14 @@
       </div>
     {:else}
       <div
-        class="bg-zone-terciary dark:bg-zone-terciary-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
+        class="bg-zone dark:bg-zone-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(lastHour - firstHour + 1) as _, i}
           <div
             class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
             2
-              ? 'bg-zone dark:bg-zone-dark'
+              ? 'bg-zone dark:bg-background-dark'
               : 'bg-area dark:bg-area-dark'} colorTransition"
           />
         {/each}
@@ -72,6 +72,7 @@
           {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
               title={option.subjects.get(task.subject).name}
+              commision={option.subjects.get(task.subject).commission}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}
