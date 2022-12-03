@@ -8,7 +8,7 @@ export function graph(
   initialWidth: number,
   initialHeight: number,
   clickCallback: (node) => void
-) {
+): d3.Simulation<d3.SimulationNodeDatum, undefined> {
   let N = d3.map(nodes, (n) => n.id);
   let LS = d3.map(edges, ({ source }) => source);
   let LE = d3.map(edges, ({ target }) => target);
@@ -33,8 +33,8 @@ export function graph(
         .strength(0.1)
     )
 
-    .force("x", d3.forceX())
-    .force("y", d3.forceY())
+    .force("x", d3.forceX(initialWidth / 2))
+    .force("y", d3.forceY(initialHeight / 2))
 
     .force(
       "collision",
@@ -79,7 +79,6 @@ export function graph(
 
   let svg = d3
     .select(svgElement)
-    .attr("viewBox", [-initialWidth / 2, -initialHeight / 2, initialWidth, initialHeight])
     .call(d3.zoom().on("zoom", handleZoom))
     .append("g");
 

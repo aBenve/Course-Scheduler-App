@@ -16,22 +16,20 @@
     SubjectPlan,
   } from "@course-scheduler-app/scheduler-wasm";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
-  import { svg } from "d3";
+  import type { Simulation, SimulationNodeDatum } from "d3";
 
   let svgElem: Element;
-  let simulation;
+  let simulation: Simulation<SimulationNodeDatum, undefined> | undefined;
 
   let charge = 0,
     link = 0;
 
   let width: number, height: number;
-  $: resizedSvg(width, height);
+  $: simulation !== undefined && resizedSvg(width, height);
   function resizedSvg(width: number, height: number) {
-    if (simulation !== undefined)
-      simulation
-        .force("center")
-        .x(width / 2)
-        .y(height / 2);
+    simulation.force("x").x(width / 2);
+    simulation.force("y").y(height / 2);
+    simulation.alpha(1);
   }
 
   $: changeChargeStrength(charge);
