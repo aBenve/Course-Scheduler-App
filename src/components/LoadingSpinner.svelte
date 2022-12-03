@@ -28,7 +28,7 @@
     height: 7px;
     border-radius: 50%;
     /* TODO: set color from theme */
-    background-color: blue;
+    background-color: #5375f3;
     margin: -4px 0 0 -4px;
   }
   .lds-roller div:nth-child(1) {
