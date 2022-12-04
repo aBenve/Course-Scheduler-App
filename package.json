@@ -35,6 +35,7 @@
     "lodash": "^4.17.21",
     "rxjs": "^7.5.6",
     "svelte-intersection-observer": "^0.10.0",
+    "svelte-range-slider-pips": "^2.1.0",
     "svelte-routing": "^1.6.0"
   }
 }

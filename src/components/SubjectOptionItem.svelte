@@ -28,7 +28,7 @@
       <circle cx="5" cy="5" r="5" fill={color} />
     </svg>
   </div>
-  <div class="flex max-w-[7em]">
+  <div class="flex max-w-[12em]">
     <div class="overflow-hidden">
       <div
         class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip
@@ -64,7 +64,7 @@
       transform: translateX(0%);
     }
     50% {
-      transform: translateX(min(calc(-100% + 7em), 0%));
+      transform: translateX(min(calc(-100% + 12em), 0%));
     }
     100% {
       transform: translateX(0%);
