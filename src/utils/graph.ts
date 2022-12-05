@@ -157,11 +157,11 @@ export function graph(
           .attr("style", "opacity: 0.3; " + transition);
         edge
           .filter((e) => e.source.id !== nd.id && e.target.id !== nd.id)
-          .attr("style", "opacity: 0.3; " + transition);
-        edge
-          .filter((e) => e.source.id === nd.id || e.target.id === nd.id)
-          .attr("style", "stroke: #5375F3; " + transition)
-          .attr("marker-end", "url(#arrow-highlight)");
+          .attr("style", "opacity: 0; " + transition);
+        // edge
+        //   .filter((e) => e.source.id === nd.id || e.target.id === nd.id)
+        //   .attr("style", "stroke: #5375F3; " + transition)
+        //   .attr("marker-end", "url(#arrow-highlight)");
 
         text
           .filter((n) => n.id !== nd.id)

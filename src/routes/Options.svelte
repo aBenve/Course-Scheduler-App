@@ -18,7 +18,7 @@
   $: loading = $courseCommissionsStore === null;
 </script>
 
-<ToggleColorModeButton />
+<ToggleColorModeButton class="absolute right-5 top-5" />
 <main class="bg-background dark:bg-background-dark h-screen colorTransition">
   {#if loading}
     <div class="w-full h-full flex items-center justify-center">

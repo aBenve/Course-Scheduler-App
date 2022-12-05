@@ -1,12 +1,10 @@
 <script lang="ts">
   import type {
-  Commissions,
-    SubjectPlan
+    Commissions,
+    SubjectPlan,
   } from "@course-scheduler-app/scheduler-wasm";
   import type { Simulation, SimulationNodeDatum } from "d3";
-  import selected, {
-    toggleSubject
-  } from "src/store/GraphSelectedStore";
+  import selected, { toggleSubject } from "src/store/GraphSelectedStore";
   import LinkButton from "../components/LinkButton.svelte";
   import LoadingSpinner from "../components/LoadingSpinner.svelte";
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
@@ -86,7 +84,8 @@
 
   function courseCommissionsChanged(courseCommissions: Commissions) {
     simulation.nodes().forEach((node) => {
-      node.available = courseCommissions.get_subject_info(node.id) !== undefined;
+      node.available =
+        courseCommissions.get_subject_info(node.id) !== undefined;
     });
   }
 
@@ -108,7 +107,7 @@
     >
       <svg bind:this={svgElem} width="100%" height="100%" />
     </div>
-    <div class="absolute right-2 bottom-2">
+    <div class="absolute right-5 bottom-5">
       <LinkButton title="Start" link="Options" />
     </div>
   {/if}
@@ -134,5 +133,5 @@
       <span>{link}</span>
     </div>
   </div> -->
-  <ToggleColorModeButton />
+  <ToggleColorModeButton class="absolute top-5 right-5 " />
 </main>
