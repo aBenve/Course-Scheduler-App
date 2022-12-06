@@ -6,7 +6,7 @@ const colorSettings: Writable<{
   colorMode: string;
   changeColorMode: () => void;
 }> = writable({
-  colorMode: localStorage.theme || "light",
+  colorMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light",
   changeColorMode: () => {
     colorSettings.update((settings) => {
       settings.colorMode = settings.colorMode === "light" ? "dark" : "light";
