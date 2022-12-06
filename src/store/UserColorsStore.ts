@@ -6,10 +6,11 @@ const colorSettings: Writable<{
   colorMode: string;
   changeColorMode: () => void;
 }> = writable({
-  colorMode: "light",
+  colorMode: localStorage.theme || "light",
   changeColorMode: () => {
     colorSettings.update((settings) => {
       settings.colorMode = settings.colorMode === "light" ? "dark" : "light";
+      localStorage.theme = settings.colorMode;
       return settings;
     });
   },

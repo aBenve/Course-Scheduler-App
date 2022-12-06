@@ -5,7 +5,7 @@
   let clazz;
 
   function handleColorModeToggle() {
-    let aux = document.getElementById("app");
+    let aux = document.documentElement;
     aux.classList.remove($colorSettings.colorMode);
     $colorSettings.changeColorMode();
     aux.classList.add($colorSettings.colorMode);

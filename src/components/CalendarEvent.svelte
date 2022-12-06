@@ -42,7 +42,7 @@
   >
     {title}
   </div>
-  <div class="absolute right-1 bottom-1 opacity-50" style="color: {color}">
+  <div class="absolute right-2 bottom-1 opacity-50" style="color: {color}">
     {commision}
   </div>
 </div>

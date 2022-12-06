@@ -5,13 +5,12 @@
 
   import config from "../../tailwind.config";
 
-  console.log(config.theme.extend.colors);
-
-  export let label: string;
+  export let min_label: string;
+  export let max_label: string;
   export let placeholder: string;
   export let max: number;
+  export let min: number;
   export let text: string;
-  /*let value: number;*/
 
   let colors = config.theme.extend.colors;
 
@@ -19,19 +18,10 @@
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-  $: value = $settings[label];
+  let labelArray = [$settings[min_label], $settings[max_label]];
 
-  /*
-  function handleChange(e: any): void {
-    let value = parseInt(e.target.value);
-    value = value > 0 ? value : 0;
-    settings.update((currentSettings) => {
-      currentSettings[label] = value;
-      console.log(currentSettings);
-      return currentSettings;
-    });
-  }
-  */
+  $: $settings[min_label] = labelArray[0];
+  $: $settings[max_label] = labelArray[1];
 </script>
 
 <!-- <div class="flex flex-col items-start w-full">
@@ -53,11 +43,11 @@
   <div
     class="flex items-center space-x-2 pb-2 block text-xs dark:text-text text-text-dark-secondary "
   >
-    <label class="" for={label}>
+    <label class="" for={text}>
       {toCapitalice(text)}
     </label>
-    <span class="px-2 py-1 bg-accent rounded-full bg-opacity-30 text-accent"
-      >{value}</span
+    <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
+      >{labelArray[0]} - {labelArray[1]}</span
     >
   </div>
   <div
@@ -66,6 +56,6 @@
       : ` --range-slider: ${colors['zone-dark']}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`}  "
   >
     <!-- values prop deberia ser un array con el maximo y el minimo -->
-    <RangeSlider range pushy bind:values={$settings[label]} min={0} {max} />
+    <RangeSlider range pushy bind:values={labelArray} {min} {max} />
   </div>
 </div>
