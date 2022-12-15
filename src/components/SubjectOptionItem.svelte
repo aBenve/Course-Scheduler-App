@@ -10,7 +10,7 @@
 </script>
 
 <div
-  class="rounded-lg flex items-center justify-between py-2 px-3 gap-2 relative text-text-dark dark:text-text colorTransition"
+  class="rounded-lg flex items-center justify-between px-2 gap-2 relative text-text-dark dark:text-text colorTransition"
   style="
     background-color: {toggle
     ? $colorSettings.colorMode == 'dark'
@@ -31,7 +31,7 @@
   <div class="flex max-w-[12em]">
     <div class="overflow-hidden">
       <div
-        class="text-xs lg:text-sm fixed-line-height font-medium whitespace-nowrap {tooltip
+        class="text-xs fixed-line-height font-medium whitespace-nowrap {tooltip
           ? 'active'
           : 'overflow-x-hidden'}"
       >
@@ -40,7 +40,7 @@
     </div>
   </div>
   <span
-    class="text-xs sm:text-lg font-normal colorTransition {toggle
+    class="text-xs  font-normal colorTransition {toggle
       ? ''
       : 'text-text-dark dark:text-text opacity-80'}"
   >
@@ -64,7 +64,9 @@
       transform: translateX(0%);
     }
     50% {
-      transform: translateX(min(calc(-100% + 12em), 0%));
+      transform: translateX(
+        min(calc(-100% + 15em), 0%)
+      ); /** 15 seems to be a better number than 12*/
     }
     100% {
       transform: translateX(0%);

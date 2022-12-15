@@ -148,7 +148,7 @@ export function graph(
     .attr("r", 6)
     .on("mouseover", (_, nd) => {
       if (!isDragging) {
-        const transition = "transition: all 0.2s 0.1s ease-in-out";
+        const transition = "transition: all 0.2s 0.2s ease-in-out";
         node
           .filter((n) => n.id !== nd.id)
           .attr("style", "opacity: 0.3; " + transition);

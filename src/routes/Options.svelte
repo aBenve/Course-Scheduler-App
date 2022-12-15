@@ -8,6 +8,8 @@
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import colorSettings from "../store/UserColorsStore";
 
+  import { fly } from "svelte/transition";
+
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
     aux.classList.remove($colorSettings.colorMode);
@@ -18,7 +20,6 @@
   $: loading = $courseCommissionsStore === null;
 </script>
 
-<ToggleColorModeButton class="absolute right-5 top-5" />
 <main class="bg-background dark:bg-background-dark h-screen colorTransition">
   {#if loading}
     <div class="w-full h-full flex items-center justify-center">
@@ -26,16 +27,23 @@
     </div>
   {:else}
     <div
-      class="w-full h-full gridContainer xl:px-40 md:px-16  px-4 py-4 lg:py-4"
+      class="w-full h-full gridContainer px-4 py-4 gap-4"
       transition:fade={{ duration: 500 }}
     >
       <ControlsArea
-        class="col-start-1 row-start-1 row-span-full lg:block hidden mr-5 "
+        class="col-start-1 row-start-1 row-span-full lg:block hidden  "
       />
       <SubjectsOptionsArea
-        class="col-start-2 col-span-full mb-5 row-span-3 overflow-x-auto "
+        class="col-start-5 row-start-1  row-span-full overflow-x-auto "
       />
-      <CalendarArea class="col-start-2  col-span-full row-span-4" />
+      <CalendarArea class="col-start-2 col-span-3 row-start-2 row-span-full" />
+
+      <div
+        class="col-start-2 col-span-3 row-start-1 row-span-2 relative"
+        in:fly={{ y: -10, duration: 500, delay: 500 }}
+      >
+        <ToggleColorModeButton class="absolute right-0 top-0" />
+      </div>
     </div>
   {/if}
 </main>
@@ -43,12 +51,12 @@
 <style>
   .gridContainer {
     display: grid;
-    grid-template-rows: repeat(7, minmax(0, 1fr));
-    grid-template-columns: 0 repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     .gridContainer {
       grid-template-columns: 20em repeat(4, minmax(0, 1fr));
     }
-  }
+  } */
 </style>

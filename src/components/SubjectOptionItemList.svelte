@@ -2,7 +2,7 @@
   import type { Choice } from "@course-scheduler-app/scheduler-wasm";
   import { slide } from "svelte/transition";
   import SubjectOptionItem from "./SubjectOptionItem.svelte";
-// import subjects from "../store/SubjectStore";
+  // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
   import colors from "../utils/colors";
   export let optionData: Choice;
@@ -17,7 +17,7 @@
   on:click={() => ($selectedOption = optionIndex)}
 > -->
 <div
-  class=" h-fit flex gap-x-2  cursor-pointer items-center"
+  class=" h-fit flex flex-col gap-y-2  cursor-pointer items-start"
   on:click={() => ($selectedOption = optionIndex)}
 >
   {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {

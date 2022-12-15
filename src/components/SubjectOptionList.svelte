@@ -14,17 +14,17 @@
 <div class="w-full p-3 flex flex-col items-center justify-center">
   {#if $options.values.length > 0 || !$options.done}
     <div
-      class="w-full gap-y-2 gap-x-4 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-center"
+      class="w-full gap-y-2 gap-x-2 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-start "
     >
       {#each $options.values as option, i}
         <span
-          class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30 colorTransition"
+          class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30 colorTransition mt-1"
         >
           {i + 1}
         </span>
         <div
           in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-x-auto border-solid  border-x-8 py-2 border-area dark:border-area-dark hover:border-zone hover:dark:border-zone-dark colorTransition"
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto p-2   colorTransition"
         >
           <SubjectOptionItemList
             optionData={option}
