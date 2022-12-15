@@ -1,8 +1,10 @@
 import type { SubjectPlan } from "@course-scheduler-app/scheduler-wasm";
 import {
   combineLatestWith,
-  concatMap, shareReplay,
-  startWith
+  concatMap,
+  from,
+  shareReplay,
+  startWith,
 } from "rxjs";
 import apiStore from "./ApiStore";
 import selectedPlan from "./SelectedPlanStore";
@@ -14,7 +16,7 @@ const planStore = apiStore.pipe(
   combineLatestWith(plan),
   concatMap(([api, plan]) =>
     api !== null
-      ? api.get_plan_from_api(plan)
+      ? from(api.get_plan_from_api(plan)).pipe(startWith(null))
       : Promise.resolve(null as SubjectPlan)
   ),
   startWith(null),
