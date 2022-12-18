@@ -35,4 +35,8 @@
       />
     </div>
   {/each}
+  <span
+    class="text-sm  font-normal colorTransition w-full flex justify-end text-text-dark-secondary dark:text-text-secondary"
+    >{optionIndex}</span
+  >
 </div>

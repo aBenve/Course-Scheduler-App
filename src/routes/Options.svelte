@@ -39,7 +39,7 @@
       <CalendarArea class="col-start-2 col-span-3 row-start-2 row-span-full" />
 
       <div
-        class="col-start-2 col-span-3 row-start-1 row-span-2 relative"
+        class="col-start-2 col-span-3 row-start-1 row-span-1 relative"
         in:fly={{ y: -10, duration: 500, delay: 500 }}
       >
         <ToggleColorModeButton class="absolute right-0 top-0" />
@@ -52,7 +52,7 @@
   .gridContainer {
     display: grid;
     grid-template-rows: repeat(4, minmax(0, 1fr));
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: 20em repeat(3, minmax(0, 1fr)) auto;
   }
   /* @media (min-width: 1024px) {
     .gridContainer {

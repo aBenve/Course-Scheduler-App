@@ -31,7 +31,7 @@
   <div class="flex max-w-[12em]">
     <div class="overflow-hidden">
       <div
-        class="text-xs fixed-line-height font-medium whitespace-nowrap {tooltip
+        class="text-xs py-1.5 font-medium whitespace-nowrap {tooltip
           ? 'active'
           : 'overflow-x-hidden'}"
       >

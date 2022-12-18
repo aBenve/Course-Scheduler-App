@@ -1,10 +1,13 @@
 <script lang="ts">
   import type { Choice } from "@course-scheduler-app/scheduler-wasm";
+  import App from "src/App.svelte";
   import { fly } from "svelte/transition";
   import { options } from "../store/OptionStore";
   import selectedOption from "../store/SelectedOptionStore";
   import colors from "../utils/colors";
+  import CalendarCell from "./CalendarCell.svelte";
   import CalendarEvent from "./CalendarEvent.svelte";
+  import ControlContent from "./ControlContent.svelte";
 
   let firstHour = 8;
   let lastHour = 22;
@@ -47,13 +50,23 @@
         class="bg-zone dark:bg-zone-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
-        {#each Array(lastHour - firstHour + 1) as _, i}
-          <div
-            class="col-start-1 row-start-{i * 2 + 2} col-span-7 row-span-2 {i %
-            2
-              ? 'bg-zone dark:bg-background-dark'
-              : 'bg-area dark:bg-area-dark'} colorTransition"
-          />
+        {#each Array(7) as _, t}
+          {#each Array(lastHour - firstHour + 1) as _, i}
+            <CalendarCell
+              col={t + 2}
+              row={i * 2 + 2}
+              bgColor={i % 2
+                ? "bg-zone dark:bg-background-dark"
+                : "bg-area dark:bg-area-dark"}
+            />
+            <CalendarCell
+              col={t + 2}
+              row={i * 2 + 1 + 2}
+              bgColor={i % 2
+                ? "bg-zone dark:bg-background-dark"
+                : "bg-area dark:bg-area-dark"}
+            />
+          {/each}
         {/each}
 
         {#each ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as day, i}
@@ -63,7 +76,11 @@
         {/each}
 
         {#each Array(lastHour - firstHour + 1) as _, i}
-          <div class="time row-start-{i * 2 + 2} col-start-1 row-span-2">
+          <div
+            class="time row-start-{i * 2 + 2} col-start-1 row-span-2 {i % 2
+              ? 'bg-zone dark:bg-background-dark'
+              : 'bg-area dark:bg-area-dark'} colorTransition"
+          >
             {String(((i + firstHour - 1) % 12) + 1).padStart(2, "0")}:00
           </div>
         {/each}
@@ -92,6 +109,7 @@
     grid-template-columns: 5em repeat(6, minmax(7em, 1fr));
     grid-template-rows: 2em repeat(30, minmax(0.7em, 1fr));
   }
+
   .time,
   .day {
     display: flex;

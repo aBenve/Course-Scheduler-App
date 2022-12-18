@@ -11,20 +11,22 @@
   /*$: reachedEnd && options.addPage();*/
 </script>
 
-<div class="w-full p-3 flex flex-col items-center justify-center">
+<!-- <div class="w-full p-3 flex flex-col items-center justify-center"> -->
+<div class="w-full flex flex-col items-center overflow-auto">
   {#if $options.values.length > 0 || !$options.done}
-    <div
+    <!-- <div
       class="w-full gap-y-2 gap-x-2 grid grid-rows-[repeat(auto-fill,1fr)] grid-cols-[max-content_1fr] items-start "
-    >
+    > -->
+    <div class="w-full flex flex-col space-y-4 items-start ">
       {#each $options.values as option, i}
-        <span
+        <!-- <span
           class="font-medium text-center text-text-dark-secondary dark:text-text-secondary text-2xl opacity-30 colorTransition mt-1"
         >
           {i + 1}
-        </span>
+        </span> -->
         <div
           in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto p-2   colorTransition"
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto p-4   colorTransition"
         >
           <SubjectOptionItemList
             optionData={option}
