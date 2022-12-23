@@ -26,7 +26,7 @@
         </span> -->
         <div
           in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto   colorTransition"
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-2xl w-full overflow-y-auto   colorTransition"
         >
           <SubjectOptionItemList
             optionData={option}
@@ -55,7 +55,7 @@
     {/if}
   {:else}
     <span
-      class="px-3 py-2 text-text-dark dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg colorTransition"
+      class="px-3 py-2 text-text-dark text-sm dark:text-text hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark rounded-lg colorTransition"
     >
       No subjects available.
     </span>

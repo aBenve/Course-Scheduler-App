@@ -20,51 +20,44 @@
 
   // import tailwind config
   import tailwindConfig from "../../tailwind.config.js";
+  import ControlSubjectItemButton from "./ControlSubjectItemButton.svelte";
 
   export let onChange;
   export let title: string;
   export let id: string;
   export let importance: string;
+
+  function onChangeButton(type) {
+    if (importance !== type) onChange(id, importance, type);
+    else onChange(id, importance, "optional");
+  }
 </script>
 
 <div
-  class="group flex items-center space-x-4 rounded-lg  justify-between colorTransition p-2 {importance ===
+  class=" flex items-center space-x-2 rounded-lg  colorTransition justify-between px-3 py-2 {importance ===
   'mandatory'
     ? // ? 'border border-solid border-accent border-2 text-text-dark dark:text-text'
-      'bg-accent text-area '
+      'bg-accent text-accent font-medium bg-opacity-20 '
     : importance === 'optional'
     ? 'bg-zone dark:bg-zone-dark text-text-dark dark:text-text'
     : 'bg-zone dark:bg-zone-dark text-vertex dark:text-vertex-dark'} "
 >
-  <button
-    on:click={() => {
-      if (importance !== "ignore") onChange(id, importance, "ignore");
-      else onChange(id, importance, "optional");
-    }}
-    class="opacity-0 group-hover:opacity-100 transition ease-in-out duration-300 rounded-lg p-2 hover:bg-zone-secondary hover:dark:bg-zone-secondary-dark hover:bg-opacity-50"
-  >
-    <Icon
-      icon="material-symbols:do-not-disturb-on-outline-rounded"
-      class=""
-      width={18}
-      height={18}
-    />
-  </button>
   <span class=" text-xs flex items-start w-full">{title}</span>
-  <button
-    on:click={() => {
-      if (importance !== "mandatory") onChange(id, importance, "mandatory");
-      else onChange(id, importance, "optional");
-    }}
-    class="opacity-0 group-hover:opacity-100 transition ease-in-out duration-300 rounded-lg p-2 hover:bg-zone-secondary hover:dark:bg-zone-secondary-dark hover:bg-opacity-50"
-  >
-    <Icon
-      icon="material-symbols:lock-open-outline"
-      class=""
-      width={18}
-      height={18}
-    />
-  </button>
+
+  <ControlSubjectItemButton
+    tooltip="Ignore this subject"
+    prevImportance={importance}
+    onChange={() => onChangeButton("ignore")}
+    {id}
+    icon="material-symbols:do-not-disturb-on-outline-rounded"
+  />
+  <ControlSubjectItemButton
+    prevImportance={importance}
+    tooltip="Make this subject obligaroty"
+    onChange={() => onChangeButton("mandatory")}
+    {id}
+    icon="material-symbols:lock-open-outline"
+  />
 </div>
 
 <style>

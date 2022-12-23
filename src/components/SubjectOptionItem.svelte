@@ -31,9 +31,9 @@
   <div class="flex max-w-[12em]">
     <div class="overflow-hidden">
       <div
-        class="text-xs py-1.5 font-medium whitespace-nowrap {tooltip
-          ? 'active'
-          : 'overflow-x-hidden'}"
+        class="text-xs py-1.5  whitespace-nowrap {tooltip
+          ? 'active '
+          : 'overflow-x-hidden'} {toggle ? 'font-medium' : ''}"
       >
         {subject}
       </div>

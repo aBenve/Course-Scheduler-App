@@ -32,7 +32,7 @@
   > -->
   <div
     in:fly={{ y: 10, duration: 500, delay: 500 }}
-    class=" h-full w-full rounded-lg flex flex-col items-center gap-y-5 overflow-auto "
+    class=" h-full w-full rounded-2xl flex flex-col items-center gap-y-5 overflow-auto "
   >
     <!-- <Calendar {plugins} {options} /> -->
     {#if option == null}
@@ -47,7 +47,7 @@
       </div>
     {:else}
       <div
-        class="bg-zone dark:bg-zone-dark w-full h-full CalendarGrid rounded-lg overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
+        class="bg-zone dark:bg-zone-dark w-full h-full CalendarGrid rounded-2xl overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
       >
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
         {#each Array(7) as _, t}
@@ -70,7 +70,7 @@
         {/each}
 
         {#each ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as day, i}
-          <div class="day font-medium col-start-{i + 2} row-start-1 px-2 ">
+          <div class="day  col-start-{i + 2} row-start-1 px-2 ">
             {day}
           </div>
         {/each}

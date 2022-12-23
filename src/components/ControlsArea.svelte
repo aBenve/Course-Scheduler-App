@@ -17,7 +17,7 @@
 <main class={clazz}>
   <div
     in:fly={{ x: -10, duration: 500, delay: 200 }}
-    class="bg-area dark:bg-area-dark h-full p-4 rounded-lg flex flex-col items-center gap-y-5 colorTransition"
+    class="bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col items-center gap-y-5 colorTransition"
   >
     <div class="flex w-full">
       <Link
