@@ -1,6 +1,8 @@
 interface Subject {
   id: string;
   title: string;
+  // importance?: "mandatory" | "optional" | "ignore";
+  importance?: string;
   isDndShadowItem?: bool;
 }
 

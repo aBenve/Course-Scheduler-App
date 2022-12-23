@@ -26,7 +26,7 @@
         </span> -->
         <div
           in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto p-4   colorTransition"
+          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-lg w-full overflow-y-auto   colorTransition"
         >
           <SubjectOptionItemList
             optionData={option}

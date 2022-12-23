@@ -32,7 +32,11 @@
     <PlanSelector />
   </div>
   <div class="absolute right-5 bottom-5">
-    <LinkButton title="Start" link="Options" />
+    <LinkButton
+      title="Start"
+      link="Options"
+      icon="material-symbols:arrow-right-alt-rounded"
+    />
   </div>
   <!-- <div
     class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-5"

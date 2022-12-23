@@ -39,11 +39,7 @@
       </div>
     </div>
   </div>
-  <span
-    class="text-xs  font-normal colorTransition {toggle
-      ? ''
-      : 'text-text-dark dark:text-text opacity-80'}"
-  >
+  <span class="text-xs  font-normal ">
     {commission}
   </span>
 </div>

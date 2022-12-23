@@ -1,5 +1,6 @@
 <script>
     import selectedPlanStore from "src/store/SelectedPlanStore";
+    import Icon from "@iconify/svelte";
 
     let isOpen = false;
     export let options;
@@ -10,7 +11,7 @@
 </script>
 
 <div
-    class=" relative flex items-center bg-zone dark:bg-zone-dark w-fit px-3 py-2 colorTransition min-w-[5rem]  {isOpen
+    class=" relative flex items-center bg-zone dark:bg-zone-dark w-fit colorTransition min-w-[5rem]  {isOpen
         ? 'rounded-b-none rounded-t-lg'
         : 'rounded-lg'}"
 >
@@ -18,12 +19,20 @@
         on:click={() => {
             isOpen = !isOpen;
         }}
-        class="bg-zone dark:bg-zone-dark text-text-dark dark:text-text text-sm  block w-full colorTransition"
-        >{selectedOption}</button
+        class=" flex items-center justify-between space-x-2 px-3 py-2 text-text-dark dark:text-text text-sm  block w-full colorTransition"
+        ><span>{selectedOption}</span>
+        <Icon
+            icon="material-symbols:keyboard-arrow-down-rounded"
+            width="18"
+            height="18"
+            class="text-text-terciary {isOpen
+                ? 'transform rotate-180 transition ease-int-out duration-300'
+                : 'transform rotate-0 transition ease-int-out duration-300'}"
+        /></button
     >
     {#if isOpen}
         <div
-            class="flex pt-4 flex-col space-y-2 absolute w-full bg-area dark:bg-area-dark colorTransition bg-opacity-70 rounded-b-lg rounded-t-none  top-full left-0 "
+            class="flex pt-4 flex-col space-y-2 absolute w-full bg-area dark:bg-area-dark colorTransition  rounded-b-lg rounded-t-none  top-full left-0 "
         >
             {#each options as option}
                 <button

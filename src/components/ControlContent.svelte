@@ -3,5 +3,5 @@
   import ControlSidebar from "./ControlSidebar.svelte";
 </script>
 
-<ControlPageSelector />
+<!-- <ControlPageSelector /> -->
 <ControlSidebar />

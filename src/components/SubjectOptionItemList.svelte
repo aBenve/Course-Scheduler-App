@@ -17,7 +17,7 @@
   on:click={() => ($selectedOption = optionIndex)}
 > -->
 <div
-  class=" h-fit flex flex-col gap-y-2  cursor-pointer items-start"
+  class=" h-fit flex flex-col gap-y-2 p-4  cursor-pointer items-start"
   on:click={() => ($selectedOption = optionIndex)}
 >
   {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
@@ -36,7 +36,7 @@
     </div>
   {/each}
   <span
-    class="text-sm  font-normal colorTransition w-full flex justify-end text-text-dark-secondary dark:text-text-secondary"
+    class="text-sm  font-medium colorTransition w-full flex justify-end text-text-terciary"
     >{optionIndex}</span
   >
 </div>
