@@ -42,7 +42,7 @@
     ? 'bg-zone dark:bg-zone-dark text-text-dark dark:text-text'
     : 'bg-zone dark:bg-zone-dark text-vertex dark:text-vertex-dark'} "
 >
-  <span class=" text-xs flex items-start w-full">{title}</span>
+  <span class=" text-xs flex items-start w-[10rem]">{title}</span>
 
   <ControlSubjectItemButton
     tooltip="Ignore this subject"

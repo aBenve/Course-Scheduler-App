@@ -2,6 +2,9 @@
   import { fly } from "svelte/transition";
   import { newSearch } from "../store/OptionStore";
   import SubjectOptionList from "./SubjectOptionList.svelte";
+  import { options } from "../store/OptionStore";
+  import Badge from "./Badge.svelte";
+  import ToggleColorModeButton from "./ToggleColorModeButton.svelte";
 
   let scrollable;
 
@@ -37,9 +40,16 @@
   <div
     bind:this={scrollable}
     in:fly={{ y: -10, duration: 500, delay: 350 }}
-    class=" relative h-full  colorTransition flex flex-col space-y-2"
+    class=" relative h-full  colorTransition flex flex-col space-y-4"
   >
-    <span class="text-text-dark dark:text-text text-lg ">Options</span>
+    <div class="flex items-center justify-between">
+      <span class="flex items-center space-x-2 w-full">
+        <span class="text-text-dark dark:text-text text-lg ">Options </span>
+        <Badge title={$options.values.length + "+"} />
+      </span>
+      <ToggleColorModeButton class="" />
+    </div>
+
     <SubjectOptionList />
   </div>
 </div>

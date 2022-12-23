@@ -16,7 +16,7 @@
 
 <div class={clazz}>
   <div
-    class="p-2 hidden xl:block bg-area rounded-lg dark:bg-area-dark text-text-dark dark:text-text cursor-pointer hover:opacity-50"
+    class="p-2 bg-area rounded-lg dark:bg-area-dark text-text-dark dark:text-text cursor-pointer hover:opacity-50"
     on:click={handleColorModeToggle}
   >
     <Icon

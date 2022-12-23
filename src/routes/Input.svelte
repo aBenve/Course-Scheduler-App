@@ -28,10 +28,10 @@
   {:else}
     <SubjectGraph />
   {/if}
-  <div class="absolute left-5 top-5">
+  <div class="absolute left-4 top-4">
     <PlanSelector />
   </div>
-  <div class="absolute right-5 bottom-5">
+  <div class="absolute right-4 bottom-4">
     <LinkButton
       title="Start"
       link="Options"
@@ -39,7 +39,7 @@
     />
   </div>
   <!-- <div
-    class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-5"
+    class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-4"
   >
     <label for="charge">Charge</label>
 
@@ -60,5 +60,5 @@
       <span>{link}</span>
     </div>
   </div> -->
-  <ToggleColorModeButton class="absolute top-5 right-5 " />
+  <ToggleColorModeButton class="absolute top-4 right-4 " />
 </main>

@@ -30,9 +30,7 @@
       class="w-full h-full gridContainer px-4 py-4 gap-4"
       transition:fade={{ duration: 500 }}
     >
-      <ControlsArea
-        class="col-start-1 row-start-1 row-span-full lg:block hidden  "
-      />
+      <ControlsArea class="col-start-1 row-start-1 row-span-full " />
       <SubjectsOptionsArea
         class="col-start-5 row-start-1  row-span-full overflow-x-auto "
       />
@@ -42,7 +40,7 @@
         class="col-start-2 col-span-3 row-start-1 row-span-1 relative"
         in:fly={{ y: -10, duration: 500, delay: 500 }}
       >
-        <ToggleColorModeButton class="absolute right-0 top-0" />
+        <!-- <ToggleColorModeButton class="absolute right-0 top-0" /> -->
       </div>
     </div>
   {/if}
@@ -52,7 +50,7 @@
   .gridContainer {
     display: grid;
     grid-template-rows: repeat(4, minmax(0, 1fr));
-    grid-template-columns: 20em repeat(3, minmax(0, 1fr)) auto;
+    grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto;
   }
   /* @media (min-width: 1024px) {
     .gridContainer {
