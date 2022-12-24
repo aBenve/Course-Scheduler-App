@@ -47,16 +47,20 @@
   <ControlSubjectItemButton
     tooltip="Ignore this subject"
     prevImportance={importance}
+    forImportance="ignore"
     onChange={() => onChangeButton("ignore")}
     {id}
     icon="material-symbols:do-not-disturb-on-outline-rounded"
+    clickedIcon="material-symbols:do-not-disturb-on-rounded"
   />
   <ControlSubjectItemButton
     prevImportance={importance}
+    forImportance="mandatory"
     tooltip="Make this subject obligaroty"
     onChange={() => onChangeButton("mandatory")}
     {id}
     icon="material-symbols:lock-open-outline"
+    clickedIcon="material-symbols:lock"
   />
 </div>
 
