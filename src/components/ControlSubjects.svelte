@@ -24,7 +24,7 @@
     .map(([key, value]) => value.map((item) => ({ ...item, importance: key })))
     .reduce((acc, value) => acc.concat(value), []);
 
-  $: console.log($subjectList);
+  //$: console.log($subjectList);
 
   function handleSubjectListChange(id: string, from: string, to: string): void {
     console.log(id, from, to);

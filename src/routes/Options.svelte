@@ -9,6 +9,7 @@
   import colorSettings from "../store/UserColorsStore";
 
   import { fly } from "svelte/transition";
+  import ConfigurationArea from "src/components/ConfigurationArea.svelte";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
@@ -36,12 +37,9 @@
       />
       <CalendarArea class="col-start-2 col-span-3 row-start-2 row-span-full" />
 
-      <div
+      <ConfigurationArea
         class="col-start-2 col-span-3 row-start-1 row-span-1 relative"
-        in:fly={{ y: -10, duration: 500, delay: 500 }}
-      >
-        <!-- <ToggleColorModeButton class="absolute right-0 top-0" /> -->
-      </div>
+      />
     </div>
   {/if}
 </main>

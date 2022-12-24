@@ -20,7 +20,7 @@
   <main class={clazz}>
     <div
       in:fly={{ x: -10, duration: 500, delay: 200 }}
-      class="bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col gap-y-5 colorTransition"
+      class="bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col gap-y-4 colorTransition"
     >
       <div class="flex w-full items-center justify-between">
         <Link

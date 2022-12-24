@@ -2,6 +2,7 @@
   import type { Choice } from "@course-scheduler-app/scheduler-wasm";
   import { slide } from "svelte/transition";
   import SubjectOptionItem from "./SubjectOptionItem.svelte";
+
   // import subjects from "../store/SubjectStore";
   import selectedOption from "../store/SelectedOptionStore";
   import colors from "../utils/colors";
