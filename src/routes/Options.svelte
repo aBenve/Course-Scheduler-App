@@ -18,6 +18,10 @@
     aux.classList.add($colorSettings.colorMode);
   }
 
+  let isControlAreaOpen: boolean = true;
+
+  $: console.log(isControlAreaOpen);
+
   $: loading = $courseCommissionsStore === null;
 </script>
 
@@ -28,14 +32,23 @@
     </div>
   {:else}
     <div
-      class="w-full h-full gridContainer px-4 py-4 gap-4"
+      class="w-full h-full {isControlAreaOpen
+        ? 'gridContainer'
+        : 'smallGridContainer'}  px-4 py-4 gap-4"
       transition:fade={{ duration: 500 }}
     >
-      <ControlsArea class="col-start-1 row-start-1 row-span-full " />
+      <ControlsArea
+        class="col-start-1 row-start-1 row-span-full "
+        onToggle={(state) => (isControlAreaOpen = state)}
+      />
       <SubjectsOptionsArea
         class="col-start-5 row-start-1  row-span-full overflow-x-auto "
       />
-      <CalendarArea class="col-start-2 col-span-3 row-start-2 row-span-full" />
+      <CalendarArea
+        class="{isControlAreaOpen
+          ? 'col-start-2'
+          : 'col-start-1'} col-span-3 row-start-2 row-span-full"
+      />
 
       <ConfigurationArea
         class="col-start-2 col-span-3 row-start-1 row-span-1 relative"
@@ -49,6 +62,11 @@
     display: grid;
     grid-template-rows: repeat(4, minmax(0, 1fr));
     grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto;
+  }
+  .smallGridContainer {
+    display: grid;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
   }
   /* @media (min-width: 1024px) {
     .gridContainer {

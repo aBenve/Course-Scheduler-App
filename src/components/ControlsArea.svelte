@@ -5,8 +5,10 @@
   import ControlContent from "./ControlContent.svelte";
   import subjectList from "src/store/SubjectListStore";
   import Badge from "./Badge.svelte";
+  import ButtonWithIcon from "./ButtonWithIcon.svelte";
   let clazz: string;
   export { clazz as class };
+  export let onToggle;
 
   let page: string;
   let isOpen: boolean = true;
@@ -25,28 +27,33 @@
       <div class="flex w-full items-center justify-between">
         <Link
           to="/"
-          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
+          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
         >
-          <Icon
+          <ButtonWithIcon
             icon="material-symbols:arrow-back-ios-new-rounded"
-            width="12"
-            height="12"
-            class="text-text-dark dark:text-text"
+            iconWidth="12"
+            iconHeight="12"
+            iconStyles="text-text-dark dark:text-text"
+            textStyles="text-text-dark dark:text-text text-xs"
+            title="Go back"
           />
-          <span class="text-text-dark dark:text-text text-xs">Go back</span>
         </Link>
 
         <button
-          on:click={() => (isOpen = false)}
-          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
+          on:click={() => {
+            isOpen = false;
+            onToggle(isOpen);
+          }}
+          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
         >
-          <Icon
+          <ButtonWithIcon
             icon="material-symbols:hide"
-            width="15"
-            height="15"
-            class="text-text-dark dark:text-text"
+            iconWidth="15"
+            iconHeight="15"
+            iconStyles="text-text-dark dark:text-text"
+            textStyles="text-text-dark dark:text-text text-xs"
+            title="Hide"
           />
-          <span class="text-text-dark dark:text-text text-xs">Hide</span>
         </button>
       </div>
       <div class="flex items-center space-x-2 w-full">
@@ -58,8 +65,11 @@
   </main>
 {:else}
   <button
-    on:click={() => (isOpen = true)}
-    class=" absolute top-4 bg-area dark:bg-area-dark z-10 left-4 flex space-x-2 items-center hover:bg-zone dark:hover:bg-zone-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
+    on:click={() => {
+      isOpen = true;
+      onToggle(isOpen);
+    }}
+    class="colorTransition absolute top-4 bg-area dark:bg-area-dark z-10 left-4 flex space-x-2 items-center hover:bg-zone dark:hover:bg-zone-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
   >
     <Icon
       icon="material-symbols:hide"
