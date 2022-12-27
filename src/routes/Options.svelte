@@ -51,7 +51,9 @@
       />
 
       <ConfigurationArea
-        class="col-start-2 col-span-3 row-start-1 row-span-1 relative"
+        class="{isControlAreaOpen
+          ? 'col-start-2'
+          : 'col-start-1'}  col-span-3 row-start-1 row-span-1 relative"
       />
     </div>
   {/if}
