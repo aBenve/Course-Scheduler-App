@@ -26,7 +26,6 @@
 
 <div
   in:fly={{ y: -10, duration: 500 }}
-  out:fade={{ duration: 200 }}
   class="col-start-{dayIndex + 2} row-start-{Math.round(
     (startHour - calendarFirstHour) * 2
   ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
