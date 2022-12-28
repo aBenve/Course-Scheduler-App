@@ -8,7 +8,7 @@
 </script>
 
 <div
-    on:mousedown={() => (isActive = !isActive)}
+    on:mousedown={(e) => {e.preventDefault();isActive = !isActive}}
     on:mouseenter={(e) => (e.buttons === 1 ? (isActive = true) : null)}
     class="CalendarCell relative cursor-pointer col-start-{col} row-start-{row} col-span-1 {bgColor}  {isActive
         ? 'active'
