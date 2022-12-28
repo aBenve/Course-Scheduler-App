@@ -39,6 +39,15 @@
 
   let spanDragging: Span = null;
 
+  function cmpTime(left: Time, right: Time): number {
+    return left.hour < right.hour ||
+      (left.hour == right.hour && left.minutes < right.minutes)
+      ? -1
+      : left.hour == right.hour && left.minutes == right.minutes
+      ? 0
+      : 1;
+  }
+
   function orderTimes(first: Time, second: Time) {
     function getNext(time: Time) {
       time = Object.assign({}, time);
@@ -50,18 +59,38 @@
       }
       return time;
     }
-    return first.hour < second.hour ||
-      (first.hour == second.hour && first.minutes < second.minutes)
-      ? ([first, getNext(second)] as const)
-      : ([second, getNext(first)] as const);
+    return cmpTime(first, second) == 1
+      ? ([second, getNext(first)] as const)
+      : ([first, getNext(second)] as const);
   }
 
-  function cellMouseDown(day: string, i: number) {
-    spanDragging = {
-      day: day.toLowerCase() as DaysOfTheWeek,
-      start: { hour: Math.floor(i / 2) + firstHour, minutes: (i % 2) * 30 },
-      end: { hour: Math.floor(i / 2) + firstHour, minutes: (i % 2) * 30 },
+  function isInSpan(time: Time, { start, end }: { start: Time; end: Time }) {
+    return cmpTime(start, time) <= 0 && cmpTime(time, end) < 0;
+  }
+
+  function indexToTime(i: number) {
+    return { hour: Math.floor(i / 2) + firstHour, minutes: (i % 2) * 30 };
+  }
+
+  function cellMouseDown(day2: string, i: number) {
+    let day = day2.toLowerCase() as DaysOfTheWeek;
+    let span = {
+      start: indexToTime(i),
+      end: indexToTime(i),
     };
+    let existingSpanIndex = spans.findIndex(
+      (s) => s.day === day && isInSpan(span.start, s)
+    );
+
+    if (existingSpanIndex !== -1) {
+      spans.splice(existingSpanIndex, 1);
+      spans = spans;
+    } else {
+      spanDragging = {
+        day,
+        ...span,
+      };
+    }
   }
   function cellMouseUp(day: string, i: number) {
     if (spanDragging !== null) {
@@ -77,10 +106,7 @@
   }
   function cellMouseEnter(day: string, i: number) {
     if (spanDragging !== null) {
-      spanDragging.end = {
-        hour: Math.floor(i / 2) + firstHour,
-        minutes: (i % 2) * 30,
-      };
+      spanDragging.end = indexToTime(i);
     }
   }
   $: spanDragging !== null && console.log(spanDragging.start, spanDragging.end);
