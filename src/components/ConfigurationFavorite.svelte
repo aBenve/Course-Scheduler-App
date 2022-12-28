@@ -10,6 +10,7 @@
   {#each $favoriteOptions as option, i}
     <ConfigurationFavoriteButton
       content={i + 1}
+      selected={$selectedFavouriteOptionIndex === i}
       onClick={() => {
         selectedFavouriteOptionIndex.next(i);
       }}
