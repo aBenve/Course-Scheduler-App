@@ -1,7 +1,7 @@
 import type {Choice} from "@course-scheduler-app/scheduler-wasm";
 import { writable, type Writable } from "svelte/store";
 
-// This is an array of Options. Every element is a object and contains subjects and week map
+// This is an array of Options. 
 function createFavoriteOptions() {
     const { subscribe, set, update } = writable<Choice[]>([]);
     return {
