@@ -115,7 +115,7 @@ function createOptions() {
     combinedParameters.pipe(map(([s, _q]) => s))
   ).pipe(
     switchMap(([options, subjects]) => {
-      let sortedSubjects = [...subjects.mandatory, ...subjects.optional].map(
+      let sortedSubjects = [...subjects.mandatory, ...subjects.optional, ...subjects.ignore].map(
         (s) => s.id
       );
       return options.pipe(map((options) => ({ sortedSubjects, ...options })));
