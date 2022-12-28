@@ -3,7 +3,7 @@
   import App from "src/App.svelte";
   import { fly } from "svelte/transition";
   import { options } from "../store/OptionStore";
-  import selectedOption from "../store/SelectedOptionStore";
+  import { selectedOption } from "../store/SelectedOptionStore";
   import colors from "../utils/colors";
   import CalendarCell from "./CalendarCell.svelte";
   import CalendarEvent from "./CalendarEvent.svelte";
@@ -14,13 +14,10 @@
 
   let clazz: string;
 
-  let option: Choice | null;
-  $: option = selectedOption == null ? null : $options.values[$selectedOption];
-
   $: localSortedSubjects =
-    option == null
+    $selectedOption === null
       ? null
-      : $options.sortedSubjects.filter((v) => option.subjects.has(v));
+      : $options.sortedSubjects.filter((v) => $selectedOption.subjects.has(v));
 
   export { clazz as class };
 </script>
@@ -35,7 +32,7 @@
     class=" h-full w-full rounded-2xl flex flex-col items-center gap-y-5 overflow-auto "
   >
     <!-- <Calendar {plugins} {options} /> -->
-    {#if option == null}
+    {#if $selectedOption === null}
       <div
         class="w-full h-full flex justify-center items-center  bg-area dark:bg-area-dark colorTransition"
       >
@@ -85,11 +82,11 @@
           </div>
         {/each}
 
-        {#each Array.from(option.week.entries()) as [day, dayTasks]}
+        {#each Array.from($selectedOption.week.entries()) as [day, dayTasks]}
           {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
-              title={option.subjects.get(task.subject).name}
-              commision={option.subjects.get(task.subject).commission}
+              title={$selectedOption.subjects.get(task.subject).name}
+              commision={$selectedOption.subjects.get(task.subject).commission}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}

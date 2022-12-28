@@ -4,13 +4,13 @@
   import SubjectOptionItem from "./SubjectOptionItem.svelte";
 
   // import subjects from "../store/SubjectStore";
-  import selectedOption from "../store/SelectedOptionStore";
+  import { selectedOptionIndex } from "../store/SelectedOptionIndices";
   import colors from "../utils/colors";
   export let optionData: Choice;
   export let optionIndex: number;
   export let sortedSubjects: string[];
 
-  $: selected = $selectedOption == optionIndex;
+  $: selected = $selectedOptionIndex === optionIndex;
 </script>
 
 <!-- <div
@@ -19,7 +19,7 @@
 > -->
 <div
   class=" h-fit flex flex-col gap-y-2 p-4  cursor-pointer items-start"
-  on:click={() => ($selectedOption = optionIndex)}
+  on:click={() => (selectedOptionIndex.next(optionIndex))}
 >
   {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
       let indexA = sortedSubjects.indexOf(codeA);

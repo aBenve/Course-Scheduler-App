@@ -1,5 +1,24 @@
-import { writable, type Writable } from "svelte/store";
+import { combineLatestWith, map, shareReplay, zip } from "rxjs";
+import favoriteOptions from "./FavoriteOptionsStore";
+import { options } from "./OptionStore";
+import {
+  selectedFavouriteOptionIndex,
+  selectedOptionIndex,
+} from "./SelectedOptionIndices";
+import { debug, toObservable } from "./utils";
 
-const selectedOption: Writable<number | null> = writable(null);
-
-export default selectedOption;
+export const selectedOption = zip([
+  selectedOptionIndex,
+  selectedFavouriteOptionIndex,
+]).pipe(
+  combineLatestWith(options),
+  combineLatestWith(toObservable(favoriteOptions)),
+  map(([[[optionIndex, favouriteOptionIndex], options], favoriteOptions]) =>
+    optionIndex !== null
+      ? options.values[optionIndex]
+      : favouriteOptionIndex !== null
+      ? favoriteOptions[favouriteOptionIndex]
+      : null
+  ),
+  shareReplay(1)
+);

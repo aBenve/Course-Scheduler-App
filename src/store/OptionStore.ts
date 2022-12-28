@@ -1,12 +1,24 @@
 import type { Choice } from "@course-scheduler-app/scheduler-wasm";
 import {
-  combineLatestWith, finalize, map, Observable, scan, share,
-  shareReplay, startWith, Subject, switchMap, takeUntil, tap, withLatestFrom, zip
+  combineLatestWith,
+  finalize,
+  map,
+  Observable,
+  scan,
+  share,
+  shareReplay,
+  startWith,
+  Subject,
+  switchMap,
+  takeUntil,
+  tap,
+  withLatestFrom,
+  zip,
 } from "rxjs";
 import generateChoices from "../generator";
 import courseCommissionsStore from "./CourseCommissionsStore";
 import finalizedSubjects from "./FinalizedSubjectsStore";
-import selectedOption from "./SelectedOptionStore";
+import { resetSelectedOption } from "./SelectedOptionIndices";
 import settings from "./UserSettingsStore";
 import { debug, toObservable } from "./utils";
 
@@ -49,21 +61,21 @@ function createOptions() {
     //shareReplay()
     ();
   let combinedParameters = subjects.pipe(
-    combineLatestWith(querySettings),
+    combineLatestWith(querySettings)
     //debug("Combined params")
     //share(),
   );
   let queryParameters = combinedParameters.pipe(
     map(
       ([subjects, querySettings]) =>
-      ({
-        mandatory: subjects.mandatory.map((s) => s.id),
-        optional: subjects.optional.map((s) => s.id),
-        min_subject_count: querySettings.min_subjects,
-        min_credit_count: querySettings.min_credits,
-        max_subject_count: querySettings.max_subjects,
-        max_credit_count: querySettings.max_credits,
-      } as QueryParameters)
+        ({
+          mandatory: subjects.mandatory.map((s) => s.id),
+          optional: subjects.optional.map((s) => s.id),
+          min_subject_count: querySettings.min_subjects,
+          min_credit_count: querySettings.min_credits,
+          max_subject_count: querySettings.max_subjects,
+          max_credit_count: querySettings.max_credits,
+        } as QueryParameters)
     ),
     //debug("Query params"),
     share()
@@ -76,7 +88,7 @@ function createOptions() {
   );
 
   let optionsHigherOrder = generator.pipe(
-    tap({ next: () => selectedOption.set(null) }),
+    tap({ next: () => resetSelectedOption() }),
     map((gen) =>
       addPageObservable.pipe(
         startWith(null),
@@ -100,7 +112,7 @@ function createOptions() {
     done: boolean;
   }> = zip(
     optionsHigherOrder,
-    combinedParameters.pipe(map(([s, q]) => s))
+    combinedParameters.pipe(map(([s, _q]) => s))
   ).pipe(
     switchMap(([options, subjects]) => {
       let sortedSubjects = [...subjects.mandatory, ...subjects.optional].map(
@@ -120,4 +132,4 @@ function createOptions() {
   return [newSearch, options] as const;
 }
 
-export let [newSearch, options] = createOptions();
+export const [newSearch, options] = createOptions();
