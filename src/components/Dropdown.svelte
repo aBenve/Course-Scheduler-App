@@ -1,13 +1,13 @@
 <script>
     import selectedPlanStore from "src/store/SelectedPlanStore";
     import Icon from "@iconify/svelte";
+  import {createEventDispatcher} from "svelte";
 
     let isOpen = false;
     export let options;
     export let selectedOption;
-    export let onChange;
 
-    $: $selectedPlanStore = selectedOption;
+    const onChange = createEventDispatcher();
 </script>
 
 <div
@@ -39,7 +39,7 @@
                     on:click={() => {
                         selectedOption = option;
                         isOpen = false;
-                        onChange(option);
+                        onChange('change', option);
                     }}
                     class="hover:bg-zone hover:dark:bg-zone-dark text-text-terciary hover:text-accent last:hover:rounded-b-lg text-sm py-1 px-2 block w-full  colorTransition"
                     >{option}</button

@@ -15,7 +15,7 @@ const plan = toObservable(selectedPlan);
 const planStore = apiStore.pipe(
   combineLatestWith(plan),
   concatMap(([api, plan]) =>
-    api !== null
+    api !== null && plan !== null
       ? from(api.get_plan_from_api(plan)).pipe(startWith(null))
       : Promise.resolve(null as SubjectPlan)
   ),

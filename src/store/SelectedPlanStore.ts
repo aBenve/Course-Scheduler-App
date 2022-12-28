@@ -1,5 +1,5 @@
 import { writable, type Writable } from "svelte/store";
 
-const selectedPlan: Writable<string> = writable("S10 A - Rev18");
+const selectedPlan: Writable<string> = writable(null);
 
 export default selectedPlan;

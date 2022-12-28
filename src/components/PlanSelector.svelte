@@ -3,7 +3,7 @@
   import Dropdown from "./Dropdown.svelte";
 
   let selectedCareer: string = "Informatica";
-  let selectedPlan: string = "S10 A - Rev18";
+  let selectedPlan: string;
 
   // const careers = {
   //   S: {
@@ -68,15 +68,15 @@
 
 <div class="flex items-center space-x-2">
   <Dropdown
-    onChange={(option) => {
-      selectedCareer = option;
+    on:change={(option) => {
+      selectedCareer = option.detail;
     }}
     options={Object.entries(careers).map(([key, value]) => key)}
     selectedOption={selectedCareer}
   />
   <Dropdown
-    onChange={(option) => {
-      selectedPlan = option;
+    on:change={(option) => {
+      selectedPlan = option.detail;
     }}
     options={careers[selectedCareer].plans}
     selectedOption={selectedPlan}
