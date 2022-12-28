@@ -61,7 +61,7 @@
     },
   };
 
-  $: selectedPlan = careers[selectedCareer].plans[0];
+  $: selectedPlan = careers[selectedCareer].plans[careers[selectedCareer].plans.length - 1];
 
   $: $selectedPlanStore = selectedPlan;
 </script>
