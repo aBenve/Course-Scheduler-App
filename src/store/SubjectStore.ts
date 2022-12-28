@@ -40,7 +40,7 @@ export function load(courseCommissions: Commissions) {
   ].map((s) =>
     s
       .map(getSubjectInfo)
-      .filter((s) => s !== null)
+      .filter((s) => s !== undefined)
       .map(to_subject)
   );
 
