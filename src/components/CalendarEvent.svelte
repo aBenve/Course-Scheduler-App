@@ -13,6 +13,7 @@
   export let commision: string;
   export let calendarFirstHour: number;
   export let color: string;
+  export let hasPointerEvents: boolean = true;
 
   $: dayIndex = [
     "monday",
@@ -29,9 +30,9 @@
 
 <div
   in:fly={{ y: -10, duration: 500 }}
-  class="col-start-{dayIndex + 2} row-start-{Math.round(
-    (startHour - calendarFirstHour) * 2
-  ) + 2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
+  class="{hasPointerEvents ? '' : 'event-passthrough'} col-start-{dayIndex +
+    2} row-start-{Math.round((startHour - calendarFirstHour) * 2) +
+    2} row-end-{Math.round((endHour - calendarFirstHour) * 2) +
     2}  hover:opacity-90 hover:scale-105 transition-all ease-in-out duration-150 p-2 m-0.5 rounded-lg relative"
   style="
     background-color: 
@@ -50,7 +51,7 @@
 </div>
 
 <style>
-  div {
+  .event-passthrough {
     pointer-events: none;
   }
 </style>

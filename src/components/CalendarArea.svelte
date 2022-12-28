@@ -207,6 +207,7 @@
             start={span.start}
             end={span.end}
             calendarFirstHour={firstHour}
+            hasPointerEvents={false}
           />
         {/each}
 
@@ -224,6 +225,7 @@
               return { start, end };
             })()}
             calendarFirstHour={firstHour}
+            hasPointerEvents={false}
           />
         {/if}
       </div>
