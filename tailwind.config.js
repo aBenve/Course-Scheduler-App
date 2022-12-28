@@ -9,6 +9,15 @@ function generateNumberPairs(from, to) {
   );
 }
 
+function generateSpans(from, to) {
+  return Object.fromEntries(
+    Array(to - from)
+      .fill()
+      .map((_, i) => i + from)
+      .map((n) => [`span-${n}`, `span ${n} / span ${n}`])
+  );
+}
+
 const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   darkMode: "class",
@@ -25,6 +34,9 @@ const config = {
       },
       gridRowEnd: {
         ...generateNumberPairs(7, 40),
+      },
+      gridRow: {
+        ...generateSpans(7, 40),
       },
       colors: {
         background: colors.gray[200],

@@ -1,5 +1,10 @@
 <script lang="ts">
-  import type { Choice } from "@course-scheduler-app/scheduler-wasm";
+  import type {
+    Choice,
+    DaysOfTheWeek,
+    Time,
+  } from "@course-scheduler-app/scheduler-wasm";
+  import { lowerCase } from "lodash";
   import App from "src/App.svelte";
   import { fly } from "svelte/transition";
   import { options } from "../store/OptionStore";
@@ -18,6 +23,67 @@
     $selectedOption === null
       ? null
       : $options.sortedSubjects.filter((v) => $selectedOption.subjects.has(v));
+
+  type Span = { day: DaysOfTheWeek; start: Time; end: Time };
+
+  const daysOfTheWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let spans: Span[] = [];
+
+  let spanDragging: Span = null;
+
+  function orderTimes(first: Time, second: Time) {
+    function getNext(time: Time) {
+      time = Object.assign({}, time);
+
+      time.minutes += 30;
+      if (time.minutes >= 60) {
+        time.minutes = 0;
+        time.hour += 1;
+      }
+      return time;
+    }
+    return first.hour < second.hour ||
+      (first.hour == second.hour && first.minutes < second.minutes)
+      ? ([first, getNext(second)] as const)
+      : ([second, getNext(first)] as const);
+  }
+
+  function cellMouseDown(day: string, i: number) {
+    spanDragging = {
+      day: day.toLowerCase() as DaysOfTheWeek,
+      start: { hour: Math.floor(i / 2) + firstHour, minutes: (i % 2) * 30 },
+      end: { hour: Math.floor(i / 2) + firstHour, minutes: (i % 2) * 30 },
+    };
+  }
+  function cellMouseUp(day: string, i: number) {
+    if (spanDragging !== null) {
+      let [start, end] = orderTimes(spanDragging.start, spanDragging.end);
+      spanDragging = {
+        ...spanDragging,
+        start,
+        end,
+      };
+      spans = [...spans, spanDragging];
+      spanDragging = null;
+    }
+  }
+  function cellMouseEnter(day: string, i: number) {
+    if (spanDragging !== null) {
+      spanDragging.end = {
+        hour: Math.floor(i / 2) + firstHour,
+        minutes: (i % 2) * 30,
+      };
+    }
+  }
+  $: spanDragging !== null && console.log(spanDragging.start, spanDragging.end);
 
   export { clazz as class };
 </script>
@@ -46,27 +112,37 @@
       <div
         class="bg-zone dark:bg-zone-dark w-full h-full CalendarGrid rounded-2xl overflow-auto text-text-dark dark:text-text bg-opacity-50 colorTransition"
       >
+        {#each daysOfTheWeek as day, i}
+          <div
+            on:mouseleave={() => (spanDragging = null)}
+            class="col-start-{i + 2} row-start-2 row-span-{(lastHour -
+              firstHour +
+              1) *
+              2}"
+          />
+        {/each}
         <!-- <div class="day col-start-5 row-start-1 row-end-32 bg-red-400" /> -->
-        {#each Array(7) as _, t}
-          {#each Array(lastHour - firstHour + 1) as _, i}
+        {#each daysOfTheWeek as day, t}
+          {#each Array((lastHour - firstHour + 1) * 2) as _, i}
             <CalendarCell
               col={t + 2}
-              row={i * 2 + 2}
-              bgColor={i % 2
-                ? "bg-zone dark:bg-background-dark"
-                : "bg-area dark:bg-area-dark"}
-            />
-            <CalendarCell
-              col={t + 2}
-              row={i * 2 + 1 + 2}
-              bgColor={i % 2
+              row={i + 2}
+              on:cellmousedown={(e) => {
+                e.preventDefault();
+                if (e.detail.buttons === 1) {
+                  cellMouseDown(day, i);
+                }
+              }}
+              on:cellmouseenter={() => cellMouseEnter(day, i)}
+              on:cellmouseup={() => cellMouseUp(day, i)}
+              bgColor={Math.floor(i / 2) % 2
                 ? "bg-zone dark:bg-background-dark"
                 : "bg-area dark:bg-area-dark"}
             />
           {/each}
         {/each}
 
-        {#each ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as day, i}
+        {#each daysOfTheWeek as day, i}
           <div class="day  col-start-{i + 2} row-start-1 px-2 ">
             {day}
           </div>
@@ -95,6 +171,35 @@
             />
           {/each}
         {/each}
+
+        {#each spans as span}
+          <CalendarEvent
+            title=""
+            commision=""
+            color={colors[0]}
+            day={span.day}
+            start={span.start}
+            end={span.end}
+            calendarFirstHour={firstHour}
+          />
+        {/each}
+
+        {#if spanDragging !== null}
+          <CalendarEvent
+            title=""
+            commision=""
+            color={colors[0]}
+            day={spanDragging.day}
+            {...(() => {
+              let [start, end] = orderTimes(
+                spanDragging.start,
+                spanDragging.end
+              );
+              return { start, end };
+            })()}
+            calendarFirstHour={firstHour}
+          />
+        {/if}
       </div>
     {/if}
   </div>

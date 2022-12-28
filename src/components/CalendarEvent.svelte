@@ -1,5 +1,8 @@
 <script lang="ts">
-  import type { DaysOfTheWeek, Time } from "scheduler-wasm";
+  import type {
+    DaysOfTheWeek,
+    Time,
+  } from "@course-scheduler-app/scheduler-wasm";
   import { fade, fly } from "svelte/transition";
   import colorSettings from "../store/UserColorsStore";
 
@@ -45,3 +48,9 @@
     {commision}
   </div>
 </div>
+
+<style>
+  div {
+    pointer-events: none;
+  }
+</style>
