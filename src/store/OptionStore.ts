@@ -17,8 +17,8 @@ import {
 } from "rxjs";
 import generateChoices from "../generator";
 import courseCommissionsStore from "./CourseCommissionsStore";
-import finalizedSubjects from "./FinalizedSubjectsStore";
 import { resetSelectedOption } from "./SelectedOptionIndices";
+import subjectsStore from "./SubjectStore";
 import settings from "./UserSettingsStore";
 import { toObservable } from "./utils";
 
@@ -50,7 +50,7 @@ export function addPage() {
 }
 
 function createOptions() {
-  let subjects = toObservable(finalizedSubjects)
+  let subjects = toObservable(subjectsStore)
     .pipe
     //debug("Subjects!"),
     //shareReplay()

@@ -4,7 +4,6 @@ import type {
 } from "@course-scheduler-app/scheduler-wasm";
 import { map, Subject as rxSubject, withLatestFrom } from "rxjs";
 import courseCommissionsStore from "./CourseCommissionsStore";
-import finalizedSubjects from "./FinalizedSubjectsStore";
 import subjects from "./SubjectStore";
 import { toObservable } from "./utils";
 
@@ -40,7 +39,6 @@ export function addSelected(code: string, courseCommissions: Commissions) {
       optional: [...optional, newSubject],
       ignore,
     };
-    finalizedSubjects.set(newValue);
     return newValue;
   });
 

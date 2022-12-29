@@ -1,8 +1,4 @@
 <script lang="ts">
-  import ControlDragZone from "./ControlDragZone.svelte";
-  let flipDurationMs = 0;
-
-  import finalizedSubjects from "../store/FinalizedSubjectsStore";
   import subjects from "../store/SubjectStore";
   import subjectList from "src/store/SubjectListStore";
   import ControlSubjectItem from "./ControlSubjectItem.svelte";
@@ -39,7 +35,6 @@
 
       return currentSubjects;
     });
-    $finalizedSubjects = $subjects;
   }
 </script>
 
