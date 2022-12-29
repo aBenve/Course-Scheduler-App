@@ -1,6 +1,7 @@
 import type {
   Commissions,
-  SubjectInfo
+  SubjectInfo,
+  SubjectPlan
 } from "@course-scheduler-app/scheduler-wasm";
 import {
   loadSelectedSubjectCategorization,
@@ -9,6 +10,7 @@ import {
 import { writable, type Writable } from "svelte/store";
 import courseCommissionsStore from "./CourseCommissionsStore";
 import finalizedSubjectsStore from "./FinalizedSubjectsStore";
+import planStore from "./PlanStore";
 //import { SubjectInfo } from "scheduler-wasm";
 
 export type SubjectCategorization = {
@@ -20,9 +22,9 @@ export type SubjectCategorization = {
 // llamado a la api
 const subjects: Writable<SubjectCategorization> = writable(null);
 
-export function load(courseCommissions: Commissions) {
+export function load(plan: SubjectPlan) {
   function getSubjectInfo(code: string): SubjectInfo {
-    return courseCommissions.get_subject_info(code);
+    return plan.get_subject_info(code);
   }
 
   function to_subject(subject: SubjectInfo): Subject {
@@ -55,9 +57,9 @@ export function load(courseCommissions: Commissions) {
   finalizedSubjectsStore.set(value);
 }
 
-courseCommissionsStore.subscribe((courseCommissions) => {
-  if (courseCommissions === null) return;
-  load(courseCommissions);
+planStore.subscribe((subjectPlan) => {
+  if (subjectPlan === null) return;
+  load(subjectPlan);
 });
 
 subjects.subscribe((subjects) => {

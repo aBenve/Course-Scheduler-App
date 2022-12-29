@@ -53,6 +53,7 @@
     let edges = subjects.flatMap((code) =>
       plan
         .get_subject_dependencies(code)
+        .filter((dep) => nodes.find((n) => n.id == dep))
         .map((dep) => ({ source: dep, target: code }))
     );
 
