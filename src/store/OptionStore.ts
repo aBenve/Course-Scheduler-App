@@ -20,7 +20,7 @@ import courseCommissionsStore from "./CourseCommissionsStore";
 import finalizedSubjects from "./FinalizedSubjectsStore";
 import { resetSelectedOption } from "./SelectedOptionIndices";
 import settings from "./UserSettingsStore";
-import { debug, toObservable } from "./utils";
+import { toObservable } from "./utils";
 
 export type QueryParameters = {
   mandatory: string[];
@@ -115,9 +115,11 @@ function createOptions() {
     combinedParameters.pipe(map(([s, _q]) => s))
   ).pipe(
     switchMap(([options, subjects]) => {
-      let sortedSubjects = [...subjects.mandatory, ...subjects.optional, ...subjects.ignore].map(
-        (s) => s.id
-      );
+      let sortedSubjects = [
+        ...subjects.mandatory,
+        ...subjects.optional,
+        ...subjects.ignore,
+      ].map((s) => s.id);
       return options.pipe(map((options) => ({ sortedSubjects, ...options })));
     }),
     startWith({ sortedSubjects: [], values: [], done: false }),

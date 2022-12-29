@@ -19,7 +19,7 @@
 > -->
 <div
   class=" h-fit flex flex-col gap-y-2 p-4  cursor-pointer items-start"
-  on:click={() => (selectedOptionIndex.next(optionIndex))}
+  on:click={() => selectedOptionIndex.next(optionIndex)}
 >
   {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
       let indexA = sortedSubjects.indexOf(codeA);

@@ -5,7 +5,7 @@ import {
   selectedFavouriteOptionIndex,
   selectedOptionIndex,
 } from "./SelectedOptionIndices";
-import { debug, toObservable } from "./utils";
+import { toObservable } from "./utils";
 
 export const selectedOption = zip([
   selectedOptionIndex,

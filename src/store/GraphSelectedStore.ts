@@ -1,5 +1,6 @@
 import type {
-  Commissions, SubjectInfo
+  Commissions,
+  SubjectInfo,
 } from "@course-scheduler-app/scheduler-wasm";
 import { map, Subject as rxSubject, withLatestFrom } from "rxjs";
 import courseCommissionsStore from "./CourseCommissionsStore";

@@ -1,11 +1,7 @@
 import selectedTerm from "./SelectedTermStore";
 
 import type { Commissions } from "@course-scheduler-app/scheduler-wasm";
-import {
-  combineLatestWith,
-  concatMap, shareReplay,
-  startWith
-} from "rxjs";
+import { combineLatestWith, concatMap, shareReplay, startWith } from "rxjs";
 import apiStore from "./ApiStore";
 import { toObservable } from "./utils";
 
