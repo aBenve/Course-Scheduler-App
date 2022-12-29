@@ -1,6 +1,7 @@
 // test.ts
 import commissions from "./commissions.json";
-import plan from "./career-plan.json";
+import planI from "./career-plan-I-13.json";
+import planS from "./career-plan-S10A-Rev18.json";
 import student from "./student.json";
 import people from "./people.json";
 
@@ -25,6 +26,15 @@ export default [
   {
     url: "/api/plan",
     method: "get",
-    response: plan,
+    response: ({ query }) => {
+      switch (query.name[0]) {
+        case "S":
+          return planS;
+        case "I":
+          return planI;
+        default:
+          return planS;
+      }
+    },
   },
 ] as MockMethod[];
