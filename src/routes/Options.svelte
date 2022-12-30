@@ -8,7 +8,7 @@
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import colorSettings from "../store/UserColorsStore";
   import subjectStore from "../store/SubjectStore";
-  import planStore from "../store/PlanStore";
+  import selectedPlanStore from "../store/SelectedPlanStore";
 
   import { fly } from "svelte/transition";
   import ConfigurationArea from "src/components/ConfigurationArea.svelte";
@@ -24,7 +24,7 @@
 
   $: console.log(isControlAreaOpen);
 
-  $: $planStore === null && goToInputPage();
+  $: $selectedPlanStore === null && goToInputPage();
 
   function goToInputPage() {
     window.location = "/";
