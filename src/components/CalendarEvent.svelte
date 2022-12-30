@@ -10,7 +10,7 @@
   export let end: Time;
   export let day: DaysOfTheWeek;
   export let title: string;
-  export let commision: string;
+  export let commisions: string;
   export let calendarFirstHour: number;
   export let color: string;
   export let hasPointerEvents: boolean = true;
@@ -46,7 +46,7 @@
     {title}
   </div>
   <div class="absolute right-2 bottom-1 opacity-50" style="color: {color}">
-    {commision}
+    {commisions}
   </div>
 </div>
 

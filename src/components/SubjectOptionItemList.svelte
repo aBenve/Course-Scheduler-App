@@ -32,7 +32,7 @@
         toggle={selected}
         color={colors[i]}
         subject={subject.name}
-        commission={subject.commission}
+        commissions={subject.commissions}
       />
     </div>
   {/each}

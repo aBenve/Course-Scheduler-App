@@ -3,7 +3,7 @@
 
   export let color: string;
   export let subject: string;
-  export let commission: string;
+  export let commissions: string;
   export let toggle: boolean;
 
   let tooltip = false;
@@ -40,7 +40,7 @@
     </div>
   </div>
   <span class="text-xs  font-normal ">
-    {commission}
+    {commissions}
   </span>
 </div>
 
