@@ -31,48 +31,83 @@
       <LoadingSpinner />
     </div>
   {:else}
-    <div
+    <main
       class="w-full h-full {isControlAreaOpen
         ? 'gridContainer'
-        : 'smallGridContainer'}  px-4 py-4 gap-4"
+        : 'smallGridContainer'}  px-4 py-4 "
       transition:fade={{ duration: 500 }}
     >
-      <ControlsArea
+      <!-- <ControlsArea
         class="col-start-1 row-start-1 row-span-full "
         onToggle={(state) => (isControlAreaOpen = state)}
       />
       <SubjectsOptionsArea
-        class="col-start-5 row-start-1  row-span-full overflow-x-auto "
+        class="{isControlAreaOpen
+          ? 'col-start-5'
+          : 'col-start-4'} row-start-1  row-span-full overflow-x-auto "
       />
       <CalendarArea
         class="{isControlAreaOpen
-          ? 'col-start-2'
-          : 'col-start-1'} col-span-3 row-start-2 row-span-full"
+          ? 'col-start-2  '
+          : 'col-start-1 '} col-span-3 row-start-2 row-span-full"
       />
 
       <ConfigurationArea
         class="{isControlAreaOpen
           ? 'col-start-2'
           : 'col-start-1'}  col-span-3 row-start-1 row-span-1 relative"
-      />
-    </div>
+      /> -->
+      <section class="control-area">
+        <ControlsArea
+          class="w-full h-full"
+          onToggle={(state) => (isControlAreaOpen = state)}
+        />
+      </section>
+
+      <section class="configuration-area">
+        <ConfigurationArea class="w-full h-full" />
+      </section>
+      <section class="calendar-area">
+        <CalendarArea class="w-full h-full" />
+      </section>
+      <section class="subjects-area">
+        <SubjectsOptionsArea class="w-full h-full" />
+      </section>
+    </main>
   {/if}
 </main>
 
 <style>
   .gridContainer {
     display: grid;
-    grid-template-rows: repeat(4, minmax(0, 1fr));
-    grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto;
+    gap: 1rem;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(auto, 17em) minmax(0, 1fr) minmax(17em, auto);
+    grid-template-areas:
+      "controls-area configuration-area subjects-area"
+      "controls-area calendar-area subjects-area";
   }
   .smallGridContainer {
     display: grid;
-    grid-template-rows: repeat(4, minmax(0, 1fr));
-    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    gap: 1rem;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-columns: 1fr minmax(17em, auto);
+    grid-template-areas:
+      "controls-area subjects-area"
+      "configuration-area subjects-area"
+      "calendar-area subjects-area";
   }
-  /* @media (min-width: 1024px) {
-    .gridContainer {
-      grid-template-columns: 20em repeat(4, minmax(0, 1fr));
-    }
-  } */
+
+  .control-area {
+    grid-area: controls-area;
+  }
+  .configuration-area {
+    grid-area: configuration-area;
+  }
+  .subjects-area {
+    grid-area: subjects-area;
+  }
+  .calendar-area {
+    grid-area: calendar-area;
+  }
 </style>

@@ -34,7 +34,7 @@
 </script>
 
 <div
-  class=" flex items-center space-x-2 rounded-lg  colorTransition justify-between px-3 py-2 {importance ===
+  class=" flex items-center space-x-1 rounded-lg  colorTransition justify-between px-3 py-2 {importance ===
   'mandatory'
     ? // ? 'border border-solid border-accent border-2 text-text-dark dark:text-text'
       'bg-accent text-accent font-medium bg-opacity-20 '

@@ -5,6 +5,8 @@
 
   // import subjects from "../store/SubjectStore";
   import { selectedOptionIndex } from "../store/SelectedOptionIndices";
+  import { fade } from "svelte/transition";
+
   import colors from "../utils/colors";
   export let optionData: Choice;
   export let optionIndex: number;
@@ -18,26 +20,33 @@
   on:click={() => ($selectedOption = optionIndex)}
 > -->
 <div
-  class=" h-fit flex flex-col gap-y-2 p-4  cursor-pointer items-start"
-  on:click={() => selectedOptionIndex.next(optionIndex)}
+  in:fade
+  class="{selected
+    ? 'bg-zone dark:bg-zone-dark'
+    : 'bg-area dark:bg-area-dark'}  hover:bg-zone dark:hover:bg-zone-dark rounded-2xl w-full overflow-y-auto   colorTransition"
 >
-  {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
-      let indexA = sortedSubjects.indexOf(codeA);
-      let indexB = sortedSubjects.indexOf(codeB);
-      if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
-      return indexA - indexB;
-    } ) as [code, subject], i}
-    <div transition:slide|local>
-      <SubjectOptionItem
-        toggle={selected}
-        color={colors[i]}
-        subject={subject.name}
-        commission={subject.commission}
-      />
-    </div>
-  {/each}
-  <span
-    class="text-sm  font-medium colorTransition w-full flex justify-end text-text-terciary"
-    >{optionIndex}</span
+  <div
+    class=" h-fit flex flex-col gap-y-2 p-4  cursor-pointer items-start"
+    on:click={() => selectedOptionIndex.next(optionIndex)}
   >
+    {#each Array.from(optionData.subjects.entries()).sort( ([codeA, _1], [codeB, _2]) => {
+        let indexA = sortedSubjects.indexOf(codeA);
+        let indexB = sortedSubjects.indexOf(codeB);
+        if (indexA == -1 || indexB == -1) throw `Subject not found: ${codeA} = [${indexA}], ${codeB} = [${indexB}]`;
+        return indexA - indexB;
+      } ) as [code, subject], i}
+      <div transition:slide|local>
+        <SubjectOptionItem
+          toggle={selected}
+          color={colors[i]}
+          subject={subject.name}
+          commission={subject.commission}
+        />
+      </div>
+    {/each}
+    <span
+      class="text-sm  font-medium colorTransition w-full flex justify-end text-text-terciary"
+      >{optionIndex}</span
+    >
+  </div>
 </div>

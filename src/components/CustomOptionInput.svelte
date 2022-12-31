@@ -20,6 +20,10 @@
 
   let labelArray = [$settings[min_label], $settings[max_label]];
 
+  if (min_label === max_label) {
+    labelArray = [$settings[min_label]];
+  }
+
   $: $settings[min_label] = labelArray[0];
   $: $settings[max_label] = labelArray[1];
 </script>
@@ -46,16 +50,21 @@
     <label class="" for={text}>
       {toCapitalice(text)}
     </label>
-    <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
-      >{labelArray[0]} - {labelArray[1]}</span
-    >
+    {#if min_label === max_label}
+      <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
+        >{labelArray[0]}</span
+      >
+    {:else}
+      <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
+        >{labelArray[0]} - {labelArray[1]}</span
+      >
+    {/if}
   </div>
   <div
     style="{$colorSettings.colorMode !== 'dark'
       ? ` --range-slider: ${colors.background}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`
       : ` --range-slider: ${colors['zone-dark']}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`}  "
   >
-    <!-- values prop deberia ser un array con el maximo y el minimo -->
     <RangeSlider range pushy bind:values={labelArray} {min} {max} />
   </div>
 </div>

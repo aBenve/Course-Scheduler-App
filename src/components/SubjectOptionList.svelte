@@ -1,6 +1,5 @@
 <script lang="ts">
   import IntersectionObserver from "svelte-intersection-observer";
-  import { fade } from "svelte/transition";
   import { addPage, options } from "../store/OptionStore";
   import SubjectOptionItemList from "./SubjectOptionItemList.svelte";
 
@@ -24,16 +23,12 @@
         >
           {i + 1}
         </span> -->
-        <div
-          in:fade
-          class="bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark rounded-2xl w-full overflow-y-auto   colorTransition"
-        >
-          <SubjectOptionItemList
-            optionData={option}
-            optionIndex={i}
-            sortedSubjects={$options.sortedSubjects}
-          />
-        </div>
+
+        <SubjectOptionItemList
+          optionData={option}
+          optionIndex={i}
+          sortedSubjects={$options.sortedSubjects}
+        />
       {/each}
     </div>
     {#if !$options.done}

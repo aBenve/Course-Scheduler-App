@@ -24,21 +24,7 @@
       in:fly={{ x: -10, duration: 500, delay: 200 }}
       class="bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col gap-y-4 colorTransition"
     >
-      <div class="flex w-full items-center justify-between">
-        <Link
-          to="/"
-          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
-        >
-          <ButtonWithIcon
-            icon="material-symbols:arrow-back-ios-new-rounded"
-            iconWidth="12"
-            iconHeight="12"
-            iconStyles="text-text-dark dark:text-text"
-            textStyles="text-text-dark dark:text-text text-xs"
-            title="Go back"
-          />
-        </Link>
-
+      <div class="flex w-full items-center justify-end">
         <button
           on:click={() => {
             isOpen = false;
@@ -69,7 +55,7 @@
       isOpen = true;
       onToggle(isOpen);
     }}
-    class="colorTransition absolute top-4 bg-area dark:bg-area-dark z-10 left-4 flex space-x-2 items-center hover:bg-zone dark:hover:bg-zone-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
+    class="colorTransition bg-area dark:bg-area-dark flex space-x-2 items-center hover:bg-zone dark:hover:bg-zone-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3"
   >
     <Icon
       icon="material-symbols:hide"
