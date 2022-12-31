@@ -7,6 +7,8 @@
   import ToggleColorModeButton from "../components/ToggleColorModeButton.svelte";
   import courseCommissionsStore from "../store/CourseCommissionsStore";
   import colorSettings from "../store/UserColorsStore";
+  import subjectStore from "../store/SubjectStore";
+  import selectedPlanStore from "../store/SelectedPlanStore";
 
   import { fly } from "svelte/transition";
   import ConfigurationArea from "src/components/ConfigurationArea.svelte";
@@ -22,7 +24,13 @@
 
   $: console.log(isControlAreaOpen);
 
-  $: loading = $courseCommissionsStore === null;
+  $: $selectedPlanStore === null && goToInputPage();
+
+  function goToInputPage() {
+    window.location = "/";
+  }
+
+  $: loading = $courseCommissionsStore === null || $subjectStore === null;
 </script>
 
 <main class="bg-background dark:bg-background-dark h-screen colorTransition">

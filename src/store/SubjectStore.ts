@@ -7,7 +7,6 @@ import {
   saveSelectedSubjectCategorization,
 } from "src/storage";
 import { writable, type Writable } from "svelte/store";
-import finalizedSubjectsStore from "./FinalizedSubjectsStore";
 import planStore from "./PlanStore";
 //import { SubjectInfo } from "scheduler-wasm";
 
@@ -51,8 +50,6 @@ export function load(plan: SubjectPlan) {
   };
 
   subjects.set(value);
-
-  finalizedSubjectsStore.set(value);
 }
 
 planStore.subscribe((subjectPlan) => {
