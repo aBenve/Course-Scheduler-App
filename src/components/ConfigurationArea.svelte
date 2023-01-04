@@ -14,30 +14,33 @@
     in:fly={{ y: -10, duration: 500, delay: 500 }}
     class=" h-full w-full colorTransition"
   >
-    <div class="flex  items-center space-x-2">
-      {#if $favoriteOptions.length > 0}
-        <div class="flex items-center gap-2 overflow-x-auto max-w-max">
-          {#each $favoriteOptions as option, i}
-            <ConfigurationFavoriteButton
-              content={i + 1}
-              selected={$selectedFavouriteOptionIndex === i}
-              onClick={() => {
-                selectedFavouriteOptionIndex.next(i);
-              }}
-            />
-          {/each}
-        </div>
-      {/if}
-
-      <ConfigurationFavoriteButton
-        icon="material-symbols:add-rounded"
-        selected={false}
-        onClick={() =>
-          $selectedOption !== null
-            ? favoriteOptions.addFavoriteOption($selectedOption)
-            : null}
-      />
+    <div class="flex flex-col gap-4">
       <ConfigurationSliderButtonList />
+
+      <div class="flex  items-center gap-2">
+        {#if $favoriteOptions.length > 0}
+          <div class="flex items-center gap-2 overflow-x-auto max-w-max">
+            {#each $favoriteOptions as option, i}
+              <ConfigurationFavoriteButton
+                content={i + 1}
+                selected={$selectedFavouriteOptionIndex === i}
+                onClick={() => {
+                  selectedFavouriteOptionIndex.next(i);
+                }}
+              />
+            {/each}
+          </div>
+        {/if}
+
+        <ConfigurationFavoriteButton
+          icon="material-symbols:add-rounded"
+          selected={false}
+          onClick={() =>
+            $selectedOption !== null
+              ? favoriteOptions.addFavoriteOption($selectedOption)
+              : null}
+        />
+      </div>
     </div>
   </div>
 </div>

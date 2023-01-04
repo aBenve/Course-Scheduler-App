@@ -12,6 +12,8 @@
   export let optionIndex: number;
   export let sortedSubjects: string[];
 
+  console.log(Array.from(optionData.subjects.entries()));
+
   $: selected = $selectedOptionIndex === optionIndex;
 </script>
 
@@ -40,7 +42,7 @@
           toggle={selected}
           color={colors[i]}
           subject={subject.name}
-          commission={subject.commission}
+          commissions={subject.commission}
         />
       </div>
     {/each}

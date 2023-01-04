@@ -188,7 +188,7 @@
           {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
               title={$selectedOption.subjects.get(task.subject).name}
-              commisions={$selectedOption.subjects.get(task.subject).commissions}
+              commisions={$selectedOption.subjects.get(task.subject).commission}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}
@@ -201,7 +201,7 @@
         {#each spans as span}
           <CalendarEvent
             title=""
-            commision=""
+            commisions=""
             color={colors[0]}
             day={span.day}
             start={span.start}
@@ -214,7 +214,7 @@
         {#if spanDragging !== null}
           <CalendarEvent
             title=""
-            commision=""
+            commisions=""
             color={colors[0]}
             day={spanDragging.day}
             {...(() => {

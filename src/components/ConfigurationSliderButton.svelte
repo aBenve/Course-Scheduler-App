@@ -12,7 +12,7 @@
     export let buttonText: string;
 </script>
 
-<div class="relative h-[3rem] ">
+<div class=" h-[3rem] ">
     <button
         on:click={() => onClick()}
         class="rounded-lg text-sm h-full py-3 px-4 bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark text-text-dark-secondary dark:text-text-secondary  colorTransition"

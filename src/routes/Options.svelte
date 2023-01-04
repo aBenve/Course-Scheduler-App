@@ -12,6 +12,7 @@
 
   import { fly } from "svelte/transition";
   import ConfigurationArea from "src/components/ConfigurationArea.svelte";
+  import TogglesArea from "src/components/TogglesArea.svelte";
 
   function handleColorModeToggle() {
     let aux = document.getElementById("app");
@@ -21,8 +22,6 @@
   }
 
   let isControlAreaOpen: boolean = true;
-
-  $: console.log(isControlAreaOpen);
 
   $: $selectedPlanStore === null && goToInputPage();
 
@@ -42,7 +41,7 @@
     <main
       class="w-full h-full {isControlAreaOpen
         ? 'gridContainer'
-        : 'smallGridContainer'}  px-4 py-4 "
+        : 'controlAreaClosedGrid'} overflow-hidden  px-4 py-4 "
       transition:fade={{ duration: 500 }}
     >
       <!-- <ControlsArea
@@ -68,18 +67,23 @@
       <section class="control-area">
         <ControlsArea
           class="w-full h-full"
+          hideButton={true}
           onToggle={(state) => (isControlAreaOpen = state)}
         />
       </section>
 
-      <section class="configuration-area">
+      <section class="configuration-area overflow-x-auto">
         <ConfigurationArea class="w-full h-full" />
       </section>
-      <section class="calendar-area">
+      <section class="calendar-area overflow-auto">
         <CalendarArea class="w-full h-full" />
       </section>
       <section class="subjects-area">
         <SubjectsOptionsArea class="w-full h-full" />
+      </section>
+
+      <section class="toggles-area">
+        <TogglesArea class="w-full h-full" />
       </section>
     </main>
   {/if}
@@ -95,7 +99,7 @@
       "controls-area configuration-area subjects-area"
       "controls-area calendar-area subjects-area";
   }
-  .smallGridContainer {
+  .controlAreaClosedGrid {
     display: grid;
     gap: 1rem;
     grid-template-rows: auto auto minmax(0, 1fr);
@@ -104,6 +108,29 @@
       "controls-area subjects-area"
       "configuration-area subjects-area"
       "calendar-area subjects-area";
+  }
+
+  @media (min-width: 768px) {
+    .toggles-area {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .control-area,
+    .subjects-area {
+      display: none;
+    }
+
+    .gridContainer,
+    .controlAreaClosedGrid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      grid-template-areas:
+        "toggles-area"
+        "configuration-area"
+        "calendar-area";
+    }
   }
 
   .control-area {

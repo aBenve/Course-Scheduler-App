@@ -39,8 +39,8 @@
   </div> -->
   <div
     bind:this={scrollable}
-    in:fly={{ y: -10, duration: 500, delay: 350 }}
-    class=" relative h-full  colorTransition flex flex-col space-y-4"
+    in:fly={{ y: -10, duration: 500, delay: 0 }}
+    class="relative h-full  colorTransition flex flex-col space-y-4"
   >
     <div class="flex items-center justify-between">
       <span class="flex items-center space-x-2 w-full">

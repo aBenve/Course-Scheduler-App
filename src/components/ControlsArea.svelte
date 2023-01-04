@@ -12,36 +12,43 @@
 
   let page: string;
   let isOpen: boolean = true;
+  export let hideButton: boolean = false;
 
   function changePage(newPage) {
     page = newPage;
   }
 </script>
 
-{#if isOpen}
+{#if hideButton || isOpen}
   <main class={clazz}>
     <div
       in:fly={{ x: -10, duration: 500, delay: 200 }}
-      class="bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col gap-y-4 colorTransition"
+      class="relative bg-area dark:bg-area-dark h-full p-4 rounded-2xl flex flex-col gap-y-4 colorTransition"
     >
-      <div class="flex w-full items-center justify-end">
-        <button
-          on:click={() => {
-            isOpen = false;
-            onToggle(isOpen);
-          }}
-          class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
-        >
-          <ButtonWithIcon
-            icon="material-symbols:hide"
-            iconWidth="15"
-            iconHeight="15"
-            iconStyles="text-text-dark dark:text-text"
-            textStyles="text-text-dark dark:text-text text-xs"
-            title="Hide"
-          />
-        </button>
-      </div>
+      {#if hideButton}
+        <div class="flex w-full items-center justify-end">
+          <button
+            on:click={() => {
+              if (hideButton) {
+                return;
+              }
+              isOpen = false;
+              onToggle(isOpen);
+            }}
+            class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
+          >
+            <ButtonWithIcon
+              icon="material-symbols:hide"
+              iconWidth="15"
+              iconHeight="15"
+              iconStyles="text-text-dark dark:text-text"
+              textStyles="text-text-dark dark:text-text text-xs"
+              title="Hide"
+            />
+          </button>
+        </div>
+      {/if}
+
       <div class="flex items-center space-x-2 w-full">
         <span class="text-text-dark dark:text-text">Subjects</span>
         <Badge title={$subjectList.length} />
