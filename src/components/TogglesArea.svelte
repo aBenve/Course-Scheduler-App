@@ -26,8 +26,7 @@
                 }}
             />
         </div>
-    {/if}
-    {#if controlsToggle}
+    {:else if controlsToggle}
         <div
             class="absolute bg-red-400 bg-opacity-50 w-full h-full inset-0 p-4 flex item-center justify-end"
         >
@@ -37,20 +36,20 @@
             />
             <SubjectsOptionsArea class="max-w-[20rem] z-30 h-full" />
         </div>
+    {:else}
+        <div class="flex items-center justify-between">
+            <IconButton
+                icon="mdi:chevron-double-right"
+                onClick={() => (optionsToggle = true)}
+                iconWidth="18"
+                iconHeight="18"
+            />
+            <IconButton
+                icon="mdi:chevron-double-left"
+                onClick={() => (controlsToggle = true)}
+                iconWidth="18"
+                iconHeight="18"
+            />
+        </div>
     {/if}
-
-    <div class="flex items-center justify-between">
-        <IconButton
-            icon="mdi:chevron-double-right"
-            onClick={() => (optionsToggle = true)}
-            iconWidth="18"
-            iconHeight="18"
-        />
-        <IconButton
-            icon="mdi:chevron-double-left"
-            onClick={() => (controlsToggle = true)}
-            iconWidth="18"
-            iconHeight="18"
-        />
-    </div>
 </main>
