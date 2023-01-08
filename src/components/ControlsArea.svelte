@@ -19,7 +19,7 @@
   }
 </script>
 
-{#if hideButton || isOpen}
+{#if isOpen}
   <main class={clazz}>
     <div
       in:fly={{ x: -10, duration: 500, delay: 200 }}
@@ -29,9 +29,10 @@
         <div class="flex w-full items-center justify-end">
           <button
             on:click={() => {
-              if (hideButton) {
-                return;
-              }
+              // if (hideButton) {
+              //   console.log("asd");
+              //   return;
+              // }
               isOpen = false;
               onToggle(isOpen);
             }}
