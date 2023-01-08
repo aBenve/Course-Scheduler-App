@@ -12,12 +12,10 @@
 
 <main class={clazz}>
     {#if optionsToggle}
-        <div
-            class="absolute bg-red-400 bg-opacity-50 w-full h-full inset-0 p-4"
-        >
+        <div class="absolute w-full h-full inset-0 p-4">
             <div
                 on:click={() => (optionsToggle = false)}
-                class="absolute bg-background dark:bg-background-dark bg-opacity-80 w-full h-full inset-0 "
+                class="absolute bg-background dark:bg-background-dark dark:bg-opacity-50 bg-opacity-50 w-full h-full inset-0 "
             />
             <ControlsArea
                 class="h-full w-[20rem] z-30"
@@ -28,28 +26,27 @@
         </div>
     {:else if controlsToggle}
         <div
-            class="absolute bg-red-400 bg-opacity-50 w-full h-full inset-0 p-4 flex item-center justify-end"
+            class="absolute w-full h-full inset-0 p-4 flex item-center justify-end"
         >
             <div
                 on:click={() => (controlsToggle = false)}
-                class="absolute bg-background dark:bg-background-dark bg-opacity-80 w-full h-full inset-0 "
+                class="absolute bg-background dark:bg-background-dark dark:bg-opacity-50 bg-opacity-50 w-full h-full inset-0 "
             />
             <SubjectsOptionsArea class="max-w-[20rem] z-30 h-full" />
         </div>
-    {:else}
-        <div class="flex items-center justify-between">
-            <IconButton
-                icon="mdi:chevron-double-right"
-                onClick={() => (optionsToggle = true)}
-                iconWidth="18"
-                iconHeight="18"
-            />
-            <IconButton
-                icon="mdi:chevron-double-left"
-                onClick={() => (controlsToggle = true)}
-                iconWidth="18"
-                iconHeight="18"
-            />
-        </div>
     {/if}
+    <div class="flex items-center justify-between">
+        <IconButton
+            icon="mdi:chevron-double-right"
+            onClick={() => (optionsToggle = true)}
+            iconWidth="18"
+            iconHeight="18"
+        />
+        <IconButton
+            icon="mdi:chevron-double-left"
+            onClick={() => (controlsToggle = true)}
+            iconWidth="18"
+            iconHeight="18"
+        />
+    </div>
 </main>
