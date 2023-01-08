@@ -10,7 +10,7 @@
   export let end: Time;
   export let day: DaysOfTheWeek;
   export let title: string;
-  export let commisions: string;
+  export let commisions: string[];
   export let calendarFirstHour: number;
   export let color: string;
   export let hasPointerEvents: boolean = true;
