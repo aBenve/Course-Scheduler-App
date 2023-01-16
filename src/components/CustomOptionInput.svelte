@@ -41,10 +41,10 @@
   <div
     style="{$colorSettings.colorMode !== 'dark'
       ? ` --range-slider: ${colors.background}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`
-      : ` --range-slider: ${colors['zone-dark']}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`}  "
+      : ` --range-slider: ${colors['area-dark']}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`}  "
   >
     <RangeSlider
-      range
+      range={min_label === max_label ? false : true}
       pushy
       values={[$settings[min_label], $settings[max_label]]}
       on:change={(e) => {

@@ -4,7 +4,9 @@
     let isOpen = null;
 </script>
 
-<div class="flex items-center gap-2 ">
+<div
+    class="flex items-center justify-around md:justify-start gap-2 md:overflow-x-auto overflow-visible"
+>
     <ConfigurationSliderButton
         isOpen={isOpen === 0}
         onClick={() => {

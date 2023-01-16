@@ -12,8 +12,6 @@
   export let optionIndex: number;
   export let sortedSubjects: string[];
 
-  console.log(Array.from(optionData.subjects.entries()));
-
   $: selected = $selectedOptionIndex === optionIndex;
 </script>
 

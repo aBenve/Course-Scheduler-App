@@ -14,10 +14,10 @@
     in:fly={{ y: -10, duration: 500, delay: 500 }}
     class=" h-full w-full colorTransition"
   >
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 w-full ">
       <ConfigurationSliderButtonList />
 
-      <div class="flex  items-center gap-2">
+      <div class="flex w-full items-center gap-2 ">
         {#if $favoriteOptions.length > 0}
           <div class="flex items-center gap-2 overflow-x-auto max-w-max">
             {#each $favoriteOptions as option, i}

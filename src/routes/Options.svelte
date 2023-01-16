@@ -72,7 +72,7 @@
         />
       </section>
 
-      <section class="configuration-area overflow-x-auto">
+      <section class="configuration-area md:overflow-x-auto">
         <ConfigurationArea class="w-full h-full" />
       </section>
       <section class="calendar-area overflow-auto">
@@ -94,7 +94,7 @@
     display: grid;
     gap: 1rem;
     grid-template-rows: auto minmax(0, 1fr);
-    grid-template-columns: minmax(auto, 17em) minmax(0, 1fr) minmax(17em, auto);
+    grid-template-columns: minmax(auto, 17em) minmax(0, 1fr) 17em;
     grid-template-areas:
       "controls-area configuration-area subjects-area"
       "controls-area calendar-area subjects-area";
