@@ -180,7 +180,12 @@
               ? 'bg-zone dark:bg-background-dark'
               : 'bg-area dark:bg-area-dark'} colorTransition"
           >
-            {String(((i + firstHour - 1) % 12) + 1).padStart(2, "0")}:00
+            <span class="text-text-dark dark:text-text colorTransition"
+              >{String(((i + firstHour - 1) % 12) + 1).padStart(
+                2,
+                "0"
+              )}:00</span
+            >
           </div>
         {/each}
 
@@ -188,7 +193,8 @@
           {#each dayTasks as task (`${task.subject} - ${day} ${task.span.start.hour}:${task.span.start.minutes} - ${task.span.end.hour}:${task.span.end.minutes}`)}
             <CalendarEvent
               title={$selectedOption.subjects.get(task.subject).name}
-              commisions={$selectedOption.subjects.get(task.subject).commissions}
+              commisions={$selectedOption.subjects.get(task.subject)
+                .commissions}
               color={colors[localSortedSubjects.indexOf(task.subject)]}
               {day}
               start={task.span.start}

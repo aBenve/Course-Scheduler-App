@@ -10,7 +10,7 @@
 </script>
 
 <div
-    class="relative group  md:static md:block flex flex-col gap-4 h-[3rem] w-full md:w-auto"
+    class=" group  md:static md:block flex flex-col gap-4 h-[3rem] w-full md:w-auto"
 >
     <button
         class="rounded-lg group text-sm h-full py-3 px-4 bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark text-text-dark-secondary dark:text-text-secondary  colorTransition"
@@ -18,7 +18,7 @@
         {buttonText}
     </button>
     <div
-        class="invisible group-focus-within:visible absolute shadow-xl md:w-[15rem] w-full z-30 mt-14 md:mt-2 bg-zone dark:bg-zone-dark p-4 rounded-lg colorTransition"
+        class="left-4 right-4 md:left-auto md:right-auto invisible group-focus-within:visible absolute shadow-xl md:w-[15rem]  z-30 mt-14 md:mt-2 bg-zone dark:bg-zone-dark p-4 rounded-lg colorTransition"
     >
         <CustomOptionInput
             {min_label}

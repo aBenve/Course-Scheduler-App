@@ -42,16 +42,18 @@
               icon="material-symbols:hide"
               iconWidth="15"
               iconHeight="15"
-              iconStyles="text-text-dark dark:text-text"
-              textStyles="text-text-dark dark:text-text text-xs"
+              iconStyles="text-text-dark dark:text-text "
+              textStyles="text-text-dark dark:text-text text-xs "
               title="Hide"
             />
           </button>
         </div>
       {/if}
 
-      <div class="flex items-center space-x-2 w-full">
-        <span class="text-text-dark dark:text-text">Subjects</span>
+      <div class="flex items-center space-x-2 w-full ">
+        <span class="text-text-dark dark:text-text colorTransition"
+          >Subjects</span
+        >
         <Badge title={$subjectList.length} />
       </div>
       <ControlContent />

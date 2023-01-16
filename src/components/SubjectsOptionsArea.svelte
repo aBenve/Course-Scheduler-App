@@ -44,7 +44,9 @@
   >
     <div class="flex items-center justify-between">
       <span class="flex items-center space-x-2 w-full">
-        <span class="text-text-dark dark:text-text text-lg ">Options </span>
+        <span class="text-text-dark dark:text-text text-lg colorTransition"
+          >Options
+        </span>
         <Badge title={$options.values.length + ($options.done ? "" : "+")} />
       </span>
       <ToggleColorModeButton class="" />

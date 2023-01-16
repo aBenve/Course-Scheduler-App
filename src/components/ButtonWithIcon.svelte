@@ -10,5 +10,10 @@
   export let textStyles;
 </script>
 
-<Icon {icon} width={iconWidth} height={iconHeight} class={iconStyles} />
-<span class={textStyles}>{title}</span>
+<Icon
+  {icon}
+  width={iconWidth}
+  height={iconHeight}
+  class="{iconStyles} colorTransition"
+/>
+<span class="{textStyles} colorTransition">{title}</span>
