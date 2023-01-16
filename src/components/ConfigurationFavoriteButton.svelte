@@ -10,8 +10,8 @@
 <button
   on:click={() => onClick()}
   class="colorTransition rounded-lg {selected
-    ? 'bg-accent dark:bg-accent text-area dark:text-text-dark hover:bg-accent-dark'
-    : 'bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark'}  text-text-dark-secondary dark:text-text-secondary min-w-[3rem] min-h-[3rem] flex items-center justify-center"
+    ? 'bg-accent text-accent bg-opacity-30 hover:bg-opacity-50'
+    : 'bg-area dark:bg-area-dark hover:bg-zone dark:hover:bg-zone-dark text-text-dark-secondary dark:text-text-secondary'}   min-w-[3rem] min-h-[3rem] flex items-center justify-center"
 >
   {#if icon !== ""}
     <Icon {icon} width={20} height={20} />
