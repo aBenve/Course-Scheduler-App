@@ -17,15 +17,27 @@
   let svgElem: Element;
   let simulation: Simulation<SimulationNodeDatum, undefined> | undefined;
   let width: number, height: number;
-
+  export let showElectives: boolean;
   $: simulation !== undefined && resizedSvg(width, height);
   function resizedSvg(width: number, height: number) {
     simulation
       .force("x")
-      .x((node) => (node.periodIndex !== undefined ? circleCenters[node.periodIndex].x : 0) + width / 2);
+      .x(
+        (node) =>
+          (node.periodIndex !== undefined
+            ? circleCenters[node.periodIndex].x
+            : 0) +
+          width / 2
+      );
     simulation
       .force("y")
-      .y((node) => (node.periodIndex !== undefined ? circleCenters[node.periodIndex].y : 0) + height / 2);
+      .y(
+        (node) =>
+          (node.periodIndex !== undefined
+            ? circleCenters[node.periodIndex].y
+            : 0) +
+          height / 2
+      );
     simulation.alpha(1);
     simulation.restart();
   }
@@ -35,8 +47,10 @@
   let circleLayoutRadius = 300;
   let circleCenters: { x: number; y: number }[];
 
-  $: $planStore !== null && svgElem !== undefined && planChanged($planStore);
-  function planChanged(plan: SubjectPlan) {
+  $: $planStore !== null &&
+    svgElem !== undefined &&
+    planChanged($planStore, showElectives);
+  function planChanged(plan: SubjectPlan, showElectives: boolean) {
     var child = svgElem.lastElementChild;
     while (child) {
       svgElem.removeChild(child);
@@ -48,44 +62,45 @@
     const selectedColor = colors[1];
     const subjects = plan.get_subjects();
 
-    let nodes = subjects
-      .map((code, i) => {
-        const info = plan.get_subject_info(code);
-        let terms = plan.get_subject_terms(code);
-        let term = terms[0];
-        let termIndex =
-          term !== undefined
-            ? (term.year - 1) * 2 + (term.period - 1)
-            : undefined;
-        const node = {
-          id: info.code,
-          periodIndex: termIndex,
-          label: `${info.name}`,
-        };
-        info.free();
-        return node;
-      })
-      .filter((node) => node.periodIndex !== undefined);
+    let nodes = subjects.map((code, i) => {
+      const info = plan.get_subject_info(code);
+      let terms = plan.get_subject_terms(code);
+      let term = terms[0];
+      let termIndex =
+        term !== undefined
+          ? (term.year - 1) * 2 + (term.period - 1)
+          : undefined;
+      const node = {
+        id: info.code,
+        periodIndex: termIndex,
+        label: `${info.name}`,
+      };
+      info.free();
+      return node;
+    });
+    if (!showElectives)
+      nodes = nodes.filter((node) => node.periodIndex !== undefined);
     let maxTerm = nodes.reduce((prev, cur) =>
       (prev.periodIndex ?? -1) > (cur.periodIndex ?? -1) ? prev : cur
     ).periodIndex;
+    let radius = circleLayoutRadius;
+    if (showElectives) radius *= 2;
     circleCenters = [
       ...Array(maxTerm + 1)
         .fill(0)
         .map((_, i) => {
           let angle = (i / (maxTerm + 1)) * (Math.PI * 2);
           return {
-            x: circleLayoutRadius * Math.cos(angle),
-            y: circleLayoutRadius * Math.sin(angle),
+            x: radius * Math.cos(angle),
+            y: radius * Math.sin(angle),
           };
         }),
-      { x: 0, y: 0 },
     ];
-    nodes.forEach((node) => {
-      if (node.periodIndex === undefined) {
-        node.periodIndex = maxTerm + 1;
-      }
-    });
+    //nodes.forEach((node) => {
+    //if (node.periodIndex === undefined) {
+    //node.periodIndex = maxTerm + 1;
+    //}
+    //});
     let edges = subjects
       .filter((sub) => nodes.find((n) => n.id == sub))
       .flatMap((code) =>

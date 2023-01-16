@@ -29,7 +29,7 @@
     <LoadingSpinner />
     <!--</div>-->
   {:else}
-    <SubjectGraph />
+    <SubjectGraph {showElectives} />
   {/if}
   <div class="absolute left-4 top-4">
     <PlanSelector />
