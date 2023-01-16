@@ -4,6 +4,8 @@
   import colorSettings from "../store/UserColorsStore";
 
   import config from "../../tailwind.config";
+  import { minBy } from "lodash";
+  import { detach } from "svelte/internal";
 
   export let min_label: string;
   export let max_label: string;
@@ -17,32 +19,8 @@
   function toCapitalice(text: string) {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
-
-  let labelArray = [$settings[min_label], $settings[max_label]];
-
-  if (min_label === max_label) {
-    labelArray = [$settings[min_label]];
-  }
-
-  $: $settings[min_label] = labelArray[0];
-  $: $settings[max_label] = labelArray[1];
 </script>
 
-<!-- <div class="flex flex-col items-start w-full">
-  <label
-    class="block text-xs dark:text-text text-text-dark-secondary pb-2"
-    for={label}
-  >
-    {toCapitalice(label)}
-  </label>
-  <input
-    class="appearance-none rounded text-xs w-full max-w-[7em] py-2 px-4 text-text-dark-secondary bg-zone dark:text-text-secondary dark:bg-zone-dark leading-tight focus:outline-accent focus:outline focus:outline-2"
-    id={label}
-    type="number"
-    {placeholder}
-    bind:value={$settings[label]}
-  />
-</div> -->
 <div class="flex flex-col">
   <div
     class="flex items-center space-x-2 pb-2 block text-xs dark:text-text text-text-dark-secondary "
@@ -52,11 +30,11 @@
     </label>
     {#if min_label === max_label}
       <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
-        >{labelArray[0]}</span
+        >{$settings[min_label]}</span
       >
     {:else}
       <span class="px-2 py-1 bg-accent rounded-lg bg-opacity-30 text-accent"
-        >{labelArray[0]} - {labelArray[1]}</span
+        >{$settings[min_label]} - {$settings[max_label]}</span
       >
     {/if}
   </div>
@@ -65,6 +43,16 @@
       ? ` --range-slider: ${colors.background}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`
       : ` --range-slider: ${colors['zone-dark']}; --range-handle-focus: ${colors.accent}; --range-handle: ${colors.accent}; --range-handle-inactive: ${colors['text-terciary']};`}  "
   >
-    <RangeSlider range pushy bind:values={labelArray} {min} {max} />
+    <RangeSlider
+      range
+      pushy
+      values={[$settings[min_label], $settings[max_label]]}
+      on:change={(e) => {
+        $settings[[min_label, max_label][e.detail?.activeHandle]] =
+          e.detail.value;
+      }}
+      {min}
+      {max}
+    />
   </div>
 </div>
