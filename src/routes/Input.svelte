@@ -4,6 +4,7 @@
     SubjectPlan,
   } from "@course-scheduler-app/scheduler-wasm";
   import type { Simulation, SimulationNodeDatum } from "d3";
+  import ButtonWithIcon from "src/components/ButtonWithIcon.svelte";
   import PlanSelector from "src/components/PlanSelector.svelte";
   import SubjectGraph from "src/components/SubjectGraph.svelte";
   import selected, { toggleSubject } from "src/store/GraphSelectedStore";
@@ -14,6 +15,8 @@
   import planStore from "../store/PlanStore";
   import colors from "../utils/colors";
   import { graph } from "../utils/graph";
+
+  let showElectives = false;
 
   $: loading = $courseCommissionsStore === null || $planStore === null;
 </script>
@@ -60,5 +63,25 @@
       <span>{link}</span>
     </div>
   </div> -->
-  <ToggleColorModeButton class="absolute top-4 right-4 " />
+
+  <div class="absolute top-4 right-4 flex gap-3">
+    <button
+      on:click={() => {
+        showElectives = !showElectives;
+      }}
+      class="flex space-x-2 items-center hover:bg-zone-secondary dark:hover:bg-zone-secondary-dark hover:bg-opacity-50 p-2 rounded-lg py-2 px-3 "
+    >
+      <ButtonWithIcon
+        icon={showElectives
+          ? "material-symbols:check-box-outline"
+          : "material-symbols:check-box-outline-blank"}
+        iconWidth="15"
+        iconHeight="15"
+        iconStyles="text-text-dark dark:text-text"
+        textStyles="text-text-dark dark:text-text text-xs"
+        title="Electives"
+      />
+    </button>
+    <ToggleColorModeButton />
+  </div>
 </main>
