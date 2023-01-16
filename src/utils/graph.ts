@@ -2,7 +2,13 @@ import * as d3 from "d3";
 
 export function graph(
   svgElement: Element,
-  nodes: { id: string; label: string; selected: boolean; available: boolean }[],
+  nodes: {
+    id: string;
+    label: string;
+    selected: boolean;
+    available: boolean;
+    periodIndex: number;
+  }[],
   edges: { source: string; target: string }[],
   initialWidth: number,
   initialHeight: number,
@@ -17,12 +23,14 @@ export function graph(
     label: n.label,
     selected: n.selected,
     available: n.available,
+    periodIndex: n.periodIndex,
   }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
+  let periodForce = 0.3;
+  
   const simulation = d3
     .forceSimulation(nodes)
-
     .force(
       "link",
       d3
@@ -30,17 +38,16 @@ export function graph(
         .id(({ index }) => {
           return N[index];
         })
-        .strength(0.1)
+        .strength(0.05)
     )
-
-    .force("x", d3.forceX(initialWidth / 2))
-    .force("y", d3.forceY(initialHeight / 2))
-
+    .force("x", d3.forceX(initialWidth / 2).strength(periodForce))
+    .force("y", d3.forceY(initialHeight / 2).strength(periodForce))
     .force("collision", d3.forceCollide().radius(20).strength(0.5))
     .force("charge", d3.forceManyBody().strength(-300))
     // .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))
-
     .on("tick", ticked);
+
+  //simulation.nodes().push({id: "12.34", label: "HOLA", selected: false, available: true, vx: 0, vy: 0, x: 0, y: 0})
 
   function handleZoom(e) {
     d3.select("svg g").attr("transform", e.transform);
