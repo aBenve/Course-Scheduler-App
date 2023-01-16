@@ -94,7 +94,7 @@
     display: grid;
     gap: 1rem;
     grid-template-rows: auto minmax(0, 1fr);
-    grid-template-columns: minmax(auto, 17em) minmax(0, 1fr) 17em;
+    grid-template-columns: minmax(auto, 17em) minmax(0, 1fr) minmax(17rem, auto);
     grid-template-areas:
       "controls-area configuration-area subjects-area"
       "controls-area calendar-area subjects-area";
