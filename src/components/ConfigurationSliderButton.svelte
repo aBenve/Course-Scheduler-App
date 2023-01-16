@@ -13,7 +13,7 @@
 </script>
 
 <div
-    class="relative md:static md:block flex flex-col gap-4 h-[3rem] w-full md:w-auto"
+    class="relative  md:static md:block flex flex-col gap-4 h-[3rem] w-full md:w-auto"
 >
     <button
         on:click={() => onClick()}
@@ -23,7 +23,7 @@
     </button>
     {#if isOpen}
         <div
-            class="absolute md:w-[15rem] w-full z-30 mt-14 md:mt-2 bg-zone dark:bg-zone-dark p-4 rounded-lg"
+            class="absolute shadow-xl md:w-[15rem] w-full z-30 mt-14 md:mt-2 bg-zone dark:bg-zone-dark p-4 rounded-lg colorTransition"
         >
             <CustomOptionInput
                 {min_label}

@@ -23,7 +23,7 @@
 
 <div class="flex flex-col">
   <div
-    class="flex items-center space-x-2 pb-2 block text-xs dark:text-text text-text-dark-secondary "
+    class="flex items-center space-x-2 pb-2 block text-xs dark:text-text text-text-dark-secondary colorTransition"
   >
     <label class="" for={text}>
       {toCapitalice(text)}
