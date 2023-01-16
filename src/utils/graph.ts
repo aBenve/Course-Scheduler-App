@@ -27,7 +27,7 @@ export function graph(
   }));
   edges = d3.map(edges, (e, i) => ({ source: LS[i], target: LE[i] }));
 
-  let periodForce = 0.3;
+  let periodForce = 0.6;
   
   const simulation = d3
     .forceSimulation(nodes)
@@ -40,8 +40,8 @@ export function graph(
         })
         .strength(0.05)
     )
-    .force("x", d3.forceX(initialWidth / 2).strength(periodForce))
-    .force("y", d3.forceY(initialHeight / 2).strength(periodForce))
+    .force("x", d3.forceX(initialWidth / 2).strength(node => node.periodIndex === undefined ? periodForce / 5 : periodForce))
+    .force("y", d3.forceY(initialHeight / 2).strength(node => node.periodIndex === undefined ? periodForce / 5 : periodForce))
     .force("collision", d3.forceCollide().radius(20).strength(0.5))
     .force("charge", d3.forceManyBody().strength(-300))
     // .force("center", d3.forceCenter(initialWidth / 2, initialHeight / 2))

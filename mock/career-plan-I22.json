@@ -1,0 +1,842 @@
+{
+	"careerplan" : {
+		"name" : "I22",
+		"career" : "I",
+		"degreeLevel" : "GRADUATE",
+		"since" : "2024-12-31T00:00:00-03:00",
+		"section" : [ {
+			"name" : "PLAN I22",
+			"terms" : {
+				"term" : [ {
+					"year" : "1",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Química General",
+							"code" : "12.67",
+							"credits" : "6",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Informática General",
+							"code" : "71.20",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático I",
+							"code" : "92.01",
+							"credits" : "6",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Álgebra Lineal",
+							"code" : "93.18",
+							"credits" : "6",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Tecnología y Sociedad",
+							"code" : "94.33",
+							"credits" : "3",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "1",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Biología",
+							"code" : "16.55",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Sistemas de Representación",
+							"code" : "31.08",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Gestión de Datos",
+							"code" : "71.88",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "71.20"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático II",
+							"code" : "92.02",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "92.01", "93.18" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física I",
+							"code" : "93.41",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "92.01"
+							}
+						} ]
+					}
+				}, {
+					"year" : "2",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Mecánica de Sólidos",
+							"code" : "30.89",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "93.41"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático III",
+							"code" : "92.03",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : [ "92.01", "93.18" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Probabilidad",
+							"code" : "93.36",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "92.02"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física II",
+							"code" : "93.42",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.02"
+							}
+						} ]
+					}
+				}, {
+					"year" : "2",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Sistemas Complejos",
+							"code" : "11.28",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Estadística Aplicada",
+							"code" : "11.67",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.36"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Mecánica de Fluidos",
+							"code" : "31.24",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : [ "92.03", "93.41" ]
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Análisis Matemático IV",
+							"code" : "92.05",
+							"credits" : "4",
+							"dependencies" : {
+								"dependency" : "92.03"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Métodos Numéricos",
+							"code" : "93.07",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "92.03"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física III",
+							"code" : "93.43",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "92.03"
+							}
+						} ]
+					}
+				}, {
+					"year" : "3",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Organización de la Producción I",
+							"code" : "11.10",
+							"credits" : "6",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Materiales y Procesos",
+							"code" : "11.16",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "30.89"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Principios y Aplicaciones Eléctricas",
+							"code" : "21.30",
+							"credits" : "5",
+							"dependencies" : {
+								"dependency" : "93.43"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Física IV",
+							"code" : "93.61",
+							"credits" : "4",
+							"dependencies" : {
+								"dependency" : "93.43"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Metodología del Diseño",
+							"code" : "94.43",
+							"credits" : "3",
+							"creditsRequired" : "72",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "3",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Supply Chain",
+							"code" : "11.20",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "11.10"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Investigación Operativa",
+							"code" : "11.51",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "11.67"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Termodinámica y sus aplicaciones",
+							"code" : "30.32",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "93.42"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Proyecto Interdisciplinario",
+							"code" : "94.44",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Inglés I",
+							"code" : "94.51",
+							"credits" : "0",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "1",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Tecnologías y Procesos de Producción",
+							"code" : "11.75",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "11.16"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Electrónica e Instrumentación",
+							"code" : "23.17",
+							"credits" : "3",
+							"dependencies" : null
+						}, {
+							"type" : "subject",
+							"name" : "Economía Empresaria",
+							"code" : "61.09",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "11.10"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Certificaciones tecnológicas",
+							"code" : "71.90",
+							"credits" : "0",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "4",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Gestión Ambiental",
+							"code" : "10.02",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "11.75"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Simulación",
+							"code" : "11.63",
+							"credits" : "3",
+							"dependencies" : {
+								"dependency" : "11.51"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Economía",
+							"code" : "61.28",
+							"credits" : "6",
+							"dependencies" : {
+								"dependency" : "61.09"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Derecho para Ingenieros",
+							"code" : "61.31",
+							"credits" : "3",
+							"dependencies" : null
+						} ]
+					}
+				}, {
+					"year" : "5",
+					"period" : "1",
+					"entries" : {
+						"entry" : {
+							"type" : "subject",
+							"name" : "Proyecto Final de Ingeniería Industrial (Anual)",
+							"code" : "10.01",
+							"credits" : "6",
+							"dependencies" : null
+						}
+					}
+				}, {
+					"year" : "5",
+					"period" : "2",
+					"entries" : {
+						"entry" : [ {
+							"type" : "subject",
+							"name" : "Inglés II",
+							"code" : "94.52",
+							"credits" : "0",
+							"dependencies" : {
+								"dependency" : "94.51"
+							}
+						}, {
+							"type" : "subject",
+							"name" : "Practica Profesional supervisada",
+							"code" : "94.65",
+							"credits" : "0",
+							"creditsRequired" : "144",
+							"dependencies" : null
+						} ]
+					}
+				} ]
+			},
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "section",
+					"name" : "Bloque I Electivas",
+					"credits" : "6",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque II Electivas General",
+					"credits" : "0",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque III Electivas Gestión",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque IV Electivas Tics",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque V Electivas Energía",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque VI Electivas Finanzas",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Bloque VII Electivas  Tecnología",
+					"credits" : "3",
+					"dependencies" : null
+				}, {
+					"type" : "section",
+					"name" : "Electivas Restantes de Bloques 2 a 7",
+					"credits" : "50",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque I Electivas",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : {
+					"type" : "subject",
+					"name" : "Estructura de Datos y Programación",
+					"code" : "71.45",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "71.88"
+					}
+				}
+			}
+		}, {
+			"name" : "Bloque II Electivas General",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Creatividad",
+					"code" : "10.07",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Formación para Emprendedores",
+					"code" : "10.09",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Agroindustria",
+					"code" : "10.15",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Machine Learning para Negocios",
+					"code" : "10.16",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : {
+						"dependency" : [ "92.03", "93.36" ]
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Herramientas Avanzadas de la Calidad",
+					"code" : "10.21",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Marketing",
+					"code" : "11.39",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Logística",
+					"code" : "11.59",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : {
+						"dependency" : "11.20"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Teoría de la Decisión",
+					"code" : "11.73",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Calidad",
+					"code" : "11.76",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Proyectos",
+					"code" : "11.84",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Química I",
+					"code" : "12.01",
+					"credits" : "6",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Análisis de Encuestas",
+					"code" : "14.37",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Lean Manufacturing",
+					"code" : "14.46",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Lean Six Sigma White Belt",
+					"code" : "14.59",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Bem1105x Pricing Options with Mathematical Models",
+					"code" : "14.67",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Analytics",
+					"code" : "14.72",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Conceptos de Minería para Ing. Industriales",
+					"code" : "15.07",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Neurociencias y Desarrollo Productivo",
+					"code" : "16.04",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Estructura de Datos y Programación",
+					"code" : "71.45",
+					"credits" : "6",
+					"dependencies" : {
+						"dependency" : "71.88"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Ventas",
+					"code" : "81.21",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Logística Internacional",
+					"code" : "81.65",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : {
+						"dependency" : "11.20"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Organizaciones Sociales",
+					"code" : "94.13",
+					"credits" : "6",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Formación General I",
+					"code" : "94.21",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Administración de Recursos Humanos",
+					"code" : "94.27",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Comunicación Estratégica",
+					"code" : "94.42",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Filosofía",
+					"code" : "94.61",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Prácticas Expositivas",
+					"code" : "94.64",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque III Electivas Gestión",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Planeamiento Estratégico",
+					"code" : "11.46",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Teoría de la Decisión",
+					"code" : "11.73",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Empresas Familiares",
+					"code" : "81.51",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de Servicios",
+					"code" : "81.59",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque IV Electivas Tics",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Programación web",
+					"code" : "71.38",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Sistemas de Información",
+					"code" : "81.03",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Negocios en Internet",
+					"code" : "81.53",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Service Design",
+					"code" : "81.58",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la realidad virtual",
+					"code" : "81.72",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la IOT",
+					"code" : "81.73",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción a la realidad aumentada",
+					"code" : "81.74",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Growth Hacking",
+					"code" : "81.82",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Blockchain (Moneda digital descentralizada)",
+					"code" : "82.07",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Cloud Computing",
+					"code" : "82.08",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque V Electivas Energía",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Energías Renovables",
+					"code" : "10.08",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Energías Convencionales",
+					"code" : "10.12",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Demanda Energética",
+					"code" : "10.18",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Tecnologías Energéticas Disruptivas",
+					"code" : "10.19",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Introducción al Desarrollo Energético Sustentable",
+					"code" : "10.20",
+					"credits" : "1",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque VI Electivas Finanzas",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Sistema Monetario y Financiero en Argentina",
+					"code" : "61.04",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Econometría Aplicada",
+					"code" : "61.30",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : {
+						"dependency" : "11.67"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Finanzas de la Empresa",
+					"code" : "61.50",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Bloque VII Electivas  Tecnología",
+			"terms" : null,
+			"withoutTerm" : {
+				"withoutTerm" : [ {
+					"type" : "subject",
+					"name" : "Diseño de Producto",
+					"code" : "11.14",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : {
+						"dependency" : "11.16"
+					}
+				}, {
+					"type" : "subject",
+					"name" : "Prototipado e Impresión 3D",
+					"code" : "11.19",
+					"credits" : "3",
+					"creditsRequired" : "72",
+					"dependencies" : null
+				}, {
+					"type" : "subject",
+					"name" : "Gestión de la tecnología",
+					"code" : "11.33",
+					"credits" : "3",
+					"creditsRequired" : "160",
+					"dependencies" : null
+				} ]
+			}
+		}, {
+			"name" : "Electivas Restantes de Bloques 2 a 7",
+			"terms" : null,
+			"withoutTerm" : null
+		} ]
+	}
+}

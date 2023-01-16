@@ -1,6 +1,7 @@
 // test.ts
 import commissions from "./commissions.json";
-import planI from "./career-plan-I-13.json";
+import planI13 from "./career-plan-I-13.json";
+import planI22 from "./career-plan-I22.json";
 import planS from "./career-plan-S10A-Rev18.json";
 import student from "./student.json";
 import people from "./people.json";
@@ -27,11 +28,13 @@ export default [
     url: "/api/plan",
     method: "get",
     response: ({ query }) => {
-      switch (query.name[0]) {
-        case "S":
+      switch (query.name) {
+        case "S10 A - Rev18":
           return planS;
-        case "I":
-          return planI;
+        case "I-13":
+          return planI13;
+        case "I22":
+          return planI22;
         default:
           return planS;
       }
