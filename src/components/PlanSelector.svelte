@@ -3,7 +3,7 @@
   import Dropdown from "./Dropdown.svelte";
 
   const careers = {
-    Informatica: ["S10 - Rev", "S10 - Rev18", "S10 A - Rev18"],
+    Informatica: ["S10 - Rev18", "S10 A - Rev18"],
     Industrial: ["I22", "I-13", "I-13T", "I04", "I87/4"],
     Electronica: ["K07-Rev.18", "K07A-Rev.18", "K12", "K12A", "K07", "K07A"],
     Mecanica: [
