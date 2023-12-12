@@ -2,30 +2,14 @@
   import selectedPlanStore from "src/store/SelectedPlanStore";
   import Dropdown from "./Dropdown.svelte";
 
-  const careers = {
-    Informatica: ["S10 - Rev18", "S10 A - Rev18"],
-    Industrial: ["I22", "I-13", "I-13T", "I04", "I87/4"],
-    Electronica: ["K07-Rev.18", "K07A-Rev.18", "K12", "K12A", "K07", "K07A"],
-    Mecanica: [
-      "M22 - Agosto",
-      "M22-Marzo",
-      "M09 - Rev18 (Agosto)",
-      "M09 - Rev18 (Marzo)",
-      "M 17 Agosto Rev 1",
-      "M 17 Marzo Rev 1",
-      "M17 Agosto",
-      "M17 Marzo",
-      "M13 agosto",
-      "M13 marzo",
-      "M13 marzo(N)",
-      "M09 /2",
-      "M09 A/2",
-    ],
-  };
+  export let careers: string;
+
+  export let defaultCareer: string;
 
   let selectedCareer: string;
+
   if ($selectedPlanStore === null) {
-    selectedCareer = "Informatica";
+    selectedCareer = defaultCareer;
     $selectedPlanStore = careers[selectedCareer][0];
   } else {
     selectedCareer = Object.entries(careers).find(([career, plans]) =>
@@ -40,7 +24,7 @@
       selectedCareer = option.detail;
       $selectedPlanStore = careers[selectedCareer][0];
     }}
-    options={Object.entries(careers).map(([key, value]) => key)}
+    options={Object.keys(careers)}
     selectedOption={selectedCareer}
   />
   <Dropdown

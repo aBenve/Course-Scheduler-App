@@ -1,0 +1,35 @@
+{
+  "Bioingeniería": ["BIO 22", "Bio-13"],
+  "Ingeniería Civil": ["C23"],
+  "Ingeniería Electricista": ["E 11", "E 11A"],
+  "Ingeniería Electrónica": ["K22", "K07-Rev.18", "K07A-Rev.18"],
+  "Ingeniería en Informática": ["S10-Rev23", "S10 - Rev18", "S10 A - Rev18"],
+  "Ingeniería en Petróleo": ["P22", "P05-Rev.18", "P-13", "P05"],
+  "Ingeniería Industrial": ["I22", "I-13", "I-13T"],
+  "Ingeniería Mecánica": [
+    "M22",
+    "M09 - Rev18 (Agosto)",
+    "M09 - Rev18 (Marzo)",
+    "M 17 Agosto Rev 1",
+    "M 17 Marzo Rev 1",
+    "M17 Agosto",
+    "M17 Marzo",
+    "M13 agosto",
+    "M13 marzo",
+    "M13 marzo(N)",
+    "M09 /2",
+    "M09 A/2"
+  ],
+  "Ingeniería Naval": [
+    "N22",
+    "N18 Agosto",
+    "N18 Marzo",
+    "N13 agosto",
+    "N13 marzo",
+    "N06"
+  ],
+  "Ingeniería Química": ["Q22", "Q05 - Rev.18"],
+  "Lic.en Administración y Sistemas": ["L09T", "L09-REV13", "L09"],
+  "Licenciatura en Analítica Empresarial y Social": ["A22", "A17"],
+  "Licenciatura en Negocios": ["L20"]
+}

@@ -15,10 +15,16 @@
   import planStore from "../store/PlanStore";
   import colors from "../utils/colors";
   import { graph } from "../utils/graph";
+  import { getCareerPlans } from "../api.ts";
 
   let showElectives = false;
 
-  $: loading = $courseCommissionsStore === null || $planStore === null;
+  let careers = null;
+  getCareerPlans().then(plans => {
+    careers = plans;
+  });
+
+  $: loading = $courseCommissionsStore === null || $planStore === null || careers === null;
 </script>
 
 <main
@@ -30,17 +36,19 @@
     <!--</div>-->
   {:else}
     <SubjectGraph {showElectives} />
+    <div class="absolute right-4 bottom-4">
+      <LinkButton
+        title="Start"
+        link="Options"
+        icon="material-symbols:arrow-right-alt-rounded"
+      />
+    </div>
   {/if}
-  <div class="absolute left-4 top-4">
-    <PlanSelector />
-  </div>
-  <div class="absolute right-4 bottom-4">
-    <LinkButton
-      title="Start"
-      link="Options"
-      icon="material-symbols:arrow-right-alt-rounded"
-    />
-  </div>
+  {#if careers !== null}
+    <div class="absolute left-4 top-4">
+      <PlanSelector {careers} defaultCareer="Ingeniería en Informática"/>
+    </div>
+  {/if}
   <!-- <div
     class="absolute left-2 top-2 flex flex-col items-center w-fit h-fit bg-zone rounded-lg p-4"
   >
