@@ -39,7 +39,7 @@
     <!--</div>-->
   {:else}
     {#if $courseCommissionsStore === null}
-      <div class="text-white">
+      <div class="dark:text-text text-lg">
         No data for {semesterToString($selectedTermStore.semester)} Semester of {$selectedTermStore.year}. Choose another term
       </div>
     {:else}
