@@ -11,7 +11,7 @@ const initialized = from(load());
 
 const apiStore = initialized.pipe(
   map(() => initializeApi()),
-  startWith(null),
+  startWith(undefined),
   //debug("api"),
   shareReplay(1)
 );

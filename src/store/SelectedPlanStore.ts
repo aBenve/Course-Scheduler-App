@@ -5,7 +5,7 @@ const selectedPlan: Writable<string | null> = writable(
 );
 
 selectedPlan.subscribe((selectedPlan) => {
-  if (selectedPlan !== null) localStorage.selectedPlan = selectedPlan;
+  if (selectedPlan !== undefined) localStorage.selectedPlan = selectedPlan;
 });
 
 selectedPlan.subscribe((plan) => console.log(plan));

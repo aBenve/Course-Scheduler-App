@@ -13,7 +13,7 @@
 
 <Router {url}>
   <div id="app" class="font-principal">
-    {#if $apiStore === null}
+    {#if $apiStore === undefined}
       <Route>
         <div
           class="w-full h-screen flex items-center justify-center"

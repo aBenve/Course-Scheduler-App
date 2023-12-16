@@ -47,7 +47,7 @@
   let circleLayoutRadius = 300;
   let circleCenters: { x: number; y: number }[];
 
-  $: $planStore !== null &&
+  $: $planStore !== undefined &&
     svgElem !== undefined &&
     planChanged($planStore, showElectives);
   function planChanged(plan: SubjectPlan, showElectives: boolean) {
@@ -129,7 +129,7 @@
   }
 
   $: simulation !== undefined &&
-    $courseCommissionsStore !== null &&
+    $courseCommissionsStore !== undefined &&
     courseCommissionsChanged($courseCommissionsStore);
 
   function courseCommissionsChanged(courseCommissions: Commissions) {
@@ -139,7 +139,7 @@
     });
   }
 
-  $: loading = $courseCommissionsStore === null || $planStore === null;
+  $: loading = $courseCommissionsStore === undefined || $planStore === undefined;
 </script>
 
 <div class="w-full h-full" bind:clientWidth={width} bind:clientHeight={height}>

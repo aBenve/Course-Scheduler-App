@@ -16,16 +16,18 @@
   import planStore from "../store/PlanStore";
   import colors from "../utils/colors";
   import { graph } from "../utils/graph";
+  import { semesterToString } from "../utils/semester";
   import { getCareerPlans } from "../api.ts";
+  import selectedTermStore from "src/store/SelectedTermStore";
 
   let showElectives = false;
 
-  let careers = null;
+  let careers = undefined;
   getCareerPlans().then(plans => {
     careers = plans;
   });
 
-  $: loading = $courseCommissionsStore === null || $planStore === null || careers === null;
+  $: loading = $courseCommissionsStore === undefined || $planStore === undefined || careers === undefined;
 </script>
 
 <main
@@ -36,16 +38,22 @@
     <LoadingSpinner />
     <!--</div>-->
   {:else}
-    <SubjectGraph {showElectives} />
-    <div class="absolute right-4 bottom-4">
-      <LinkButton
-        title="Start"
-        link="Options"
-        icon="material-symbols:arrow-right-alt-rounded"
-      />
-    </div>
+    {#if $courseCommissionsStore === null}
+      <div class="text-white">
+        No data for {semesterToString($selectedTermStore.semester)} Semester of {$selectedTermStore.year}. Choose another term
+      </div>
+    {:else}
+      <SubjectGraph {showElectives} />
+      <div class="absolute right-4 bottom-4">
+        <LinkButton
+          title="Start"
+          link="Options"
+          icon="material-symbols:arrow-right-alt-rounded"
+        />
+      </div>
+    {/if}
   {/if}
-  {#if careers !== null}
+  {#if careers !== undefined}
     <div class="absolute left-4 top-4">
       <PlanSelector {careers} defaultCareer="Ingeniería en Informática"/>
     </div>

@@ -23,13 +23,13 @@
 
   let isControlAreaOpen: boolean = true;
 
-  $: $selectedPlanStore === null && goToInputPage();
+  $: $selectedPlanStore === undefined && goToInputPage();
 
   function goToInputPage() {
     window.location = "/";
   }
 
-  $: loading = $courseCommissionsStore === null || $subjectStore === null;
+  $: loading = $courseCommissionsStore === undefined || $subjectStore === undefined;
 </script>
 
 <main class="bg-background dark:bg-background-dark h-screen colorTransition">

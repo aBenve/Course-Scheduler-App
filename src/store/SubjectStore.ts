@@ -53,7 +53,7 @@ export function load(plan: SubjectPlan) {
 }
 
 planStore.subscribe((subjectPlan) => {
-  if (subjectPlan === null) return;
+  if (!subjectPlan) return;
   load(subjectPlan);
 });
 
