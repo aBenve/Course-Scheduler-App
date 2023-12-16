@@ -6,6 +6,7 @@
   import type { Simulation, SimulationNodeDatum } from "d3";
   import ButtonWithIcon from "src/components/ButtonWithIcon.svelte";
   import PlanSelector from "src/components/PlanSelector.svelte";
+  import TermSelector from "src/components/TermSelector.svelte";
   import SubjectGraph from "src/components/SubjectGraph.svelte";
   import selected, { toggleSubject } from "src/store/GraphSelectedStore";
   import LinkButton from "../components/LinkButton.svelte";
@@ -47,6 +48,9 @@
   {#if careers !== null}
     <div class="absolute left-4 top-4">
       <PlanSelector {careers} defaultCareer="Ingeniería en Informática"/>
+    </div>
+    <div class="absolute left-4 bottom-4">
+      <TermSelector/>
     </div>
   {/if}
   <!-- <div
