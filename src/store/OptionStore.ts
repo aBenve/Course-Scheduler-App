@@ -12,7 +12,6 @@ import {
   switchMap,
   takeUntil,
   tap,
-  withLatestFrom,
   zip,
 } from "rxjs";
 import generateChoices from "../generator";
@@ -68,21 +67,21 @@ function createOptions() {
   let queryParameters = combinedParameters.pipe(
     map(
       ([subjects, querySettings]) =>
-        ({
-          mandatory: subjects.mandatory.map((s) => s.id),
-          optional: subjects.optional.map((s) => s.id),
-          min_subject_count: querySettings.min_subjects,
-          min_credit_count: querySettings.min_credits,
-          max_subject_count: querySettings.max_subjects,
-          max_credit_count: querySettings.max_credits,
-        } as QueryParameters)
+      ({
+        mandatory: subjects.mandatory.map((s) => s.id),
+        optional: subjects.optional.map((s) => s.id),
+        min_subject_count: querySettings.min_subjects,
+        min_credit_count: querySettings.min_credits,
+        max_subject_count: querySettings.max_subjects,
+        max_credit_count: querySettings.max_credits,
+      } as QueryParameters)
     ),
     //debug("Query params"),
     share()
   );
 
   let generator = queryParameters.pipe(
-    withLatestFrom(courseCommissionsStore),
+    combineLatestWith(courseCommissionsStore),
     map(([a, s]) => generateChoices(s, a))
     //debug("Created Generator!"),
   );

@@ -53,8 +53,11 @@ export function load(plan: SubjectPlan) {
 }
 
 planStore.subscribe((subjectPlan) => {
-  if (!subjectPlan) return;
-  load(subjectPlan);
+  if (subjectPlan) {
+    load(subjectPlan);
+  } else {
+    subjects.set(null);
+  }
 });
 
 subjects.subscribe((subjects) => {
