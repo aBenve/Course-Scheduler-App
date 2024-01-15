@@ -152,18 +152,18 @@
             <CalendarCell
               col={t + 2}
               row={i + 2}
-              on:cellmousedown={(e) => {
-                e.preventDefault();
-                if (e.detail.buttons === 1) {
-                  cellMouseDown(day, i);
-                }
-              }}
-              on:cellmouseenter={() => cellMouseEnter(day, i)}
-              on:cellmouseup={() => cellMouseUp(day, i)}
               bgColor={Math.floor(i / 2) % 2
                 ? "bg-zone dark:bg-background-dark"
                 : "bg-area dark:bg-area-dark"}
             />
+              <!--on:cellmousedown={(e) => {-->
+                <!--e.preventDefault();-->
+                <!--if (e.detail.buttons === 1) {-->
+                  <!--cellMouseDown(day, i);-->
+                <!--}-->
+              <!--}}-->
+              <!--on:cellmouseenter={() => cellMouseEnter(day, i)}-->
+              <!--on:cellmouseup={() => cellMouseUp(day, i)}-->
           {/each}
         {/each}
 

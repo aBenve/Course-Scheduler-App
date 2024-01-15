@@ -17,12 +17,13 @@
   on:mousedown={(e) => mouseDown("cellmousedown", e)}
   on:mouseenter={(e) => mouseEnter("cellmouseenter", e)}
   on:mouseup={(e) => mouseUp("cellmouseup", e)}
-  class="CalendarCell relative cursor-pointer col-start-{col} row-start-{row} col-span-1 {bgColor}  {isActive
+  class="CalendarCell relative col-start-{col} row-start-{row} col-span-1 {bgColor}  {isActive
     ? 'active'
     : ''} colorTransition"
 />
 
 <style>
+/*
   .CalendarCell:hover::before {
     content: "";
     position: absolute;
@@ -44,4 +45,5 @@
     background-color: #5375f3;
     border-radius: 0.5rem;
   }
+  */
 </style>
