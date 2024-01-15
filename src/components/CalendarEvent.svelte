@@ -9,7 +9,7 @@
   export let start: Time;
   export let end: Time;
   export let day: DaysOfTheWeek;
-  export let buildings: string[];
+  export let buildings: string[] = [];
   export let title: string;
   export let commisions: string[];
   export let calendarFirstHour: number;
@@ -55,7 +55,9 @@
     {title}
   </div>
   <div class="absolute right-2 bottom-1 opacity-50" style="color: {color}">
-    {fixedBuildings} - {commisions}
+    {#if (fixedBuildings && fixedBuildings.length) || (commisions && commisions.length)}
+        {fixedBuildings} - {commisions}
+    {/if}
   </div>
 </div>
 
