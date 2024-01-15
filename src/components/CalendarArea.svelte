@@ -109,7 +109,6 @@
       spanDragging.end = indexToTime(i);
     }
   }
-  $: spanDragging !== null && console.log(spanDragging.start, spanDragging.end);
 
   export { clazz as class };
 </script>
