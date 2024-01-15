@@ -199,6 +199,7 @@
               {day}
               start={task.span.start}
               end={task.span.end}
+              buildings={task.buildings}
               calendarFirstHour={firstHour}
             />
           {/each}
