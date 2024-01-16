@@ -1,7 +1,7 @@
 import { writable, type Writable } from "svelte/store";
 
 const selectedPlan: Writable<string | null> = writable(
-  localStorage.selectedPlan ?? null
+  localStorage.selectedPlan ?? undefined
 );
 
 selectedPlan.subscribe((selectedPlan) => {

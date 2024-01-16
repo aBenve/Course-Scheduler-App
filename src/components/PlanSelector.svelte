@@ -8,7 +8,7 @@
 
   let selectedCareer: string;
 
-  if ($selectedPlanStore === null) {
+  if ($selectedPlanStore === undefined) {
     selectedCareer = defaultCareer;
     $selectedPlanStore = careers[selectedCareer][0];
   } else {
